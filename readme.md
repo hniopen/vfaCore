@@ -18,7 +18,7 @@
     * use the right php version : `phpbrew use php-x.x.xx`
 * or another alternative like Docker
     
-### Initial set up
+### Initial setup
 1. Make sure you have access to the private repo `https://github.com/hnidev/vfaCore`, then clone it
 2. Copy `.env.example` file to `.env` and set your DB there
 3. Run `composer install`
@@ -26,7 +26,7 @@
 5. Run `php artisan migrate --seed` #init the default URR for example.
 In case you need a refresh, use `php artisan migrate:refresh --seed`
 
-### Mail set up
+### Mail setup
 * In .env, set the {mail setting}, e.g:
 ```bash
 MAIL_DRIVER=smtp
