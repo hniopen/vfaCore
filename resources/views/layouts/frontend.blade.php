@@ -87,8 +87,15 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    <div class="panel panel-default">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
