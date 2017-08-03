@@ -12,7 +12,7 @@
                 </a>
             </li>
             
-            @can('users_manage')
+            @can('manage_users')
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
