@@ -5,8 +5,8 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
 
-            <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
-                <a href="{{ url('/') }}">
+            <li class="{{ $request->segment(2) == 'home' ? 'active' : '' }}">
+                <a href="{{ url('/admin/home') }}">
                     <i class="fa fa-wrench"></i>
                     <span class="title">@lang('global.app_dashboard')</span>
                 </a>

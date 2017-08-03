@@ -65,9 +65,11 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        @if (Auth::check() && Auth::user()->hasRole('administrator'))
-                                            <a href="{{ url('/admin/home') }}">Admin</a>
-                                        @endif
+                                        <a href="{{ url('/admin/home') }}">
+                                            @if (Auth::check() && Auth::user()->hasRole('administrator')) Admin
+                                            @else Settings
+                                            @endif
+                                        </a>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
