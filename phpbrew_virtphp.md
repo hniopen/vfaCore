@@ -49,13 +49,13 @@ brew link icu4c
     Note, after the installation, you will have new directory such as : `~/.phpbrew/php/php-7.1.1/bin`. You can list your existing builds `phpbrew list`
 2. Create a virtual env. following this example:
     ```yaml
-    virtphp create --php-bin-dir="{your home directory path}/.phpbrew/php/php-7.1.1/bin" {your project name}-env
+    virtphp create --php-bin-dir="{your home directory path}/.phpbrew/php/php-7.1.1/bin" {your project name env.}
     ```
     Phpbrew may not locate the `~/`, use an absolute path `{your home directory path}`. You can check existing virtual env. by `virtphp show`
 
 ## Running app
 1. Run your virtual env.
-`source /Users/user/.virtphp/envs/vfa-env/bin/activate`
+`source /Users/user/.virtphp/envs/{your project name env.}/bin/activate`
 
 2. Make sure you use the right php build `which php`. (in case you need to force, use `phpbrew use php-{your installed version}`)
 3. Run/update you app and enjoy. Do not forget to run virtual env. for each time you need to run your app.
