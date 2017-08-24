@@ -11,11 +11,8 @@
 ## Setting up the app.
 ### Php version management
 **In case you deal with php version conflicts** (if not, don't mind, jump to next step), you can use :
-* Virtphp and phpbrew
-    * first, follow the [installion of virtphp and phpbrew](https://www.sitepoint.com/use-phpbrew-virtphp/)
-    * create virt env:  `virtphp create {your env}`
-    * activate env :  `source /home/ubuntu/.virtphp/envs/{your env}/bin/activate`
-    * use the right php version : `phpbrew use php-x.x.xx`
+* Virtphp and phpbrew:
+Instructions are detailed in the `phpbrew_virtphp.md` file.
 * or another alternative like Docker
     
 ### Initial setup
@@ -59,24 +56,22 @@ nohup php artisan serve --host=0.0.0.0 {--port=XXXX} &
     * ***REMOVED***
 
 ## Serve the app
+### If using Virt env.
+Make sure you are in the right **virt env** and the right **php version** if you use _virtphp_.
+```bash
+source ~/.virtphp/envs/{your env}/bin/activate #Opational if you don't use virtphp
+phpbrew use php-x.x.xx #Opational if you don't use virtphp
+```
 ### Local server
 ```bash
 php artisan serve --port=XXXX
 ```
 ### Remote server (case of our current EC2)
 * Free the port from external access (ask our administrator)
-* Serve : use `nohup cmd &` if you want  to not interrupt when leaving your terminal). Make sure you are in the right **virt env** and the right **php version** if you use _virtphp_.
+* Serve : use `nohup cmd &` if you want  to not interrupt when leaving your terminal). 
 ```bash
-source ~/.virtphp/envs/{your env}/bin/activate #Opational if you don't use virtphp
-phpbrew use php-x.x.xx #Opational if you don't use virtphp
 nohup php artisan serve --host=0.0.0.0 {--port=XXXX} &
 ```
-## Test you app ;)
-* 1st administrator : 
-    * name : `admin`
-    * mail : `tobechanged@gmail.com` (please change this to working one)
-    * ***REMOVED***
-
 ## Using ACL 
 1. Create some roles.
 2. Create some permissions.
