@@ -10,8 +10,10 @@
         "intervention/image": "^2.3",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.3",
-        "spatie/laravel-permission": "^2.2"
+        "laravelcollective/html": "^5.4.0",
+        "spatie/laravel-permission": "^2.2",
+        "infyomlabs/laravel-generator": "5.4.x-dev",
+        "infyomlabs/adminlte-templates": "5.4.x-dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
