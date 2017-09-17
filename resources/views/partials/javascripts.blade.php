@@ -24,3 +24,4 @@
 
 
 @yield('javascript')
+@yield('scripts') {{--used by infyom template --}}

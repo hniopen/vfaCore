@@ -1,6 +1,6 @@
 <?php
 
-
+Auth::routes();
 //Frontend routes
 Route::get('/', function () { return redirect('/home'); });
 Route::get('/home', 'HomeController@index')->name('home');
@@ -9,6 +9,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
 $this->post('login', 'Auth\LoginController@login')->name('auth.login');
+//$this->get('logout', 'Auth\LoginController@logout')->name('auth.logout');
 $this->post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // Change Password Routes...
@@ -16,8 +17,8 @@ $this->get('change_password', 'Auth\ChangePasswordController@showChangePasswordF
 $this->patch('change_password', 'Auth\ChangePasswordController@changePassword')->name('auth.change_password');
 
 // Password Reset Routes...
-$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.password.reset');
-$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('auth.password.reset');
+$this->get('password/reset', ['as'=>'auth.password.reset', 'uses'=>'Auth\ForgotPasswordController@showLinkRequestForm'])->name('auth.password.reset');
+$this->post('password/email', ['as'=>'auth.password.reset', 'uses'=>'Auth\ForgotPasswordController@sendResetLinkEmail'])->name('auth.password.reset');
 $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.password.reset');
 
