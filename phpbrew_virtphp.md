@@ -64,3 +64,7 @@ brew link icu4c
 * For more info about **phpbrew** commands & installation, go [here](http://phpbrew.github.io/phpbrew/)
 * For more info about **virtphp** commands & installation, go [here](https://github.com/virtphp/virtphp)
 * You can follow this tuto too : [installing virtphp and phpbrew](https://www.sitepoint.com/use-phpbrew-virtphp/)
+* Installing extension with phpbrew, such as xDebug, visit  [here](https://github.com/phpbrew/phpbrew/wiki/Extension-Installer)
+## Helps in case of errors
+### Invalid php version when 'phpbrew use php-{version}"
+Solution : run firstly ```source $HOME/.phpbrew/bashrc```
