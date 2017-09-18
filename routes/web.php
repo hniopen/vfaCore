@@ -5,7 +5,6 @@ Auth::routes();
 Route::get('/', function () { return redirect('/home'); });
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
 $this->post('login', 'Auth\LoginController@login')->name('auth.login');
@@ -24,6 +23,7 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.
 
 //Admin routes
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/phpinfo','AdminController@phpinfo');
     Route::get('/home', 'AdminController@index');
     Route::get('/', 'AdminController@index');
     Route::group(['middleware' => ['auth', 'roles'], 'roles'=>'administrator'],function () {
@@ -35,3 +35,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
     });
 });
+
+
+
+//InfyOm Builder
+$this->get('generator_builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder');
+$this->get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate');
+$this->post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate');
