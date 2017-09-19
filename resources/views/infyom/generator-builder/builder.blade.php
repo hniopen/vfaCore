@@ -141,27 +141,35 @@
                             </tbody>
                         </table>
                     </div>
-
                     <div class="form-inline col-md-12" style="padding-top: 10px">
+                        <div class="form-group chk-align" style="border-color: transparent;">
+                            <button type="button" class="btn btn-success btn-flat btn-green" id="btnPrimary"> Add Primary
+                            </button>
+                        </div>
                         <div class="form-group chk-align" style="border-color: transparent;">
                             <button type="button" class="btn btn-success btn-flat btn-green" id="btnAdd"> Add Field
                             </button>
                         </div>
                         <div class="form-group chk-align" style="border-color: transparent;">
-                            <button type="button" class="btn btn-success btn-flat btn-green" id="btnPrimary"> Add
-                                Primary
-                            </button>
-                        </div>
-                        <div class="form-group chk-align" style="border-color: transparent;">
-                            <button type="button" class="btn btn-success btn-flat btn-green" id="btnTimeStamps"> Add
-                                Timestamps
+                            <button type="button" class="btn btn-success btn-flat btn-green" id="btnTimeStamps"> Add Timestamps
                             </button>
                         </div>
                     </div>
-
+                    <div class="form-inline col-md-12" id="cmd" style="padding-top: 10px; margin-top: 15px;">
+                        <h3>Command Result</h3>
+                    <textarea class="form-inline col-md-12 well" id="cmdResult" style="padding-top: 10px; margin-top: 15px;">
+                    </textarea>
+                        <h3>Command for rollback</h3>
+                    <textarea class="form-inline col-md-12 well" id="cmdRollback" style="padding-top: 10px; margin-top: 15px;">
+                    </textarea>
+                    </div>
                     <div class="form-inline col-md-12" style="padding:15px 15px;text-align: right">
                         <div class="form-group" style="border-color: transparent;padding-left: 10px">
-                            <button type="submit" class="btn btn-flat btn-primary btn-blue" id="btnGenerate">Generate
+                            <button type="button" class="btn btn-flat btn-blue" id="btnGenerateCmd">Generate command only
+                            </button>
+                        </div>
+                        <div class="form-group" style="border-color: transparent;padding-left: 10px">
+                            <button type="submit" class="btn btn-flat btn-success" id="btnGenerate">Generate
                             </button>
                         </div>
                         <div class="form-group" style="border-color: transparent;padding-left: 10px">
@@ -269,12 +277,22 @@
                 $("#container").html("");
                 $('input:text').val("");
                 $('input:checkbox').iCheck('uncheck');
-
+                $("#cmdResult").html("");
+                $("#cmdRollback").html("");
             });
 
             $("#form").on("submit", function () {
+                var data = getDataFromForm();
+                generateCmd(data);
+                return false;
+            });
+
+            $("#btnGenerateCmd").on("click", function () {
+                var data = getDataFromForm();
+            });
+
+            function getDataFromForm(){
                 var fieldArr = [];
-                console.log("True views generator");
                 $('.item').each(function () {
 
                     var htmlType = $(this).find('.drdHtmlType');
@@ -318,10 +336,14 @@
                 };
 
                 data['_token'] = $('#token').val();
-
+                $("#cmdResult").html("php artisan " + $('#drdCommandType').val() + " Model=" + $('#txtModelName').val() +" --jsonFromGUI="+ JSON.stringify(data));
+                $("#cmdRollback").html("php artisan infyom:rollback " + $('#txtModelName').val() + $('#drdCommandType').val().split(":")[1]);
+                return data;
+            }
+            function generateCmd(data){
                 $.ajax({
                     url: '{!! url('') !!}/generator_builder/generate',
-                   // type: "POST",
+                    // type: "POST",
                     method: "POST",
                     dataType: 'json',
                     contentType: 'application/json',
@@ -345,9 +367,7 @@
 //                        }, 3000);
                     }
                 });
-
-                return false;
-            });
+            }
 
             function renderPrimaryData(el) {
 
