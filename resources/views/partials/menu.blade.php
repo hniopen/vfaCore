@@ -71,14 +71,9 @@
 </li>
 <li class="{{ $request->segment(2) == 'settings' ? 'active active-sub' : '' }}">
     <li class="{{ Request::is('settings*') ? 'active' : '' }}">
-        <a href="{!! route('settings.index') !!}"><i class="fa fa-edit"></i><span>Settings</span></a>
+        <a href="{!! route('admin.settings.index') !!}"><i class="fa fa-edit"></i><span>Settings</span></a>
     </li>
 </li>
-
-
-
-
-
 
 
 

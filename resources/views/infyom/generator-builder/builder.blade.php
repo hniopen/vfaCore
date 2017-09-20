@@ -336,8 +336,8 @@
                 };
 
                 data['_token'] = $('#token').val();
-                $("#cmdResult").html("php artisan " + $('#drdCommandType').val() + " Model=" + $('#txtModelName').val() +" --jsonFromGUI="+ JSON.stringify(data));
-                $("#cmdRollback").html("php artisan infyom:rollback " + $('#txtModelName').val() + $('#drdCommandType').val().split(":")[1]);
+                $("#cmdResult").html("php artisan " + $('#drdCommandType').val() + " " + $('#txtModelName').val() +" --jsonFromGUI='"+ JSON.stringify(data) + "'");
+                $("#cmdRollback").html("php artisan infyom:rollback " + $('#txtModelName').val() + " " + $('#drdCommandType').val().split(":")[1]);
                 return data;
             }
             function generateCmd(data){

@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'settings.store']) !!}
+                    {!! Form::open(['route' => 'admin.settings.store']) !!}
 
                         @include('settings.fields')
 
