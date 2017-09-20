@@ -1,0 +1,114 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": true,
+        "inIndex": true,
+        "relation":"1tm,DwQuestion,projectId,id"
+    },
+    {
+        "name": "questCode",
+        "dbType": "string,20",
+        "htmlType": "text",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "submissionTable",
+        "dbType": "string:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "parentId",
+        "dbType": "integer:nullable",
+        "htmlType": "number",
+        "validations": "nullable:numeric",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "comment",
+        "dbType": "text:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "isDisplayed",
+        "dbType": "tinyInteger:default,1",
+        "htmlType": "radio,Yes:1,No:0",
+        "validations": "min:0|max:1",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "xformUrl",
+        "dbType": "string,100:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "credential",
+        "dbType": "string",
+        "htmlType": "password",
+        "validations": "required",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "entityType",
+        "dbType": "string,4",
+        "htmlType": "select,Questionnaire:Q,Idnr:I,Datasender:DS",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "relation": "mt1,DwEntityType,entityType,type"
+    },
+    {
+        "name": "formType",
+        "dbType": "string",
+        "htmlType": "select,Basic:basic,Advanced:advanced,Poll:poll,Undefined:undefined",
+        "validations": "required",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    }
+]

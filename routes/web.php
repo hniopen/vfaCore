@@ -49,3 +49,45 @@ Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\
 
 
 
+
+
+
+
+Route::get('dwsync/dwEntityTypes', ['as'=> 'dwsync.dwEntityTypes.index', 'uses' => 'Dwsync\DwEntityTypeController@index']);
+Route::post('dwsync/dwEntityTypes', ['as'=> 'dwsync.dwEntityTypes.store', 'uses' => 'Dwsync\DwEntityTypeController@store']);
+Route::get('dwsync/dwEntityTypes/create', ['as'=> 'dwsync.dwEntityTypes.create', 'uses' => 'Dwsync\DwEntityTypeController@create']);
+Route::put('dwsync/dwEntityTypes/{dwEntityTypes}', ['as'=> 'dwsync.dwEntityTypes.update', 'uses' => 'Dwsync\DwEntityTypeController@update']);
+Route::patch('dwsync/dwEntityTypes/{dwEntityTypes}', ['as'=> 'dwsync.dwEntityTypes.update', 'uses' => 'Dwsync\DwEntityTypeController@update']);
+Route::delete('dwsync/dwEntityTypes/{dwEntityTypes}', ['as'=> 'dwsync.dwEntityTypes.destroy', 'uses' => 'Dwsync\DwEntityTypeController@destroy']);
+Route::get('dwsync/dwEntityTypes/{dwEntityTypes}', ['as'=> 'dwsync.dwEntityTypes.show', 'uses' => 'Dwsync\DwEntityTypeController@show']);
+Route::get('dwsync/dwEntityTypes/{dwEntityTypes}/edit', ['as'=> 'dwsync.dwEntityTypes.edit', 'uses' => 'Dwsync\DwEntityTypeController@edit']);
+
+
+
+
+
+
+Route::get('dwsync/dwProjects', ['as'=> 'dwsync.dwProjects.index', 'uses' => 'Dwsync\DwProjectController@index']);
+Route::post('dwsync/dwProjects', ['as'=> 'dwsync.dwProjects.store', 'uses' => 'Dwsync\DwProjectController@store']);
+Route::get('dwsync/dwProjects/create', ['as'=> 'dwsync.dwProjects.create', 'uses' => 'Dwsync\DwProjectController@create']);
+Route::put('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.update', 'uses' => 'Dwsync\DwProjectController@update']);
+Route::patch('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.update', 'uses' => 'Dwsync\DwProjectController@update']);
+Route::delete('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.destroy', 'uses' => 'Dwsync\DwProjectController@destroy']);
+Route::get('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.show', 'uses' => 'Dwsync\DwProjectController@show']);
+Route::get('dwsync/dwProjects/{dwProjects}/edit', ['as'=> 'dwsync.dwProjects.edit', 'uses' => 'Dwsync\DwProjectController@edit']);
+
+
+
+
+
+
+
+
+Route::get('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.index', 'uses' => 'Dwsync\DwQuestionController@index']);
+Route::post('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.store', 'uses' => 'Dwsync\DwQuestionController@store']);
+Route::get('dwsync/dwQuestions/create', ['as'=> 'dwsync.dwQuestions.create', 'uses' => 'Dwsync\DwQuestionController@create']);
+Route::put('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.update', 'uses' => 'Dwsync\DwQuestionController@update']);
+Route::patch('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.update', 'uses' => 'Dwsync\DwQuestionController@update']);
+Route::delete('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.destroy', 'uses' => 'Dwsync\DwQuestionController@destroy']);
+Route::get('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.show', 'uses' => 'Dwsync\DwQuestionController@show']);
+Route::get('dwsync/dwQuestions/{dwQuestions}/edit', ['as'=> 'dwsync.dwQuestions.edit', 'uses' => 'Dwsync\DwQuestionController@edit']);

@@ -1,0 +1,168 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "projectId",
+        "dbType": "integer:nullable",
+        "htmlType": "number",
+        "validations": "nullable|min:0",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "relation": "mt1,DwProject,projectId,id"
+    },
+    {
+        "name": "xformQuestionId",
+        "dbType": "string:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "questionId",
+        "dbType": "string:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "path",
+        "dbType": "string:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "labelDefault",
+        "dbType": "text:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "labelFr",
+        "dbType": "text:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "labelUs",
+        "dbType": "text:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "dataType",
+        "dbType": "string,30:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "dataFormat",
+        "dbType": "string,30:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "order",
+        "dbType": "integer:nullable",
+        "htmlType": "number",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "linkedIdnr",
+        "dbType": "string,20:nullable",
+        "htmlType": "",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "periodType",
+        "dbType": "string,20:nullable",
+        "htmlType": "select,Non period field:,Day:d,Week:w,Month:m,Year:y,Year and Month:ym,Year-Month-Day:ymd",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "periodTypeFormat",
+        "dbType": "string,20:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "isUnique",
+        "dbType": "tinyInteger:default,0",
+        "htmlType": "radio,No:0,Yes:1",
+        "validations": "min:0|max:1",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    }
+]
