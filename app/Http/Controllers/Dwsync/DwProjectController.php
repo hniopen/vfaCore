@@ -58,7 +58,7 @@ class DwProjectController extends AppBaseController
     public function store(CreateDwProjectRequest $request)
     {
         $input = $request->all();
-
+        $input['credential'] = bcrypt($input['credential']);
         $dwProject = $this->dwProjectRepository->create($input);
 
         Flash::success('Dw Project saved successfully.');
@@ -122,8 +122,9 @@ class DwProjectController extends AppBaseController
 
             return redirect(route('dwsync.dwProjects.index'));
         }
-
-        $dwProject = $this->dwProjectRepository->update($request->all(), $id);
+        $input = $request->all();
+        $input['credential'] = bcrypt($input['credential']);
+        $dwProject = $this->dwProjectRepository->update($input, $id);
 
         Flash::success('Dw Project updated successfully.');
 

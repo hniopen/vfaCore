@@ -8,7 +8,6 @@
         <th>Comment</th>
         <th>Isdisplayed</th>
         <th>Xformurl</th>
-        <th>Credential</th>
         <th>Entitytype</th>
         <th>Formtype</th>
             <th colspan="3">Action</th>
@@ -24,8 +23,7 @@
             <td>{!! $dwProject->comment !!}</td>
             <td>{!! $dwProject->isDisplayed !!}</td>
             <td>{!! $dwProject->xformUrl !!}</td>
-            <td>{!! $dwProject->credential !!}</td>
-            <td>{!! $dwProject->entityType !!}</td>
+            <td>{!! $dwProject->DwEntityType->comment !!}</td>
             <td>{!! $dwProject->formType !!}</td>
             <td>
                 {!! Form::open(['route' => ['dwsync.dwProjects.destroy', $dwProject->id], 'method' => 'delete']) !!}
