@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class DwQuestion
  * @package App\Models\Dwsync
- * @version September 20, 2017, 11:25 pm UTC
+ * @version September 21, 2017, 1:31 pm UTC
  *
  * @property \App\Models\Dwsync\DwProject dwProject
  * @property string xformQuestionId
@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string periodType
  * @property string periodTypeFormat
  * @property tinyInteger isUnique
+ * @property tinyInteger isMigrated
  */
 class DwQuestion extends Model
 {
@@ -48,7 +49,8 @@ class DwQuestion extends Model
         'linkedIdnr',
         'periodType',
         'periodTypeFormat',
-        'isUnique'
+        'isUnique',
+        'isMigrated'
     ];
 
     /**
@@ -91,7 +93,8 @@ class DwQuestion extends Model
         'linkedIdnr' => 'nullable',
         'periodType' => 'nullable',
         'periodTypeFormat' => 'nullable',
-        'isUnique' => 'min:0|max:1'
+        'isUnique' => 'min:0|max:1',
+        'isMigrated' => 'min:0|max:1'
     ];
 
     /**

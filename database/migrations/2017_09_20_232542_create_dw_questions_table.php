@@ -29,6 +29,7 @@ class CreateDwQuestionsTable extends Migration
             $table->string('periodType', 20)->nullable();
             $table->string('periodTypeFormat', 20)->nullable();
             $table->tinyInteger('isUnique')->default(0);
+            $table->tinyInteger('isMigrated')->default(0);
             $table->softDeletes();
         });
     }

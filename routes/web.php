@@ -46,8 +46,11 @@ Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\
 
 
 
+Route::resource('teachers', 'TeacherController');
 
 
+
+Route::resource('students', 'StudentController');
 
 
 
@@ -64,9 +67,6 @@ Route::get('dwsync/dwEntityTypes/{dwEntityTypes}/edit', ['as'=> 'dwsync.dwEntity
 
 
 
-
-
-
 Route::get('dwsync/dwProjects', ['as'=> 'dwsync.dwProjects.index', 'uses' => 'Dwsync\DwProjectController@index']);
 Route::post('dwsync/dwProjects', ['as'=> 'dwsync.dwProjects.store', 'uses' => 'Dwsync\DwProjectController@store']);
 Route::get('dwsync/dwProjects/create', ['as'=> 'dwsync.dwProjects.create', 'uses' => 'Dwsync\DwProjectController@create']);
@@ -75,12 +75,6 @@ Route::patch('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.update
 Route::delete('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.destroy', 'uses' => 'Dwsync\DwProjectController@destroy']);
 Route::get('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.show', 'uses' => 'Dwsync\DwProjectController@show']);
 Route::get('dwsync/dwProjects/{dwProjects}/edit', ['as'=> 'dwsync.dwProjects.edit', 'uses' => 'Dwsync\DwProjectController@edit']);
-
-
-
-
-
-
 
 
 Route::get('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.index', 'uses' => 'Dwsync\DwQuestionController@index']);

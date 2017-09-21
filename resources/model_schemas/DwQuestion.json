@@ -164,5 +164,16 @@
         "primary": false,
         "inForm": true,
         "inIndex": true
+    },
+    {
+        "name": "isMigrated",
+        "dbType": "tinyInteger:default,0",
+        "htmlType": "radio,No:0,Yes:1",
+        "validations": "min:0|max:1",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
     }
 ]

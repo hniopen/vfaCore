@@ -55,7 +55,8 @@ trait MakeDwQuestionTrait
             'linkedIdnr' => $fake->word,
             'periodType' => $fake->word,
             'periodTypeFormat' => $fake->word,
-            'isUnique' => $fake->word
+            'isUnique' => $fake->word,
+            'isMigrated' => $fake->word
         ], $dwQuestionFields);
     }
 }

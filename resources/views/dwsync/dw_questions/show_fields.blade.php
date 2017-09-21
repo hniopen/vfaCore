@@ -88,3 +88,9 @@
     <p>{!! $dwQuestion->isUnique !!}</p>
 </div>
 
+<!-- Ismigrated Field -->
+<div class="form-group">
+    {!! Form::label('isMigrated', 'Ismigrated:') !!}
+    <p>{!! $dwQuestion->isMigrated !!}</p>
+</div>
+
