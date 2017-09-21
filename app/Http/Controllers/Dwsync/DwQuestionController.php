@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\Dwsync\DwProject;
 
 class DwQuestionController extends AppBaseController
 {
@@ -43,7 +44,8 @@ class DwQuestionController extends AppBaseController
      */
     public function create()
     {
-        return view('dwsync.dw_questions.create');
+        $dwProjectList = DwProject::pluck('comment','id');
+        return view('dwsync.dw_questions.create', compact('dwProjectList'));
     }
 
     /**
@@ -100,8 +102,8 @@ class DwQuestionController extends AppBaseController
 
             return redirect(route('dwsync.dwQuestions.index'));
         }
-
-        return view('dwsync.dw_questions.edit')->with('dwQuestion', $dwQuestion);
+        $dwProjectList = DwProject::pluck('comment','id');
+        return view('dwsync.dw_questions.edit', compact('dwQuestion','dwProjectList'));
     }
 
     /**

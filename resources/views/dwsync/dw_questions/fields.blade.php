@@ -7,7 +7,13 @@
 <!-- Projectid Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('projectId', 'Projectid:') !!}
-    {!! Form::number('projectId', null, ['class' => 'form-control']) !!}
+    {!! Form::select('projectId', $dwProjectList, null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Order Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('order', 'Order:') !!}
+    {!! Form::number('order', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Xformquestionid Field -->
@@ -56,12 +62,6 @@
 <div class="form-group col-sm-6">
     {!! Form::label('dataFormat', 'Dataformat:') !!}
     {!! Form::text('dataFormat', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Order Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('order', 'Order:') !!}
-    {!! Form::number('order', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Linkedidnr Field -->
