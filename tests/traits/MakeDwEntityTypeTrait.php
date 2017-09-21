@@ -42,6 +42,7 @@ trait MakeDwEntityTypeTrait
         $fake = Faker::create();
 
         return array_merge([
+            'comment' => $fake->word,
             'apiUrl' => $fake->word
         ], $dwEntityTypeFields);
     }
