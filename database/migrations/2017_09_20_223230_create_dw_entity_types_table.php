@@ -15,6 +15,7 @@ class CreateDwEntityTypesTable extends Migration
     {
         Schema::create('dw_entity_types', function (Blueprint $table) {
             $table->string('type', 4);
+            $table->string('comment', 100);
             $table->string('apiUrl', 100);
             $table->softDeletes();
         });

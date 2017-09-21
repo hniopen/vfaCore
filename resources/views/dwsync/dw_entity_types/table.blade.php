@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>Type</th>
+        <th>Comment</th>
         <th>Apiurl</th>
             <th colspan="3">Action</th>
         </tr>
@@ -10,6 +11,7 @@
     @foreach($dwEntityTypes as $dwEntityType)
         <tr>
             <td>{!! $dwEntityType->type !!}</td>
+            <td>{!! $dwEntityType->comment !!}</td>
             <td>{!! $dwEntityType->apiUrl !!}</td>
             <td>
                 {!! Form::open(['route' => ['dwsync.dwEntityTypes.destroy', $dwEntityType->id], 'method' => 'delete']) !!}

@@ -4,6 +4,12 @@
     {!! Form::select('type', ['Q' => 'Questionnaire', 'I' => 'Idnr', 'DS' => 'Datasender'], null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Comment Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('comment', 'Comment:') !!}
+    {!! Form::text('comment', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Apiurl Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('apiUrl', 'Apiurl:') !!}

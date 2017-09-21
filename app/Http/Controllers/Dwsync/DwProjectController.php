@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\Dwsync\DwEntityType;
 
 class DwProjectController extends AppBaseController
 {
@@ -43,7 +44,8 @@ class DwProjectController extends AppBaseController
      */
     public function create()
     {
-        return view('dwsync.dw_projects.create');
+        $dwEntityTypeList = DwEntityType::pluck('comment','type');;
+        return view('dwsync.dw_projects.create', compact('dwEntityTypeList'));
     }
 
     /**
@@ -80,8 +82,7 @@ class DwProjectController extends AppBaseController
 
             return redirect(route('dwsync.dwProjects.index'));
         }
-
-        return view('dwsync.dw_projects.show')->with('dwProject', $dwProject);
+        return view('dwsync.dw_projects.show', compact('dwProject'));
     }
 
     /**
@@ -100,8 +101,8 @@ class DwProjectController extends AppBaseController
 
             return redirect(route('dwsync.dwProjects.index'));
         }
-
-        return view('dwsync.dw_projects.edit')->with('dwProject', $dwProject);
+        $dwEntityTypeList = DwEntityType::pluck('comment','type');
+        return view('dwsync.dw_projects.edit', compact('dwProject', 'dwEntityTypeList'));
     }
 
     /**

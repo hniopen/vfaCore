@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class DwEntityType
  * @package App\Models\Dwsync
- * @version September 20, 2017, 10:32 pm UTC
+ * @version September 21, 2017, 8:11 am UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection DwProject
  * @property string type
+ * @property string comment
  * @property string apiUrl
  */
 class DwEntityType extends Model
@@ -26,6 +27,7 @@ class DwEntityType extends Model
 
     public $fillable = [
         'type',
+        'comment',
         'apiUrl'
     ];
 
@@ -36,6 +38,7 @@ class DwEntityType extends Model
      */
     protected $casts = [
         'type' => 'string',
+        'comment' => 'string',
         'apiUrl' => 'string'
     ];
 
@@ -46,6 +49,7 @@ class DwEntityType extends Model
      */
     public static $rules = [
         'type' => 'required|unique:dw_entity_types',
+        'comment' => 'required',
         'apiUrl' => 'required:url'
     ];
 

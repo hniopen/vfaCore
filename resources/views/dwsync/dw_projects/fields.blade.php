@@ -56,7 +56,7 @@
 <!-- Entitytype Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('entityType', 'Entitytype:') !!}
-    {!! Form::select('entityType', ['Q' => 'Questionnaire', 'I' => 'Idnr', 'DS' => 'Datasender'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('entityType', $dwEntityTypeList, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Formtype Field -->

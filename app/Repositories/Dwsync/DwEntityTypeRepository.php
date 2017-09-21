@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class DwEntityTypeRepository
  * @package App\Repositories\Dwsync
- * @version September 20, 2017, 10:32 pm UTC
+ * @version September 21, 2017, 8:11 am UTC
  *
  * @method DwEntityType findWithoutFail($id, $columns = ['*'])
  * @method DwEntityType find($id, $columns = ['*'])
@@ -20,6 +20,7 @@ class DwEntityTypeRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'comment',
         'apiUrl'
     ];
 
