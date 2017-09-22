@@ -36,3 +36,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+## Dynamic generated files
+*dynamic_menu*
+*DwSubmission*
+*dw_submission*
+!/resources/model_schemas/DwSubmission*
