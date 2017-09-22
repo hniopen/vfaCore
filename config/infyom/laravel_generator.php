@@ -144,13 +144,13 @@ return [
 
         'tests'         => true,
 
-        'datatables'    => true,
+        'datatables'    => false,
 
         'menu'          => [
 
             'enabled'       => true,
 
-            'menu_file'     => 'partials/menu.blade.php',
+            'menu_file'     => 'partials/dynamic_menu.blade.php',
         ],
     ],
 
