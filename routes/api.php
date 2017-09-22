@@ -5,20 +5,6 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::resource('settings', 'SettingAPIController');
+
+@include 'dynamic_api.php';

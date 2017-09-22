@@ -38,6 +38,8 @@ fabric.properties
 
 ## Dynamic generated files
 *dynamic_menu*
+*dynamic_web*
+*dynamic_api*
 *DwSubmission*
 *dw_submission*
 !/resources/model_schemas/DwSubmission*

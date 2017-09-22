@@ -85,3 +85,6 @@ Route::patch('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.upd
 Route::delete('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.destroy', 'uses' => 'Dwsync\DwQuestionController@destroy']);
 Route::get('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.show', 'uses' => 'Dwsync\DwQuestionController@show']);
 Route::get('dwsync/dwQuestions/{dwQuestions}/edit', ['as'=> 'dwsync.dwQuestions.edit', 'uses' => 'Dwsync\DwQuestionController@edit']);
+
+
+include "dynamic_web.php";
