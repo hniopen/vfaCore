@@ -67,6 +67,72 @@ class DwQuestionController extends AppBaseController
     }
 
     /**
+     * Store a newly created DwQuestion in storage.
+     *
+     * @param CreateDwQuestionRequest $request
+     *
+     * @return Response
+     */
+    public function createFromSubmissions(CreateDwQuestionRequest $request)
+    {
+        $input = $request->all();
+        $dwProjectList = DwProject::pluck('comment','id');
+        return view('dwsync.dw_questions.create_from_submissions', compact('dwProjectList'));
+    }
+
+    /**
+     * Store a newly created DwQuestion in storage.
+     *
+     * @param CreateDwQuestionRequest $request
+     *
+     * @return Response
+     */
+    public function storeFromSubmissions(CreateDwQuestionRequest $request)
+    {
+        $input = $request->all();
+        $questionNumber = 0 ;
+        //TODO: implement creation:
+        //$dwQuestion = $this->dwQuestionRepository->create($input);
+
+        Flash::success("$questionNumber question(s) saved successfully.");
+
+        return redirect(route('dwsync.dwQuestions.index'));
+    }
+
+    /**
+     * Store a newly created DwQuestion in storage.
+     *
+     * @param CreateDwQuestionRequest $request
+     *
+     * @return Response
+     */
+    public function createFromXlsform(CreateDwQuestionRequest $request)
+    {
+        $input = $request->all();
+        $dwProjectList = DwProject::pluck('comment','id');
+        return view('dwsync.dw_questions.create_from_xlsform', compact('dwProjectList'));
+    }
+
+    /**
+     * Store a newly created DwQuestion in storage.
+     *
+     * @param CreateDwQuestionRequest $request
+     *
+     * @return Response
+     */
+    public function storeFromXlsform(CreateDwQuestionRequest $request)
+    {
+        $input = $request->all();
+        $questionNumber = 0 ;
+        //TODO: implement creation:
+        //$dwQuestion = $this->dwQuestionRepository->create($input);
+
+        Flash::success("$questionNumber question(s) saved successfully.");
+
+        return redirect(route('dwsync.dwQuestions.index'));
+    }
+
+    /**
      * Display the specified DwQuestion.
      *
      * @param  int $id

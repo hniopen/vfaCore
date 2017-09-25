@@ -4,7 +4,10 @@
     <section class="content-header">
         <h1 class="pull-left">Dw Questions</h1>
         <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('dwsync.dwQuestions.create') !!}">Add New</a>
+            <label>Add new : </label>
+           <a class="btn btn-primary" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('dwsync.dwQuestions.create') !!}" title="One by one">Single question</a>
+           <a class="btn btn-primary" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('dwsync.dwQuestions.createFromSubmissions') !!}" title="">From existing submissions</a>
+           <a class="btn btn-primary" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('dwsync.dwQuestions.createFromXlsform') !!}" title="">From xlsform</a>
         </h1>
     </section>
     <div class="content">
