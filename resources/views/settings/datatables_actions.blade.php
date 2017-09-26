@@ -1,6 +1,6 @@
 {!! Form::open(['route' => ['admin.settings.destroy', $id], 'method' => 'delete']) !!}
 <div class='btn-group'>
-    <a href="{{ route('admin.setting.sshow', $id) }}" class='btn btn-default btn-xs'>
+    <a href="{{ route('admin.settings.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
     <a href="{{ route('admin.settings.edit', $id) }}" class='btn btn-default btn-xs'>
