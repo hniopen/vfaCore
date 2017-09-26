@@ -1,14 +1,18 @@
 <!-- Id Field -->
 {{--<div class="form-group col-sm-6">--}}
-    {{--{!! Form::label('id', 'Id:') !!}--}}
-    {{--{!! Form::number('id', null, ['class' => 'form-control']) !!}--}}
+{{--{!! Form::label('id', 'Id:') !!}--}}
+{{--{!! Form::number('id', null, ['class' => 'form-control']) !!}--}}
 {{--</div>--}}
 
 <!-- Projectid Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('projectId', 'Projectid:') !!}
-    {!! Form::select('projectId', $dwProjectList, null, ['class' => 'form-control']) !!}
-</div>
+@if(empty($selectedProject))
+    <div class="form-group col-sm-6">
+        {!! Form::label('projectId', 'Projectid:') !!}
+        {!! Form::select('projectId', $dwProjectList, null, ['class' => 'form-control']) !!}
+    </div>
+@else
+    {!! Form::hidden('projectId', $selectedProject->id, ['class' => 'form-control']) !!}
+@endif
 
 <!-- Order Field -->
 <div class="form-group col-sm-6">
@@ -19,7 +23,11 @@
 <!-- Xformquestionid Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('xformQuestionId', 'Xformquestionid:') !!}
-    {!! Form::text('xformQuestionId', null, ['class' => 'form-control']) !!}
+    @if(empty($item))
+        {!! Form::text('xformQuestionId', null, ['class' => 'form-control']) !!}
+    @else
+        {!! Form::text('xformQuestionId', $item, ['class' => 'form-control', 'readonly']) !!}
+    @endif
 </div>
 
 <!-- Questionid Field -->
@@ -67,7 +75,7 @@
 <!-- Linkedidnr Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('linkedIdnr', 'Linkedidnr:') !!}
-    {!! Form::text('linkedIdnr', null, ['class' => 'form-control']) !!}
+    {!! Form::select('linkedIdnr', $dwIdnrList, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Periodtype Field -->
@@ -93,10 +101,4 @@
         {!! Form::radio('isUnique', "1", null) !!} Yes
     </label>
 
-</div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('dwsync.dwQuestions.index') !!}" class="btn btn-default">Cancel</a>
 </div>

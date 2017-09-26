@@ -43,3 +43,7 @@ php artisan infyom:rollback DwSubmissionValueX api_scaffold --prefix='dwsubmissi
 
 ### Remarks
 * add `public $timestamps = false;` into model if you don't use timpestamps
+
+
+## Deployment
+* dynamic files : dynamic_menu, dynamic_web, dynamic_api

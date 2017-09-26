@@ -1,7 +1,7 @@
 # Viamo Foundation App - Core
 
 ## Requirements
-* PHP >= **7.0**
+* PHP >= **7.1**
 * OpenSSL PHP Extension
 * PDO PHP Extension
 * Mbstring PHP Extension
@@ -112,3 +112,6 @@ You can create more roles/permissions/users, and then use them in your code, by 
 ## Another dependencies
 * The admin panel uses [AdminLTE theme](https://adminlte.io/) and [Datatables.net](https://datatables.net).
 
+
+## To manage //TO DO
+add but ignore : routes/dynamic_wew.php,  routes/dynamic_api.php

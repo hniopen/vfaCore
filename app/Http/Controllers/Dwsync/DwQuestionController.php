@@ -45,7 +45,10 @@ class DwQuestionController extends AppBaseController
     public function create()
     {
         $dwProjectList = DwProject::pluck('comment','id');
-        return view('dwsync.dw_questions.create', compact('dwProjectList'));
+        $defaultIdnr = collect([null => 'No idnr']);
+        $dwIdnrList = DwProject::where('entityType', 'I')->pluck('comment','id');
+        $dwIdnrList = $defaultIdnr->union($dwIdnrList);
+        return view('dwsync.dw_questions.create', compact('dwProjectList', 'dwIdnrList'));
     }
 
     /**
@@ -58,12 +61,15 @@ class DwQuestionController extends AppBaseController
     public function store(CreateDwQuestionRequest $request)
     {
         $input = $request->all();
-
         $dwQuestion = $this->dwQuestionRepository->create($input);
+        $message = 'Dw Question saved successfully.';
 
-        Flash::success('Dw Question saved successfully.');
-
-        return redirect(route('dwsync.dwQuestions.index'));
+        if(isset($input['forAjax'])){
+            return ['message'=>$message, 'entity'=>$dwQuestion];
+        }else{
+            Flash::success($message);
+            return redirect(route('dwsync.dwQuestions.index'));
+        }
     }
 
     /**
@@ -78,6 +84,30 @@ class DwQuestionController extends AppBaseController
         $input = $request->all();
         $dwProjectList = DwProject::pluck('comment','id');
         return view('dwsync.dw_questions.create_from_submissions', compact('dwProjectList'));
+    }
+
+    /**
+     * Store a newly created DwQuestion in storage.
+     *
+     * @param CreateDwQuestionRequest $request
+     *
+     * @return Response
+     */
+    public function checkFromSubmissions(CreateDwQuestionRequest $request)
+    {
+        $input = $request->all();
+        $checked = 1;
+        $selectedProject = DwProject::find($input['projectId']);
+        $tCheckResult = $selectedProject->checkFromDw();
+        $questionsList = $tCheckResult['questions'];
+        $error = $tCheckResult['error'];
+
+        $dwProjectList = DwProject::pluck('comment','id');
+        $defaultIdnr = collect([null => 'No idnr']);
+        $dwIdnrList = DwProject::where('entityType', 'I')->pluck('comment','id');
+        $dwIdnrList = $defaultIdnr->union($dwIdnrList);
+        return view('dwsync.dw_questions.create_from_submissions',
+            compact('dwProjectList', 'checked', 'selectedProject', 'questionsList', 'error', 'dwIdnrList'));
     }
 
     /**
@@ -189,12 +219,16 @@ class DwQuestionController extends AppBaseController
 
             return redirect(route('dwsync.dwQuestions.index'));
         }
+        $input = $request->all();
+        $dwQuestion = $this->dwQuestionRepository->update($input, $id);
 
-        $dwQuestion = $this->dwQuestionRepository->update($request->all(), $id);
-
-        Flash::success('Dw Question updated successfully.');
-
-        return redirect(route('dwsync.dwQuestions.index'));
+        $message = 'Dw Question updated successfully.';
+        if(isset($input['forAjax'])){
+            return ['message'=>$message, 'entity'=>$dwQuestion];
+        }else{
+            Flash::success($message);
+            return redirect(route('dwsync.dwQuestions.index'));
+        }
     }
 
     /**

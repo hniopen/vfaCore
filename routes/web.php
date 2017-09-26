@@ -44,18 +44,6 @@ Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\
 
 
 
-
-
-Route::resource('teachers', 'TeacherController');
-
-
-
-Route::resource('students', 'StudentController');
-
-
-
-
-
 Route::get('dwsync/dwEntityTypes', ['as'=> 'dwsync.dwEntityTypes.index', 'uses' => 'Dwsync\DwEntityTypeController@index']);
 Route::post('dwsync/dwEntityTypes', ['as'=> 'dwsync.dwEntityTypes.store', 'uses' => 'Dwsync\DwEntityTypeController@store']);
 Route::get('dwsync/dwEntityTypes/create', ['as'=> 'dwsync.dwEntityTypes.create', 'uses' => 'Dwsync\DwEntityTypeController@create']);
@@ -86,6 +74,7 @@ Route::delete('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.de
 Route::get('dwsync/dwQuestions/{dwQuestions}', ['as'=> 'dwsync.dwQuestions.show', 'uses' => 'Dwsync\DwQuestionController@show']);
 Route::get('dwsync/dwQuestions/{dwQuestions}/edit', ['as'=> 'dwsync.dwQuestions.edit', 'uses' => 'Dwsync\DwQuestionController@edit']);
 Route::get('dwsync/dwQuestions/create/from/submissions', ['as'=> 'dwsync.dwQuestions.createFromSubmissions', 'uses' => 'Dwsync\DwQuestionController@createFromSubmissions']);
+Route::post('dwsync/dwQuestions/check/from/submissions', ['as'=> 'dwsync.dwQuestions.checkFromSubmissions', 'uses' => 'Dwsync\DwQuestionController@checkFromSubmissions']);
 Route::post('dwsync/dwQuestions/store/from/submissions', ['as'=> 'dwsync.dwQuestions.storeFromSubmissions', 'uses' => 'Dwsync\DwQuestionController@storeFromSubmissions']);
 Route::get('dwsync/dwQuestions/create/from/xlsform', ['as'=> 'dwsync.dwQuestions.createFromXlsform', 'uses' => 'Dwsync\DwQuestionController@createFromXlsform']);
 Route::post('dwsync/dwQuestions/store/from/xlsform', ['as'=> 'dwsync.dwQuestions.storeFromXlsform', 'uses' => 'Dwsync\DwQuestionController@storeFromXlsform']);
