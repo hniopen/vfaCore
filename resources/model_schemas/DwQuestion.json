@@ -16,7 +16,7 @@
         "htmlType": "number",
         "validations": "nullable|min:0",
         "searchable": false,
-        "fillable": false,
+        "fillable": true,
         "primary": false,
         "inForm": true,
         "inIndex": true,

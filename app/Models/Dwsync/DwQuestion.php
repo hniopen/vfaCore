@@ -37,6 +37,7 @@ class DwQuestion extends Model
 
 
     public $fillable = [
+        'projectId',
         'xformQuestionId',
         'questionId',
         'path',
