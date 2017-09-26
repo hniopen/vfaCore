@@ -18,7 +18,8 @@ class Setting extends Model
     use SoftDeletes;
 
     public $table = 'settings';
-    
+    public $timestamps = false;
+
 
     protected $dates = ['deleted_at'];
 
