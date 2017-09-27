@@ -63,7 +63,9 @@ Route::patch('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.update
 Route::delete('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.destroy', 'uses' => 'Dwsync\DwProjectController@destroy']);
 Route::get('dwsync/dwProjects/{dwProjects}', ['as'=> 'dwsync.dwProjects.show', 'uses' => 'Dwsync\DwProjectController@show']);
 Route::get('dwsync/dwProjects/{dwProjects}/edit', ['as'=> 'dwsync.dwProjects.edit', 'uses' => 'Dwsync\DwProjectController@edit']);
-
+Route::get('dwsync/dwProjects/{dwProjects}/extra', ['as'=> 'dwsync.dwProjects.extra', 'uses' => 'Dwsync\DwProjectController@extra']);
+Route::get('dwsync/dwProjects/check/from/submissions/{dwProjects}', ['as'=> 'dwsync.dwProjects.checkFromSubmissions', 'uses' => 'Dwsync\DwProjectController@checkFromSubmissions']);
+Route::post('dwsync/dwProjects/insert/from/submissions/', ['as'=> 'dwsync.dwProjects.insertFromSubmissions', 'uses' => 'Dwsync\DwProjectController@insertFromSubmissions']);
 
 Route::get('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.index', 'uses' => 'Dwsync\DwQuestionController@index']);
 Route::post('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.store', 'uses' => 'Dwsync\DwQuestionController@store']);

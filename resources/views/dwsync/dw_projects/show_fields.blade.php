@@ -1,60 +1,60 @@
 <!-- Id Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('id', 'Id:') !!}
-    <p>{!! $dwProject->id !!}</p>
+    {!! $dwProject->id !!}
 </div>
 
 <!-- Questcode Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('questCode', 'Questcode:') !!}
-    <p>{!! $dwProject->questCode !!}</p>
+    {!! $dwProject->questCode !!}
 </div>
 
 <!-- Submissiontable Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('submissionTable', 'Submissiontable:') !!}
-    <p>{!! $dwProject->submissionTable !!}</p>
+    {!! $dwProject->submissionTable !!}
 </div>
 
 <!-- Parentid Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('parentId', 'Parentid:') !!}
-    <p>{!! $dwProject->parentId !!}</p>
+    {!! $dwProject->parentId !!}
 </div>
 
 <!-- Comment Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('comment', 'Comment:') !!}
-    <p>{!! $dwProject->comment !!}</p>
+    {!! $dwProject->comment !!}
 </div>
 
 <!-- Isdisplayed Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('isDisplayed', 'Isdisplayed:') !!}
-    <p>{!! $dwProject->isDisplayed !!}</p>
+    {!! $dwProject->isDisplayed !!}
 </div>
 
 <!-- Xformurl Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('xformUrl', 'Xformurl:') !!}
-    <p>{!! $dwProject->xformUrl !!}</p>
+    {!! $dwProject->xformUrl !!}
 </div>
 
 <!-- Credential Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('credential', 'Credential:') !!}
-    <p>{!! $dwProject->credential !!}</p>
+    {!! $dwProject->credential !!}
 </div>
 
 <!-- Entitytype Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('entityType', 'Entitytype:') !!}
-    <p>{!! $dwProject->entityType !!}</p>
+    {!! $dwProject->entityType !!}
 </div>
 
 <!-- Formtype Field -->
-<div class="form-group">
+<div class="form-group col-sm-3">
     {!! Form::label('formType', 'Formtype:') !!}
-    <p>{!! $dwProject->formType !!}</p>
+    {!! $dwProject->formType !!}
 </div>
 

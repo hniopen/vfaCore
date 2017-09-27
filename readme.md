@@ -112,6 +112,7 @@ You can create more roles/permissions/users, and then use them in your code, by 
 ## Another dependencies
 * The admin panel uses [AdminLTE theme](https://adminlte.io/) and [Datatables.net](https://datatables.net).
 
-
+## Resources 
+* [Adminlte form sample](https://adminlte.io/themes/AdminLTE/pages/forms/advanced.html)
 ## To manage //TO DO
 add but ignore : routes/dynamic_wew.php,  routes/dynamic_api.php

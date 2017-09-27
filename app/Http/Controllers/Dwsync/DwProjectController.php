@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dwsync;
 
 use App\Http\Requests\Dwsync\CreateDwProjectRequest;
 use App\Http\Requests\Dwsync\UpdateDwProjectRequest;
+use App\Models\Dwsync\DwQuestion;
 use App\Repositories\Dwsync\DwProjectRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Dwsync\DwEntityType;
+use App\Repositories\Dwsync\DwQuestionRepository;
 
 class DwProjectController extends AppBaseController
 {
@@ -35,6 +37,23 @@ class DwProjectController extends AppBaseController
 
         return view('dwsync.dw_projects.index')
             ->with('dwProjects', $dwProjects);
+    }
+
+    /**
+     * Show list of actions for DwProjects.
+     *
+     * @return Response
+     */
+    public function extra($id)
+    {
+        $dwProject = $this->dwProjectRepository->findWithoutFail($id);
+
+        if (empty($dwProject)) {
+            Flash::error('Dw Project not found');
+
+            return redirect(route('dwsync.dwProjects.index'));
+        }
+        return view('dwsync.dw_projects.extra', compact('dwProject'));
     }
 
     /**
@@ -153,5 +172,49 @@ class DwProjectController extends AppBaseController
         Flash::success('Dw Project deleted successfully.');
 
         return redirect(route('dwsync.dwProjects.index'));
+    }
+
+    /**
+     * Check questions from Dw
+     *
+     * @return Response
+     */
+    public function checkFromSubmissions($id)
+    {
+        $dwProject = $this->dwProjectRepository->findWithoutFail($id);
+        $tCheckResult = [];
+        if (empty($dwProject)) {
+            $tCheckResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+        }else{
+            $tCheckResult = $dwProject->checkQuestionsFromDwSubmissions();
+        }
+        return response()->json($tCheckResult);
+    }
+
+    /**
+     * Insert questions from Dw
+     *
+     * @return Response
+     */
+    public function insertFromSubmissions(Request $request)
+    {
+        $inputs = $request->all();
+        $projectId = $inputs['projectId'];
+        $dwProject = $this->dwProjectRepository->findWithoutFail($inputs['projectId']);
+        $tResult = [];
+        $savedQuestionCount = 0;
+        if (empty($dwProject)) {
+            $tResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+        }else{
+            $questions = $inputs['questions'];
+            foreach ($questions as $item){
+                $uniqueColumns = ['projectId'=>$projectId,'xformQuestionId'=>$item];
+                $currentDwQuestion = DwQuestion::firstOrNew($uniqueColumns);
+                $currentDwQuestion->save();
+                $savedQuestionCount++;
+            }
+            $tResult['message'] = ['statusCode'=>'', 'text'=>$savedQuestionCount.' question(s) inserted or updated'];
+        }
+        return response()->json($tResult);
     }
 }

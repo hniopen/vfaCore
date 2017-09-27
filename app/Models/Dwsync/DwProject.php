@@ -93,7 +93,7 @@ class DwProject extends Model
         return $this->belongsTo(\App\Models\Dwsync\DwEntityType::class, 'entityType', 'type');
     }
 
-    public function checkFromDw(){
+    public function checkQuestionsFromDwSubmissions(){
         $url = $this->dwEntityType->apiUrl . $this->questCode;
         $startDate = config('dwsync.defaultApiStartDate');
         if($this->entityType=='Q'){
@@ -124,15 +124,15 @@ class DwProject extends Model
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
 
         $tRes = json_decode(curl_exec ($ch),true);
-        $tError = ['code'=>curl_errno($ch), 'message'=>curl_error($ch)];
+        $tMessage = ['statusCode'=>curl_errno($ch), 'text'=>curl_error($ch)];
 
         curl_close($ch);
         //Get all questions
         $tAllQuestions = [];
-        if($tError['code'] == 0){
+        if($tMessage['statusCode'] == 0){
             $tAllQuestions = fctGetQuestionsFromJson($tRes);
         }
 
-        return ['result'=>$tRes, 'error'=>$tError, 'questions' => $tAllQuestions];
+        return ['result'=>$tRes, 'message'=>$tMessage, 'questions' => $tAllQuestions];
     }
 }

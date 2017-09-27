@@ -30,6 +30,7 @@
                 <div class='btn-group'>
                     <a href="{!! route('dwsync.dwProjects.show', [$dwProject->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('dwsync.dwProjects.edit', [$dwProject->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! route('dwsync.dwProjects.extra', [$dwProject->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-tasks"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}

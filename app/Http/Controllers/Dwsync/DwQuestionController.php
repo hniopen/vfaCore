@@ -87,7 +87,7 @@ class DwQuestionController extends AppBaseController
     }
 
     /**
-     * Store a newly created DwQuestion in storage.
+     * Check questions from Dw
      *
      * @param CreateDwQuestionRequest $request
      *
@@ -98,7 +98,7 @@ class DwQuestionController extends AppBaseController
         $input = $request->all();
         $checked = 1;
         $selectedProject = DwProject::find($input['projectId']);
-        $tCheckResult = $selectedProject->checkFromDw();
+        $tCheckResult = $selectedProject->checkQuestionsFromDw();
         $questionsList = $tCheckResult['questions'];
         $error = $tCheckResult['error'];
 
