@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">$MODEL_NAME_PLURAL_HUMAN$</h1>
-        @if(View::exists('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create'))
+        @if(View::exists('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create'))
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create') !!}">Add New</a>
         </h1>

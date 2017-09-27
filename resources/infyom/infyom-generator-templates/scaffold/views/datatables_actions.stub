@@ -3,7 +3,7 @@
     <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.show', $$PRIMARY_KEY_NAME$) }}" class='btn btn-default btn-xs'>
         <i class="glyphicon glyphicon-eye-open"></i>
     </a>
-    @if(View::exists('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.create'))
+    @if(View::exists('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create'))
         <a href="{{ route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.edit', $$PRIMARY_KEY_NAME$) }}" class='btn btn-default btn-xs'>
             <i class="glyphicon glyphicon-edit"></i>
         </a>
