@@ -1,0 +1,14 @@
+{
+  "name": "jquery-ui",
+  "_cacheHeaders": {
+    "ETag": "W/\"54dceb60-898c\"",
+    "Last-Modified": "Thu, 12 Feb 2015 18:05:20 GMT",
+    "Content-Type": "text/css"
+  },
+  "_release": "e-tag:W/\"54dceb6",
+  "main": "index.css",
+  "_source": "https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css",
+  "_target": "*",
+  "_originalSource": "https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css",
+  "_direct": true
+}

@@ -13,9 +13,9 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ url('css/bower_components/font-awesome.min/index.css') }}">
 <!-- Ionicons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="{{ url('css/bower_components/ionicons.min/index.css') }}">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -29,16 +29,16 @@
 <link href="{{ url('adminlte/css/AdminLTE.min.css') }}" rel="stylesheet">
 <link href="{{ url('adminlte/css/skins/skin-blue.min.css') }}" rel="stylesheet">
 <link rel="stylesheet"
-      href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+      href="{{ url('css/bower_components/jquery-ui/index.css') }}">
 <link rel="stylesheet"
-      href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"/>
+      href="{{ url('css/bower_components/jquery.dataTables.min/index.css') }}"/>
 <link rel="stylesheet"
-      href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css"/>
+      href="{{ url('css/bower_components/select.dataTables.min/index.css') }}"/>
 <link rel="stylesheet"
-      href="//cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css"/>
+      href="{{ url('css/bower_components/buttons.dataTables.min/index.css') }}"/>
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css"/>
+      href="{{ url('css/bower_components/jquery-ui-timepicker-addon.min/index.css') }}"/>
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.standalone.min.css"/>
+      href="{{ url('css/bower_components/bootstrap-datepicker.standalone.min/index.css') }}"/>
 
 @yield('css')

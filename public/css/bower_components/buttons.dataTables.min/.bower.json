@@ -1,0 +1,15 @@
+{
+  "name": "buttons.dataTables.min",
+  "_cacheHeaders": {
+    "ETag": "\"1120f2c-1f92-5499d54d13828-gzip\"",
+    "Last-Modified": "Tue, 28 Feb 2017 20:49:25 GMT",
+    "Content-Length": "1536",
+    "Content-Type": "text/css"
+  },
+  "_release": "e-tag:1120f2c-1",
+  "main": "index.css",
+  "_source": "http://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css",
+  "_target": "*",
+  "_originalSource": "http://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css",
+  "_direct": true
+}

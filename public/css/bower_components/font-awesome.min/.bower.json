@@ -1,0 +1,12 @@
+{
+  "name": "font-awesome.min",
+  "_cacheHeaders": {
+    "Last-Modified": "Wed, 22 Jun 2016 20:03:45 GMT",
+    "Content-Type": "text/css"
+  },
+  "main": "index.css",
+  "_source": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css",
+  "_target": "*",
+  "_originalSource": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css",
+  "_direct": true
+}

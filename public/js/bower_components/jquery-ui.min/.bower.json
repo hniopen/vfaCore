@@ -1,0 +1,13 @@
+{
+  "name": "jquery-ui.min",
+  "_cacheHeaders": {
+    "ETag": "W/\"54dceb60-3a99b\"",
+    "Last-Modified": "Thu, 12 Feb 2015 18:05:20 GMT",
+    "Content-Type": "application/javascript; charset=utf-8"
+  },
+  "_release": "e-tag:W/\"54dceb6",
+  "_source": "https://code.jquery.com/ui/1.11.3/jquery-ui.min.js",
+  "_target": "*",
+  "_originalSource": "https://code.jquery.com/ui/1.11.3/jquery-ui.min.js",
+  "_direct": true
+}

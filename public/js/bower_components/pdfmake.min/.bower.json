@@ -1,0 +1,13 @@
+{
+  "name": "pdfmake.min",
+  "_cacheHeaders": {
+    "ETag": "W/\"b798b26adc305b3cd1255cbb9bde77768a933f41\"",
+    "Content-Type": "application/javascript;charset=utf-8"
+  },
+  "_release": "e-tag:W/\"b798b26",
+  "main": "index.js",
+  "_source": "https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js",
+  "_target": "*",
+  "_originalSource": "https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js",
+  "_direct": true
+}
