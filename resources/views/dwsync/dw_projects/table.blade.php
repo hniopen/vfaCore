@@ -3,11 +3,10 @@
         <tr>
             <th>Id</th>
         <th>Questcode</th>
-        <th>Submissiontable</th>
+        <th>longQuestCode</th>
         <th>Parentid</th>
         <th>Comment</th>
         <th>Isdisplayed</th>
-        <th>Xformurl</th>
         <th>Entitytype</th>
         <th>Formtype</th>
             <th colspan="3">Action</th>
@@ -18,11 +17,10 @@
         <tr>
             <td>{!! $dwProject->id !!}</td>
             <td>{!! $dwProject->questCode !!}</td>
-            <td>{!! $dwProject->submissionTable !!}</td>
+            <td>{!! $dwProject->longQuestCode !!}</td>
             <td>{!! $dwProject->parentId !!}</td>
             <td>{!! $dwProject->comment !!}</td>
             <td>{!! $dwProject->isDisplayed !!}</td>
-            <td>{!! $dwProject->xformUrl !!}</td>
             <td>{!! $dwProject->DwEntityType->comment !!}</td>
             <td>{!! $dwProject->formType !!}</td>
             <td>

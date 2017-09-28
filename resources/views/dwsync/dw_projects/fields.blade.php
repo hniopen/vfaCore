@@ -47,6 +47,12 @@
     {!! Form::text('xformUrl', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- longQuestCode Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('longQuestCode', 'longQuestCode:') !!}
+    {!! Form::text('longQuestCode', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Credential Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('credential', 'Credential:') !!}

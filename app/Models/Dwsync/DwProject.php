@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string credential
  * @property string entityType
  * @property string formType
+ * @property string longQuestCode
  */
 class DwProject extends Model
 {
@@ -41,7 +42,8 @@ class DwProject extends Model
         'xformUrl',
         'credential',
         'entityType',
-        'formType'
+        'formType',
+        'longQuestCode'
     ];
 
     /**
@@ -57,7 +59,8 @@ class DwProject extends Model
         'xformUrl' => 'string',
         'credential' => 'string',
         'entityType' => 'string',
-        'formType' => 'string'
+        'formType' => 'string',
+        'longQuestCode' => 'string'
     ];
 
     /**
@@ -74,7 +77,8 @@ class DwProject extends Model
         'xformUrl' => 'nullable',
         'credential' => 'required',
         'entityType' => 'required',
-        'formType' => 'required'
+        'formType' => 'required',
+        'longQuestCode' => 'nullable'
     ];
 
     /**
