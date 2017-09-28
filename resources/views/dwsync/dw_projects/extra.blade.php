@@ -97,11 +97,18 @@
                 </div>
             </div>
         </div>
-        <div class="box box-primary">
+        <div class="box box-primary" id="fromXlsform">
             <div class="box-header">
                 <h4>Pull from xlsform</h4>
             </div>
             <div class="box-body">
+                <div class="row">
+                    <!-- Xlsform Field -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('xlsformFileId', 'Xlsform File:') !!}
+                        {!! Form::file('xlsform', $attributes = array()) !!}
+                    </div>
+                </div>
                 <div class="row" style="padding-left: 20px">
                     <button class="btn btn-default" id="btnCheck" onclick="">Check</button>
                     <button class="btn btn-default btn-success" id="btnInsert" style="display: none">Inserts questions</button>
