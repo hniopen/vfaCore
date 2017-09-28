@@ -21,4 +21,5 @@ return [
         'formList' => 'https://app.datawinners.com/xforms/formList',
         'xform' => 'https://app.datawinners.com/xforms/',
     ],
+    'userAgentCurl' => "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)",
 ];

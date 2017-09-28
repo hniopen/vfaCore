@@ -81,19 +81,19 @@
                     </div>
                 </div>
                 <div class="row" style="padding-left: 20px">
-                    <button class="btn btn-default" id="btnCheck" onclick="ajaxCheckQuestionsFromDw();">Check</button>
-                    <button class="btn btn-default btn-success" id="btnInsert" style="display: none" onclick="ajaxInsertQuestionsFromDw();">Inserts questions</button>
+                    <button class="btn btn-default" id="btnCheck" onclick="ajaxCheckQuestionsFromDwSubmissions();">Check</button>
+                    <button class="btn btn-default btn-success" id="btnInsert" style="display: none" onclick="ajaxInsertQuestionsFromDwSubmissions();">Inserts questions</button>
                 </div>
             </div>
         </div>
-        <div class="box box-primary">
+        <div class="box box-primary" id="fromXform">
             <div class="box-header">
                 <h4>Pull from xform</h4>
             </div>
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
-                    <button class="btn btn-default" id="btnCheck" onclick="">Check</button>
-                    <button class="btn btn-default btn-success" id="btnInsert" style="display: none">Inserts questions</button>
+                    <button class="btn btn-default" id="btnCheck" onclick="ajaxCheckQuestionsFromDwXform()">Check</button>
+                    <button class="btn btn-default btn-success" id="btnInsert" style="display: none" onclick="ajaxInsertQuestionsFromDwXform();">Inserts questions</button>
                 </div>
             </div>
         </div>
@@ -134,6 +134,7 @@
     </div>
     <script type="text/javascript">
         var questionsFromSubmissions = [];
+        var questionsFromXform = [];
         $(function () {
             $("#reservationtime").daterangepicker({
                 timePicker: true,
@@ -193,7 +194,9 @@
             btnCheck.removeClass('disabled');
             btnInsert.removeClass('disabled');
         }
-        function ajaxCheckQuestionsFromDw() {
+
+        //From submissions [
+        function ajaxCheckQuestionsFromDwSubmissions() {
             var _actionBoxId = "#fromSubmissions";
             var _idQuestion = '{{$dwProject->id}}';
             var url = '{{route('dwsync.dwProjects.checkFromSubmissions', '__id__')}}';
@@ -210,7 +213,7 @@
                     console.log("Data " + JSON.stringify(data));
                     var result = data['result'] ? JSON.stringify(data['result']) : "No result";
                     var questions = data['questions'] ? data['questions'] : [];
-                    var message = "Success checking";
+                    var message = "Success checking for "+data['message']['text'];
                     $("#result").text(result);
                     $("#foundQuesitons").html(formatQuestionsHtmlFromSubmissions(questions));
                     statusFinishCheckActions_withoutError(_actionBoxId);
@@ -234,7 +237,7 @@
             return vHtml;
         }
 
-        function ajaxInsertQuestionsFromDw() {
+        function ajaxInsertQuestionsFromDwSubmissions() {
             var _actionBoxId = "#fromSubmissions";
             var _idQuestion = '{{$dwProject->id}}';
             var url = '{{route('dwsync.dwProjects.insertFromSubmissions')}}';
@@ -246,6 +249,77 @@
                 url: url,
                 dataType: 'json',
                 data: {_token: "{{ csrf_token() }}", projectId :_idQuestion, questions:questionsFromSubmissions},
+                success: function (data, textStatus) {
+                    console.log("Data " + JSON.stringify(data));
+                    var message = data['message']['text'];
+                    statusFinishInsertActions_withoutError(_actionBoxId);
+                    notifSuccess(message);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    var message = 'Error : ' + xhr.responseText;
+                    statusFinishInsertActions_withError(_actionBoxId);
+                    notifError(message);
+                }
+            });
+        }
+        //]--- From Submissions
+
+        //From Xform [
+        function ajaxCheckQuestionsFromDwXform() {
+            var _actionBoxId = "#fromXform";
+            var _idQuestion = '{{$dwProject->id}}';
+            var url = '{{route('dwsync.dwProjects.checkFromXform', '__id__')}}';
+            url = url.replace("__id__", _idQuestion);
+            console.log("URL : " + url);
+            hideNotif();
+            statusProcessCheckActions(_actionBoxId);
+            $.ajax({
+                type: 'get',
+                url: url,
+                dataType: 'json',
+                data: {},
+                success: function (data, textStatus) {
+                    console.log("Data " + JSON.stringify(data));
+                    var result = data['result'] ? JSON.stringify(data['result']) : "No result";
+                    var questions = data['questions'] ? data['questions'] : [];
+                    var message = "Success checking for "+data['message']['text'];
+                    $("#result").text(result);
+                    $("#foundQuesitons").html(formatQuestionsHtmlFromXform(questions));
+                    statusFinishCheckActions_withoutError(_actionBoxId);
+                    notifSuccess(message);
+                    questionsFromXform = questions;
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    var message = 'Error : ' + xhr.responseText;
+                    statusFinishCheckActions_withError(_actionBoxId);
+                    notifError(message);
+                }
+            });
+        }
+
+        function formatQuestionsHtmlFromXform(question){
+            var vHtml = "<table class='table table-responsive'><thead><th>#</th><th>QuestionId</th><th>Label</th><th>Type</th></thead><tbody>";
+            var i = 1;
+            for(var key in question){
+                vHtml += "<tr><td>"+i+"</td><td>" + key + "</td><td>"+question[key].label+"</td><td>"+question[key].type+"</td></tr>";
+                i++;
+            }
+            vHtml += "</table>";
+            return vHtml;
+        }
+
+        function ajaxInsertQuestionsFromDwXform() {
+            var _actionBoxId = "#fromXform";
+            var _idQuestion = '{{$dwProject->id}}';
+            var url = '{{route('dwsync.dwProjects.insertFromXform')}}';
+            console.log("URL : " + url);
+            hideNotif();
+            statusProcessInsertActions(_actionBoxId);
+            $.ajax({
+                type: 'post',
+                url: url,
+                dataType: 'json',
+                data: {_token: "{{ csrf_token() }}", projectId :_idQuestion, questions:questionsFromXform},
                 success: function (data, textStatus) {
                     console.log("Data " + JSON.stringify(data));
                     var message = data['message']['text'];

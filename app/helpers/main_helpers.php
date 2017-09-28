@@ -18,25 +18,6 @@ function fctReversibleDecrypt($vWord){
     return $vWord;
 }
 
-function fctGetQuestionsFromJson($tJson, $questionKey = 'values'){
-    $output = [];
-    if($tJson)
-        foreach ($tJson as $item){
-            $output = array_unique(array_merge($output, array_unique(recursive_keys($item[$questionKey]))));
-        }
-    return $output;
-}
-
-function recursive_keys($input, $search_value = null){
-    $output = ($search_value !== null ? array_keys($input, $search_value) : array_keys($input)) ;
-    foreach($input as $sub){
-        if(is_array($sub)){
-            $output = ($search_value !== null ? array_merge($output, recursive_keys($sub, $search_value)) : array_merge($output, recursive_keys($sub))) ;
-        }
-    }
-    return $output ;
-}
-
 function fctIsAjax($request){
     /* https://benjaminlistwon.com/blog/adding-more-robust-ajax-detection-in-laravel/ */
     /* 1. Call the builtin method */

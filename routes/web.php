@@ -66,6 +66,8 @@ Route::get('dwsync/dwProjects/{dwProjects}/edit', ['as'=> 'dwsync.dwProjects.edi
 Route::get('dwsync/dwProjects/{dwProjects}/extra', ['as'=> 'dwsync.dwProjects.extra', 'uses' => 'Dwsync\DwProjectController@extra']);
 Route::get('dwsync/dwProjects/check/from/submissions/{dwProjects}', ['as'=> 'dwsync.dwProjects.checkFromSubmissions', 'uses' => 'Dwsync\DwProjectController@checkFromSubmissions']);
 Route::post('dwsync/dwProjects/insert/from/submissions/', ['as'=> 'dwsync.dwProjects.insertFromSubmissions', 'uses' => 'Dwsync\DwProjectController@insertFromSubmissions']);
+Route::get('dwsync/dwProjects/check/from/xform/{dwProjects}', ['as'=> 'dwsync.dwProjects.checkFromXform', 'uses' => 'Dwsync\DwProjectController@checkFromXform']);
+Route::post('dwsync/dwProjects/insert/from/xform/', ['as'=> 'dwsync.dwProjects.insertFromXform', 'uses' => 'Dwsync\DwProjectController@insertFromXform']);
 
 Route::get('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.index', 'uses' => 'Dwsync\DwQuestionController@index']);
 Route::post('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.store', 'uses' => 'Dwsync\DwQuestionController@store']);

@@ -108,35 +108,31 @@ class DwProject extends Model
             $endDate = date('d-m-Y=',strtotime(date('Y-m-d') . "+2 days"));
             $url = $url . "/$startDate/$endDate";
         }
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-        curl_setopt($ch, CURLOPT_FRESH_CONNECT, TRUE);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        if($this->entityType=='Q'){
-            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        }else{
-            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
-        }
         $vCredential = fctReversibleDecrypt($this->credential);
-        curl_setopt($ch, CURLOPT_USERPWD, strtolower($vCredential));
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+        if($this->entityType=='Q'){
+            $tRes = fctInitCurlDw($url, $vCredential, CURLAUTH_BASIC);//CURLAUTH_BASIC
+        }else{
+            $tRes = fctInitCurlDw($url, $vCredential);//CURLAUTH_DIGEST
+        }
+        $tMessage = ['statusCode'=>$tRes['code'], 'text'=>$tRes['msg']." ".$url];
 
-        $tRes = json_decode(curl_exec ($ch),true);
-        $tMessage = ['statusCode'=>curl_errno($ch), 'text'=>curl_error($ch)];
-
-        curl_close($ch);
         //Get all questions
         $tAllQuestions = [];
         if($tMessage['statusCode'] == 0){
-            $tAllQuestions = fctGetQuestionsFromJson($tRes);
+            $tAllQuestions = fctGetQuestionsFromJson($tRes['json']);
         }
+        return ['result'=>$tRes['json'], 'message'=>$tMessage, 'questions' => $tAllQuestions];
+    }
 
-        return ['result'=>$tRes, 'message'=>$tMessage, 'questions' => $tAllQuestions];
+    public function checkQuestionsFromDwXform(){
+        $url = config('dwsync.url.xform') . $this->longQuestCode;
+        $vCredential = fctReversibleDecrypt($this->credential);
+        $tRes = fctInitCurlDw($url, $vCredential);//CURLAUTH_DIGEST
+        $tAllQuestions = [];
+        $tMessage = ['statusCode'=>$tRes['code'], 'text'=>$tRes['msg']." ".$url];
+        if($tMessage['statusCode'] == 0){
+            $tAllQuestions = fctGetQuestionsFromXfom($tRes['raw']);
+        }
+        return ['result'=>$tRes['raw'], 'message'=>$tMessage, 'questions' => $tAllQuestions];
     }
 }
