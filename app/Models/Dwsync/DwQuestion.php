@@ -98,11 +98,47 @@ class DwQuestion extends Model
         'isMigrated' => 'min:0|max:1'
     ];
 
+    public static function boot()
+    {
+        static::creating(function ($model) {
+            $model->calculateQuestionId();
+        });
+
+        static::updating(function ($model) {
+            $model->calculateQuestionId();
+        });
+
+        static::deleting(function ($model) {
+            // bluh bluh
+        });
+
+        parent::boot();
+    }
+
+    private function calculateQuestionId(){
+        $_questId = $this->projectId . "#". $this->xformQuestionId;
+        $this->questionId = $_questId;
+        $correpsondingDwValues = $this->dwSubmissionValues("X");//TODO: change postFix to $this->questCode
+        foreach ($correpsondingDwValues as $values){
+            $values->questionId = $_questId;
+            $values->save();
+        }
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function dwProject()
     {
         return $this->belongsTo(\App\Models\Dwsync\DwProject::class, 'projectId', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function dwSubmissionValues($postFix)
+    {
+        $selectedClass = "App\Models\\".config('dwsync.generator.namespace')."\\".config('dwsync.generator.prefix.submissionValue').$postFix;
+        return $this->hasMany($selectedClass, 'questionId', 'questionId');
     }
 }

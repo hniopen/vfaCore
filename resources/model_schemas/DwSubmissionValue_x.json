@@ -11,6 +11,18 @@
         "inIndex": true
     },
     {
+        "name": "questionId",
+        "dbType": "string:nullable",
+        "htmlType": "text",
+        "validations": "nullable",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "relation":"mt1,DwQuestion,questionId,questionId"
+    },
+    {
         "name": "submissionId",
         "dbType": "string,50",
         "htmlType": "text",
@@ -23,17 +35,6 @@
     },
     {
         "name": "xformQuestionId",
-        "dbType": "string:nullable",
-        "htmlType": "text",
-        "validations": "nullable",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "questionId",
         "dbType": "string:nullable",
         "htmlType": "text",
         "validations": "nullable",

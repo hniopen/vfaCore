@@ -11,16 +11,16 @@
         "inIndex": true
     },
     {
-        "name": "projectQuestCode",
-        "dbType": "string,20",
-        "htmlType": "text",
+        "name": "projectId",
+        "dbType": "integer",
+        "htmlType": "number",
         "validations": "required",
         "searchable": true,
         "fillable": true,
         "primary": false,
         "inForm": true,
         "inIndex": true,
-        "relation":"mt1,DwProject,projectQuestCode,questCode"
+        "relation":"mt1,DwProject,projectId,id"
     },
     {
         "name": "submissionId",
