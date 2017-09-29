@@ -271,4 +271,21 @@ class DwProjectController extends AppBaseController
         }
         return response()->json($tResult);
     }
+
+    /**
+     * Sync data from Dw
+     *
+     * @return Response
+     */
+    public function sync($id)
+    {
+        $dwProject = $this->dwProjectRepository->findWithoutFail($id);
+        $tCheckResult = [];
+        if (empty($dwProject)) {
+            $tCheckResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+        }else{
+            $tCheckResult = $dwProject->sync();
+        }
+        return response()->json($tCheckResult);
+    }
 }

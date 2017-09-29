@@ -230,7 +230,8 @@ class DwProject extends Model
                 }
 
                 //Values
-                $uniqueColumns = ['submissionId'=>$submissionId, 'xformQuestionId'=>$xformQuestId];
+                $compositeQuestId =$this->id."#".$item;
+                $uniqueColumns = ['submissionId'=>$submissionId, 'questionId'=>$compositeQuestId];
                 $currentValue = $this->submissionValueClass::firstOrNew($uniqueColumns);
                 if($currentValue->id){
                     //Some actions if UPDATE

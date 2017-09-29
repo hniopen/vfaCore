@@ -41,6 +41,49 @@ php artisan infyom:rollback DwSubmissionX api_scaffold --prefix='dwsubmissions'
 php artisan infyom:rollback DwSubmissionValueX api_scaffold --prefix='dwsubmissions'
 ```
 
+## Update model
+* Create migration, kind of `php artisan make:migration add_longQuestCode_to_dw_projects --table="dw_projects"`
+* Update schema in the migration file `database\migrations\`
+```php
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddLongQuestCodeToDwProjects extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('dw_projects', function (Blueprint $table) {
+            $table->string('longQuestCode', 100)->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('dw_projects', function (Blueprint $table) {
+            $table->dropColumn('longQuestCode');
+        });
+    }
+}
+```
+* migrate `php artisan migrate`
+* update Model property, add `@property string longQuestCode`
+* for generated model (using infyom) :
+    * update Model property : `$fillable`, `$casts`,`$rules`
+    * update corresponding views if needed (edit, show, ...)
+  
 ### Remarks
 * add `public $timestamps = false;` into model if you don't use timpestamps
 
