@@ -108,7 +108,7 @@ return [
 
     'options' => [
 
-        'softDelete' => true,
+        'softDelete' => false,
 
         'tables_searchable_default' => false,
     ],
@@ -163,7 +163,7 @@ return [
 
     'timestamps' => [
 
-        'enabled'       => true,
+        'enabled'       => false,//don't use : forced to be false $TIMESTAMPS$ in model, check public $timestamps = false;
 
         'created_at'    => 'created_at',
 
