@@ -163,7 +163,7 @@ return [
 
     'timestamps' => [
 
-        'enabled'       => false,//don't use : forced to be false $TIMESTAMPS$ in model, check public $timestamps = false;
+        'enabled'       => false,//don't use this config : forced to be false $TIMESTAMPS$ in model, check public $timestamps = false;
 
         'created_at'    => 'created_at',
 
