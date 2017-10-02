@@ -202,6 +202,9 @@ return [
 
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Datatables\ButtonsServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        //Tuto
+//        Hni\Tuto\TutoProvider::class,
     ],
 
     /*
@@ -258,6 +261,8 @@ return [
         'Html'         => Collective\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'DataTables' => Yajra\Datatables\Facades\Datatables::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+//        'Tuto' => Hni\Tuto\TutoProvider::class,
     ],
 
 ];
