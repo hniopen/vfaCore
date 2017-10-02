@@ -24,7 +24,17 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4">
+        <div class="box box-success">
+            <div class="box-header">
+                <h4>Pull status</h4>
+            </div>
+            <div id="pullStatus">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
         <div class="box box-warning">
             <div class="box-header">
                 <h4>Sync Result</h4>
@@ -87,9 +97,11 @@
             data: {},
             success: function (data, textStatus) {
                 console.log("Data " + JSON.stringify(data));
-                var result = data['result'] ? JSON.stringify(data['result']) : "No result";
-                var message = data['message']['text'];
-                $("#syncResult").text(result);
+                var resultJson = data['result'] ? JSON.stringify(data['result']) : "No result";
+                var resultSubmissions = data['submissions'] ? JSON.stringify(data['submissions']) : "No submissions";
+                var message = data['message']['text'];// + " <br> " + data['submissions']['status'] ;
+                $("#syncResult").text(resultJson);
+                $("#pullStatus").html(formatQuestionsHtmlFromStatus(data['submissions']['status']));
                 statusFinishSyncActions_withoutError(_actionBoxId);
                 notifSuccess(message);
             },
@@ -99,5 +111,14 @@
                 notifError(message);
             }
         });
+    }
+
+    function formatQuestionsHtmlFromStatus(tStatus){
+        var vHtml = "<table class='table table-responsive'><thead><th>Status</th><th>Number</th></thead><tbody>";
+        for(var sts in tStatus){
+            vHtml += "<tr><td>"+sts+"</td><td>" + tStatus[sts] + "</td></tr>";
+        }
+        vHtml += "</table>";
+        return vHtml;
     }
 </script>

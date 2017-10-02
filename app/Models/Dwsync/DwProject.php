@@ -176,6 +176,7 @@ class DwProject extends Model
 
     private function pullData($jsonResult, $questionKey = 'values'){
         $output = [];
+        $tStatus = ['success'=>0, 'error'=>0, 'deleted'=>0,'updated'=>0, 'inserted'=>0, 'wrong_idnr'=>0];
         foreach ($jsonResult as $item){
             //Datas
             $status = $item['status'];//success, deleted, error, ...
@@ -206,21 +207,28 @@ class DwProject extends Model
                 if($currentSubmission->id){//already exist = update
                     $currentSubmission->dwUpdatedAt = $t[0];
                     $currentSubmission->dwUpdatedAt_u = $t[1];
+                    $tStatus['updated']++;
                     //Check modified data : same $submissionId #### Fire event
                     //TODO : call external event definition
                 }else{//insert
+                    $tStatus['inserted']++;
                     $currentSubmission->dwSubmittedAt = $t[0];
                     $currentSubmission->dwSubmittedAt_u = $t[1];
                 }
-                //Check valid DS (exist in DS list) ##### Fire event
+                //Check valid DS (doesn't exist in DS list) ##### Fire event
+                //TODO : then add this $tStatus['wrong_idnr']++;
                 //TODO : call external event definition
             }
+            if(!array_key_exists($status, $tStatus))//in case there is new status from DW
+                $tStatus[$status] = 1;
+            else
+                $tStatus[$status]++;
             $currentSubmission->isValid = $_isValid;
 
             //Insert values
             foreach($tQuestions as $xformQuestId => $value){
                 //Get related question:
-                $uniqueColumns = ['projectId'=>$this->id,'xformQuestionId'=>$item];
+                $uniqueColumns = ['projectId'=>$this->id,'xformQuestionId'=>$xformQuestId];
                 $relatedDwQuestion = DwQuestion::firstOrNew($uniqueColumns);
                 if($relatedDwQuestion->id){
                     //The question exists
@@ -230,7 +238,7 @@ class DwProject extends Model
                 }
 
                 //Values
-                $compositeQuestId =$this->id."#".$item;
+                $compositeQuestId =$this->id."#".$xformQuestId;
                 $uniqueColumns = ['submissionId'=>$submissionId, 'questionId'=>$compositeQuestId];
                 $currentValue = $this->submissionValueClass::firstOrNew($uniqueColumns);
                 if($currentValue->id){
@@ -254,6 +262,6 @@ class DwProject extends Model
             $currentSubmission->save();
             $output[] = $currentSubmission;
         }
-        return $output;
+        return ['data'=>$output, 'status'=>$tStatus];
     }
 }
