@@ -46,7 +46,7 @@
     },
     {
         "name": "dwSubmittedAt_u",
-        "dbType": "string,6",
+        "dbType": "string,20",
         "htmlType": "date",
         "validations": "",
         "searchable": false,
@@ -68,7 +68,7 @@
     },
     {
         "name": "dwUpdatedAt_u",
-        "dbType": "string,6:nullable",
+        "dbType": "string,20:nullable",
         "htmlType": "date",
         "validations": "nullable",
         "searchable": false,
