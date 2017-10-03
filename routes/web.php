@@ -71,6 +71,8 @@ Route::post('dwsync/dwProjects/insert/from/xform/', ['as'=> 'dwsync.dwProjects.i
 Route::post('dwsync/dwProjects/check/from/xls/{dwProjects}', ['as'=> 'dwsync.dwProjects.checkFromXls', 'uses' => 'Dwsync\DwProjectController@checkFromXls']);
 Route::post('dwsync/dwProjects/insert/from/xls/', ['as'=> 'dwsync.dwProjects.insertFromXls', 'uses' => 'Dwsync\DwProjectController@insertFromXls']);
 Route::get('dwsync/dwProjects/sync/{dwProjects}', ['as'=> 'dwsync.dwProjects.sync', 'uses' => 'Dwsync\DwProjectController@sync']);
+Route::get('dwsync/dwProjects/check/existing/questions/{dwProjects}', ['as'=> 'dwsync.dwProjects.checkExistingQuestions', 'uses' => 'Dwsync\DwProjectController@checkExistingQuestions']);
+Route::post('dwsync/dwProjects/remove/existing/questions/', ['as'=> 'dwsync.dwProjects.removeExistingQuestions', 'uses' => 'Dwsync\DwProjectController@removeExistingQuestions']);
 
 Route::get('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.index', 'uses' => 'Dwsync\DwQuestionController@index']);
 Route::post('dwsync/dwQuestions', ['as'=> 'dwsync.dwQuestions.store', 'uses' => 'Dwsync\DwQuestionController@store']);

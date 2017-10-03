@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="row" style="padding-left: 20px">
-            <button class="btn btn-warning" type="button" id="btnConfirm" onclick="">Confirm remove all</button>
+            <button class="btn btn-warning" type="button" id="btnRemove" onclick="ajaxRemoveQuestions();">Confirm remove all</button>
             {{--<button class="btn btn-default btn-danger" id="btnInsert" type="button" style="display: none" onclick="ajaxRemoveAllQuestions();">Confirm remove all questions</button>--}}
         </div>
         {!! Form::close() !!}
@@ -100,6 +100,7 @@
     var questionsFromSubmissions = [];
     var questionsFromXform = [];
     var questionsFromXls = [];
+    var existingQuestions = [];
     $(function () {
         $("#pullQuestionTime").daterangepicker({
             timePicker: true,
@@ -112,8 +113,10 @@
     function statusProcessCheckActions(_actionBoxId){
         var btnCheck = $(_actionBoxId).find("#btnCheck");
         var btnInsert = $(_actionBoxId).find("#btnInsert");
+        var btnRemove = $(_actionBoxId).find("#btnRemove");
         btnCheck.addClass('disabled');
         btnInsert.addClass('disabled');
+        btnRemove.addClass('disabled');
         $("#result").text("");
         $("#foundQuesitons").html("");
     }
@@ -126,15 +129,19 @@
     function statusFinishCheckActions_withoutError(_actionBoxId){
         var btnCheck = $(_actionBoxId).find("#btnCheck");
         var btnInsert = $(_actionBoxId).find("#btnInsert");
+        var btnRemove = $(_actionBoxId).find("#btnRemove");
         btnCheck.removeClass('disabled');
         btnInsert.show();
         btnInsert.removeClass('disabled');
+        btnRemove.removeClass('disabled');
     }
     function statusFinishInsertActions_withoutError(_actionBoxId){
         var btnCheck = $(_actionBoxId).find("#btnCheck");
         var btnInsert = $(_actionBoxId).find("#btnInsert");
+        var btnRemove = $(_actionBoxId).find("#btnRemove");
         btnCheck.removeClass('disabled');
         btnInsert.removeClass('disabled');
+        btnRemove.addClass('disabled');
     }
     function statusFinishCheckActions_withError(_actionBoxId){
         var btnCheck = $(_actionBoxId).find("#btnCheck");
@@ -354,6 +361,66 @@
             url: url,
             dataType: 'json',
             data: {_token: "{{ csrf_token() }}", projectId :_projectId, questions:questionsFromXls},
+            success: function (data, textStatus) {
+                console.log("Data " + JSON.stringify(data));
+                var message = data['message']['text'];
+                statusFinishInsertActions_withoutError(_actionBoxId);
+                notifSuccess(message);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var message = 'Error : ' + xhr.responseText;
+                statusFinishInsertActions_withError(_actionBoxId);
+                notifError(message);
+            }
+        });
+    }
+    // ] --- Xls
+
+    // Remove all [
+    function ajaxCheckExistingQuestions() {
+        var _actionBoxId = "#removeAll";
+        var _projectId = '{{$dwProject->id}}';
+        var url = '{{route('dwsync.dwProjects.checkExistingQuestions', '__id__')}}';
+        url = url.replace("__id__", _projectId);
+        console.log("URL : " + url);
+        hideNotif();
+        statusProcessCheckActions(_actionBoxId);
+        $.ajax({
+            type: 'get',
+            url: url,
+            dataType: 'json',
+            data: {},
+            success: function (data, textStatus) {
+                console.log("Data " + JSON.stringify(data));
+                var result = data['result'] ? JSON.stringify(data['result']) : "No result";
+                var questions = data['questions'] ? data['questions'] : [];
+                var message = "Success checking for "+data['message']['text'];
+                $("#result").text(result);
+                $("#foundQuesitons").html(formatQuestionsHtmlFromXform(questions));
+                statusFinishCheckActions_withoutError(_actionBoxId);
+                notifSuccess(message);
+                existingQuestions = questions;
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var message = 'Error : ' + xhr.responseText;
+                statusFinishCheckActions_withError(_actionBoxId);
+                notifError(message);
+            }
+        });
+    }
+
+    function ajaxRemoveQuestions() {
+        var _actionBoxId = "#removeAll";
+        var _projectId = '{{$dwProject->id}}';
+        var url = '{{route('dwsync.dwProjects.removeExistingQuestions')}}';
+        console.log("URL : " + url);
+        hideNotif();
+        statusProcessInsertActions(_actionBoxId);
+        $.ajax({
+            type: 'post',
+            url: url,
+            dataType: 'json',
+            data: {_token: "{{ csrf_token() }}", projectId :_projectId, questions:existingQuestions},
             success: function (data, textStatus) {
                 console.log("Data " + JSON.stringify(data));
                 var message = data['message']['text'];

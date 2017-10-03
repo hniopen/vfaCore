@@ -184,7 +184,7 @@ class DwProjectController extends AppBaseController
         $dwProject = $this->dwProjectRepository->findWithoutFail($id);
         $tCheckResult = [];
         if (empty($dwProject)) {
-            $tCheckResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+            $tCheckResult['message'] = ['statusCode'=>1, 'text'=>'DW project not found'];
         }else{
             $tCheckResult = $dwProject->checkQuestionsFromDwSubmissions();
         }
@@ -205,7 +205,7 @@ class DwProjectController extends AppBaseController
         $insertCount = 0;
         $updateCount = 0;
         if (empty($dwProject)) {
-            $tResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+            $tResult['message'] = ['statusCode'=>1, 'text'=>'DW project not found'];
         }else{
             $questions = $inputs['questions'];
             foreach ($questions as $item){
@@ -232,7 +232,7 @@ class DwProjectController extends AppBaseController
         $dwProject = $this->dwProjectRepository->findWithoutFail($id);
         $tCheckResult = [];
         if (empty($dwProject)) {
-            $tCheckResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+            $tCheckResult['message'] = ['statusCode'=>1, 'text'=>'DW project not found'];
         }else{
             $tCheckResult = $dwProject->checkQuestionsFromDwXform();
         }
@@ -253,7 +253,7 @@ class DwProjectController extends AppBaseController
         $insertCount = 0;
         $updateCount = 0;
         if (empty($dwProject)) {
-            $tResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+            $tResult['message'] = ['statusCode'=>1, 'text'=>'DW project not found'];
         }else{
             $questions = $inputs['questions'];
             foreach ($questions as $item => $tValue){
@@ -282,7 +282,7 @@ class DwProjectController extends AppBaseController
         $dwProject = $this->dwProjectRepository->findWithoutFail($id);
         $tCheckResult = [];
         if (empty($dwProject)) {
-            $tCheckResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+            $tCheckResult['message'] = ['statusCode'=>1, 'text'=>'DW project not found'];
         }else{
             $file = $request->file('xlsform');
             $tCheckResult = $dwProject->checkQuestionsFromDwXls($file);
@@ -295,7 +295,7 @@ class DwProjectController extends AppBaseController
         return response()->json($tCheckResult);
     }
     /**
-     * Insert questions from Dw xlsform
+     * Insert questions from xls form
      *
      * @return Response
      */
@@ -308,7 +308,7 @@ class DwProjectController extends AppBaseController
         $insertCount = 0;
         $updateCount = 0;
         if (empty($dwProject)) {
-            $tResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+            $tResult['message'] = ['statusCode'=>1, 'text'=>'DW project not found'];
         }else{
             $questions = $inputs['questions'];
             foreach ($questions as $item => $tValue){
@@ -328,6 +328,60 @@ class DwProjectController extends AppBaseController
         }
         return response()->json($tResult);
     }
+
+    /**
+     * Check existing related questions
+     *
+     * @return Response
+     */
+    public function checkExistingQuestions($id)
+    {
+        $dwProject = $this->dwProjectRepository->findWithoutFail($id);
+        $tCheckResult = [];
+        if (empty($dwProject)) {
+            $tCheckResult['message'] = ['statusCode'=>1, 'text'=>'DW project not found'];
+        }else{
+            $tAllQuestions = $dwProject->dwQuestions;
+            $output = [];
+            foreach($tAllQuestions as $quest){
+                $output[$quest->xformQuestionId]['type'] = $quest->dataType;
+                $output[$quest->xformQuestionId]['label'] = $quest->labelDefault;
+            }
+            $tCheckResult['result'] = $tAllQuestions;
+            $tCheckResult['questions'] = $output;
+            $tCheckResult['message'] = ['statusCode'=>0, 'text'=>$dwProject->questCode." | ".$dwProject->comment];
+        }
+
+        return response()->json($tCheckResult);
+    }
+
+    /**
+     * Insert questions from xls form
+     *
+     * @return Response
+     */
+    public function removeExistingQuestions(Request $request)
+    {
+        $inputs = $request->all();
+        $projectId = $inputs['projectId'];
+        $dwProject = $this->dwProjectRepository->findWithoutFail($inputs['projectId']);
+        $tResult = [];
+        $count = 0;
+        if (empty($dwProject)) {
+            $tResult['message'] = ['statusCode'=>1, 'text'=>'DW project not found'];
+        }else{
+            $questions = $inputs['questions'];
+            foreach ($questions as $item => $tValue){
+                $uniqueColumns = ['projectId'=>$projectId,'xformQuestionId'=>$item];
+                $currentDwQuestion = DwQuestion::where($uniqueColumns);
+                $currentDwQuestion->forceDelete();
+                $count++;
+            }
+            $tResult['message'] = ['statusCode'=>'', 'text'=>"Removed question(s) : $count"];
+        }
+        return response()->json($tResult);
+    }
+
     /**
      * Sync data from Dw
      *

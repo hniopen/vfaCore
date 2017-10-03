@@ -118,7 +118,7 @@ class DwQuestion extends Model
     private function calculateQuestionId(){
         $_questId = $this->projectId . "#". $this->xformQuestionId;
         $this->questionId = $_questId;
-        $correpsondingDwValues = $this->dwSubmissionValues("X");//TODO: change postFix to $this->questCode
+        $correpsondingDwValues = $this->dwSubmissionValues("X")->get();//TODO: change postFix to $this->questCode
         foreach ($correpsondingDwValues as $values){
             $values->questionId = $_questId;
             $values->save();

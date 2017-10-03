@@ -37,7 +37,9 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuPull">
                                 <li><a href="#/" onclick="setPanel('fromSubmissions');">From existing submissions</a></li>
-                                <li><a href="#/" onclick="setPanel('fromXform');">From xform</a></li>
+                                @if($dwProject->formType != 'advanced')
+                                    <li><a href="#/" onclick="setPanel('fromXform');">From xform</a></li>
+                                @endif
                                 @if($dwProject->formType == 'advanced')
                                     <li><a href="#/" onclick="setPanel('fromXls');">From xlsform (advanced)</a></li>
                                 @endif
@@ -52,7 +54,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuRemove">
-                                <li><a href="#/" onclick="setPanel('removeAll');">Remove all related questions</a></li>
+                                <li><a href="#/" onclick="setPanel('removeAll');ajaxCheckExistingQuestions();">Remove all related questions</a></li>
                             </ul>
                         </div>
                     </div>
