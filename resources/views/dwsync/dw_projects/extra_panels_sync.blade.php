@@ -1,4 +1,4 @@
-<div class="box box-success" id="syncData">
+<div class="box box-success" id="syncData" style="display: none;">
     <div class="box-header">
         <h4>Sync data from DW</h4>
     </div>
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" id="syncDataResult" style="display: none;">
     <div class="col-md-4">
         <div class="box box-success">
             <div class="box-header">
@@ -53,20 +53,6 @@
             format: 'MM/DD/YYYY h:mm A'
         });
     });
-
-    //Set notif : used in extra_panels
-    function hideNotif() {
-        $("#notif_success").hide();
-        $("#notif_error").hide();
-    }
-    function notifError(_msg) {
-        $("#notif_error").html(_msg);
-        $("#notif_error").show();
-    }
-    function notifSuccess(_msg) {
-        $("#notif_success").html(_msg);
-        $("#notif_success").show();
-    }
 
     function statusProcessSyncActions(_actionBoxId){
         var btnCheck = $(_actionBoxId).find("#btnCheck");

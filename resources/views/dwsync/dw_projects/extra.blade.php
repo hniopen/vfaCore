@@ -28,7 +28,7 @@
                         <a href="{!! route('dwsync.dwProjects.index') !!}" class="btn btn-default pull-left"
                            style="margin-right: 5px;">Back</a>
                         <button class="btn btn-success pull-left"
-                           style="margin-right: 5px;">Sync data</button>
+                           style="margin-right: 5px;" onclick="setPanel('syncData');">Sync data</button>
                         <div class="dropdown pull-left" style="margin-right: 5px;">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuPull"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -36,11 +36,13 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuPull">
-                                <li><a href="#">From existing submissions</a></li>
-                                <li><a href="#">From xform</a></li>
-                                <li><a href="#">From xlsform (advanced)</a></li>
+                                <li><a href="#/" onclick="setPanel('fromSubmissions');">From existing submissions</a></li>
+                                <li><a href="#/" onclick="setPanel('fromXform');">From xform</a></li>
+                                @if($dwProject->formType == 'advanced')
+                                    <li><a href="#/" onclick="setPanel('fromXls');">From xlsform (advanced)</a></li>
+                                @endif
                                 {{--<li role="separator" class="divider"></li>--}}
-                                {{--<li><a href="#">Separated link</a></li>--}}
+                                {{--<li><a href="#/">Separated link</a></li>--}}
                             </ul>
                         </div>
                         <div class="dropdown pull-left" style="margin-right: 5px;">
@@ -50,7 +52,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuRemove">
-                                <li><a href="#">Remove all related questions</a></li>
+                                <li><a href="#/" onclick="setPanel('removeAll');">Remove all related questions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -63,8 +65,45 @@
             <div class="alert alert-success" id="notif_success" style="display: none">
             </div>
         </div>
-        <script language="text/javascript">
+        <script type="text/javascript">
+            var listActionPanels = ['fromSubmissions', 'fromXform', 'fromXls', 'removeAll', 'syncData'];
 
+            //Set notif : used in extra_panels
+            function hideNotif() {
+                $("#notif_success").hide();
+                $("#notif_error").hide();
+            }
+            function notifError(_msg) {
+                $("#notif_error").html(_msg);
+                $("#notif_error").show();
+            }
+            function notifSuccess(_msg) {
+                $("#notif_success").html(_msg);
+                $("#notif_success").show();
+            }
+
+            function setPanel(idPanel){
+                console.log("panel : "+idPanel);
+                for(var key in listActionPanels){
+                    var panel = listActionPanels[key];
+                    //actions panel
+                    if(panel == idPanel){
+                        $("#"+panel).show();
+                        console.log("show : #"+panel);
+                    }else{
+                        $("#"+panel).hide();
+                        console.log("hide : #"+panel);
+                    }
+                    //result panel
+                    if(idPanel == 'syncData'){
+                        $("#syncDataResult").show();
+                        $("#pullResult").hide();
+                    }else{
+                        $("#syncDataResult").hide();
+                        $("#pullResult").show();
+                    }
+                }
+            }
         </script>
         @include('dwsync.dw_projects.extra_panels_pull')
         @include('dwsync.dw_projects.extra_panels_sync')

@@ -1,4 +1,4 @@
-<div class="box box-primary" id="fromSubmissions">
+<div class="box box-primary" id="fromSubmissions" style="display: none;">
     <div class="box-header">
         <h4>Pull from existing submissions</h4>
     </div>
@@ -23,7 +23,7 @@
         </div>
     </div>
 </div>
-<div class="box box-primary" id="fromXform">
+<div class="box box-primary" id="fromXform" style="display: none;">
     <div class="box-header">
         <h4>Pull from xform</h4>
     </div>
@@ -34,7 +34,7 @@
         </div>
     </div>
 </div>
-<div class="box box-primary" id="fromXls">
+<div class="box box-primary" id="fromXls" style="display: none;">
     <div class="box-header">
         <h4>Pull from xlsform</h4>
     </div>
@@ -55,7 +55,26 @@
         {!! Form::close() !!}
     </div>
 </div>
-<div class="row">
+<div class="box box-danger" id="removeAll" style="display: none;">
+    <div class="box-header">
+        <h4>Remove all related questions</h4>
+    </div>
+    <div class="box-body">
+        {!! Form::open(['url' => '#','files'=>'true', 'id'=>'removeAllQuestions']) !!}
+        <div class="row">
+            <!-- Remove Field -->
+            <div class="form-group col-sm-6">
+                {!! Form::hidden('_token', csrf_token()) !!}
+            </div>
+        </div>
+        <div class="row" style="padding-left: 20px">
+            <button class="btn btn-warning" type="button" id="btnConfirm" onclick="">Confirm remove all</button>
+            {{--<button class="btn btn-default btn-danger" id="btnInsert" type="button" style="display: none" onclick="ajaxRemoveAllQuestions();">Confirm remove all questions</button>--}}
+        </div>
+        {!! Form::close() !!}
+    </div>
+</div>
+<div class="row" id="pullResult" style="display: none;">
     <div class="col-md-6">
         <div class="box box-success">
             <div class="box-header">
@@ -89,19 +108,6 @@
         });
     });
 
-    //Set notif : used in extra_panels
-    function hideNotif() {
-        $("#notif_success").hide();
-        $("#notif_error").hide();
-    }
-    function notifError(_msg) {
-        $("#notif_error").html(_msg);
-        $("#notif_error").show();
-    }
-    function notifSuccess(_msg) {
-        $("#notif_success").html(_msg);
-        $("#notif_success").show();
-    }
 
     function statusProcessCheckActions(_actionBoxId){
         var btnCheck = $(_actionBoxId).find("#btnCheck");
