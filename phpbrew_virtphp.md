@@ -60,6 +60,12 @@ brew link icu4c
 2. Make sure you use the right php build `which php`. (in case you need to force, use `phpbrew use php-{your installed version}`)
 3. Run/update you app and enjoy. Do not forget to run virtual env. for each time you need to run your app.
 
+## Alternative way to run app
+* Just use the absolute path for php and for artisan
+`~/.phpbrew/php/php-7.1.1/bin/php /var/www/vfaHC4L/artisan serve --host=0.0.0.0 --port=8060`
+* For remote deployment, append the command in crontab with unique time reference (current time, note : sunday =0)
+`34 6 3 10 2 nohup ~/.phpbrew/php/php-7.1.1/bin/php /var/www/vfaHC4L/artisan serve --host=0.0.0.0 --port=8060 > /dev/null 2>&1 &`
+
 ## Resources
 * For more info about **phpbrew** commands & installation, go [here](http://phpbrew.github.io/phpbrew/)
 * For more info about **virtphp** commands & installation, go [here](https://github.com/virtphp/virtphp)
