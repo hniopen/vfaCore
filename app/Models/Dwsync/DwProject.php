@@ -4,7 +4,7 @@ namespace App\Models\Dwsync;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Excel;
 /**
  * Class DwProject
  * @package App\Models\Dwsync
@@ -33,7 +33,9 @@ class DwProject extends Model
     protected $dates = ['deleted_at'];
     private $submissionClass;
     private $submissionValueClass;
-
+    private $tAllQuestions = [], $tCheckingResult = [];
+    private $validDataType = array('text', 'dw_idnr', 'select_one', 'select_multiple', 'geopoint', 'integer', 'decimal', 'date', 'time', 'barcode');
+    private $validMimeType = array('application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     public $fillable = [
         'questCode',
         'submissionTable',
@@ -118,30 +120,101 @@ class DwProject extends Model
         }
         $vCredential = fctReversibleDecrypt($this->credential);
         if($this->entityType=='Q'){
-            $tRes = fctInitCurlDw($url, $vCredential, CURLAUTH_BASIC);//CURLAUTH_BASIC
+            $this->tCheckingResult = fctInitCurlDw($url, $vCredential, CURLAUTH_BASIC);//CURLAUTH_BASIC
         }else{
-            $tRes = fctInitCurlDw($url, $vCredential);//CURLAUTH_DIGEST
+            $this->tCheckingResult = fctInitCurlDw($url, $vCredential);//CURLAUTH_DIGEST
         }
-        $tMessage = ['statusCode'=>$tRes['code'], 'text'=>$tRes['msg']." ".$url];
+        $tMessage = ['statusCode'=>$this->tCheckingResult['code'], 'text'=>$this->tCheckingResult['msg']." ".$url];
 
         //Get all questions
-        $tAllQuestions = [];
+        $this->tAllQuestions = [];
         if($tMessage['statusCode'] == 0){
-            $tAllQuestions = fctGetQuestionsFromJson($tRes['json']);
+            $tAllQuestions = fctGetQuestionsFromJson($this->tCheckingResult['json']);
         }
-        return ['result'=>$tRes['json'], 'message'=>$tMessage, 'questions' => $tAllQuestions];
+        return ['result'=>$this->tCheckingResult['json'], 'message'=>$tMessage, 'questions' => $tAllQuestions];
     }
 
     public function checkQuestionsFromDwXform(){
         $url = config('dwsync.url.xform') . $this->longQuestCode;
         $vCredential = fctReversibleDecrypt($this->credential);
-        $tRes = fctInitCurlDw($url, $vCredential);//CURLAUTH_DIGEST
-        $tAllQuestions = [];
-        $tMessage = ['statusCode'=>$tRes['code'], 'text'=>$tRes['msg']." ".$url];
+        $this->tCheckingResult = fctInitCurlDw($url, $vCredential);//CURLAUTH_DIGEST
+        $this->tAllQuestions = [];
+        $tMessage = ['statusCode'=>$this->tCheckingResult['code'], 'text'=>$this->tCheckingResult['msg']." ".$url];
         if($tMessage['statusCode'] == 0){
-            $tAllQuestions = fctGetQuestionsFromXfom($tRes['raw']);
+            $tAllQuestions = fctGetQuestionsFromXform($this->tCheckingResult['raw']);
         }
-        return ['result'=>$tRes['raw'], 'message'=>$tMessage, 'questions' => $tAllQuestions];
+        return ['result'=>$this->tCheckingResult['raw'], 'message'=>$tMessage, 'questions' => $tAllQuestions];
+    }
+
+    public function checkQuestionsFromDwXls($file){
+        $this->tCheckingResult = [];
+        $this->tAllQuestions = [];
+        $filePath = $file->getRealPath()."/".$file->getClientOriginalName();
+        $fileType = $file->getMimeType();
+//        $ext = $file->getClientOriginalExtension();
+        //$file->getSize();
+
+        $tMessage = ['statusCode'=>0, 'text'=>$filePath];
+        if(!in_array($fileType, $this->validMimeType)){
+            $tMessage['statusCode'] = 1;
+            $tMessage['text'] = "Wrong excel file mime type : ".$fileType;
+            abort(403, $tMessage['text']);
+        }
+        if($tMessage['statusCode'] == 0){
+            Excel::selectSheets('survey', 'choices')->load($file, function($reader) {
+                //1st sheet
+                $survey = $reader->first();
+                $this->tCheckingResult = $survey;
+                $vFinBalise = "";
+                $vPath = "";
+                $vCurrentPath = "";
+                $vOrder = 1;
+                $output = [];
+                foreach($survey as $rowItem){
+                    //Existing values from Cells
+                    $vType = $rowItem['type'];
+                    $vName = $rowItem['name'];
+                    $vLabel = $rowItem['label'];
+                    $vRelevant = isset($rowItem['relevant'])?$rowItem['relevant']:null;
+                    $vRequired = isset($rowItem['required'])?$rowItem['required']:null;
+                    $vHint = isset($rowItem['hint'])?$rowItem['hint']:null;
+                    $vCalculation = isset($rowItem['calculation'])?$rowItem['calculation']:null;
+                    $vConstraint = isset($rowItem['constraint'])?$rowItem['constraint']:null;
+                    $vConstraintMessage = isset($rowItem['constraint_message'])?$rowItem['constraint_message']:null;
+
+                    //Deal with groups & repeat
+                    $tType = explode(" ",$vType);
+                    if($tType[0] == "begin_group" || $tType[0] == "begin_repeat"){
+                        $vCurrentPath = $vName;
+                        if(strlen($vPath)>0)
+                            $vPath = $vPath . "/";
+                        $vPath = $vPath . $vCurrentPath;
+                    }
+                    if($tType[0] == "end_group" || $tType[0] == "end_repeat"){
+                        if(strlen($vPath)>strlen($vCurrentPath)){
+                            $vPath = substr($vPath,0,strlen($vPath)-strlen($vCurrentPath)-1);
+                            $tPath = explode("/",$vPath);
+
+                            $vCurrentPath = $tPath[count($tPath)-1];
+                        }
+                        else{
+                            $vPath  = "";
+                            $vCurrentPath = "";
+                        }
+                    }
+
+                    //deal with valid data type
+                    if(in_array($tType[0], $this->validDataType)){
+                        $output[$vName]['type'] = $tType[0];
+                        $output[$vName]['label'] = $vLabel;
+                        $output[$vName]['path'] = $vPath;
+                        $output[$vName]['order'] = $vOrder++;
+                    }
+                }
+                $this->tAllQuestions = $output;
+            });
+        }
+        return ['result'=>$this->tCheckingResult, 'message'=>$tMessage, 'questions' => $this->tAllQuestions];
     }
 
     public function sync(){
@@ -160,18 +233,18 @@ class DwProject extends Model
         }
         $vCredential = fctReversibleDecrypt($this->credential);
         if($this->entityType=='Q'){
-            $tRes = fctInitCurlDw($url, $vCredential, CURLAUTH_BASIC);//CURLAUTH_BASIC
+            $this->tCheckingResult = fctInitCurlDw($url, $vCredential, CURLAUTH_BASIC);//CURLAUTH_BASIC
         }else{
-            $tRes = fctInitCurlDw($url, $vCredential);//CURLAUTH_DIGEST
+            $this->tCheckingResult = fctInitCurlDw($url, $vCredential);//CURLAUTH_DIGEST
         }
-        $tMessage = ['statusCode'=>$tRes['code'], 'text'=>$tRes['msg']." ".$url];
+        $tMessage = ['statusCode'=>$this->tCheckingResult['code'], 'text'=>$this->tCheckingResult['msg']." ".$url];
 
         //Pull all submissions
         $tAllSubmissions = [];
         if($tMessage['statusCode'] == 0){
-            $tAllSubmissions = $this->pullData($tRes['json']);
+            $tAllSubmissions = $this->pullData($this->tCheckingResult['json']);
         }
-        return ['result'=>$tRes['json'], 'message'=>$tMessage, 'submissions' => $tAllSubmissions];
+        return ['result'=>$this->tCheckingResult['json'], 'message'=>$tMessage, 'submissions' => $tAllSubmissions];
     }
 
     private function pullData($jsonResult, $questionKey = 'values'){
@@ -239,6 +312,7 @@ class DwProject extends Model
 
                 //Values
                 $compositeQuestId =$this->id."#".$xformQuestId;
+                //TODO : deal with advanced Q repeat, idea > should add path in $uniqueColumns
                 $uniqueColumns = ['submissionId'=>$submissionId, 'questionId'=>$compositeQuestId];
                 $currentValue = $this->submissionValueClass::firstOrNew($uniqueColumns);
                 if($currentValue->id){
@@ -246,7 +320,10 @@ class DwProject extends Model
                 }else{
                     //Some actions if INSERT
                 }
-                $currentValue->value = $value;
+                if(is_array($value))//single or multiple choice
+                    $currentValue->value = implode(",",$value);
+                else
+                    $currentValue->value = $value;
                 //Check if linked_idnr value in idnr list (IDNR exists) ##### Fire event
                         //Need a relation between submission & submissionValue
                 //TODO : call external event definition

@@ -34,22 +34,25 @@
         </div>
     </div>
 </div>
-<div class="box box-primary" id="fromXlsform">
+<div class="box box-primary" id="fromXls">
     <div class="box-header">
         <h4>Pull from xlsform</h4>
     </div>
     <div class="box-body">
+        {!! Form::open(['url' => '#','files'=>'true', 'id'=>'formXls']) !!}
         <div class="row">
             <!-- Xlsform Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('xlsformFileId', 'Xlsform File:') !!}
                 {!! Form::file('xlsform', $attributes = array()) !!}
+                {!! Form::hidden('_token', csrf_token()) !!}
             </div>
         </div>
         <div class="row" style="padding-left: 20px">
-            <button class="btn btn-default" id="btnCheck" onclick="">Check</button>
-            <button class="btn btn-default btn-success" id="btnInsert" style="display: none">Inserts questions</button>
+            <button class="btn btn-default" type="submit" id="btnCheck" onclick="">Check</button>
+            <button class="btn btn-default btn-success" id="btnInsert" type="button" style="display: none" onclick="ajaxInsertQuestionsFromDwXls();">Inserts questions</button>
         </div>
+        {!! Form::close() !!}
     </div>
 </div>
 <div class="row">
@@ -77,6 +80,7 @@
 <script type="text/javascript">
     var questionsFromSubmissions = [];
     var questionsFromXform = [];
+    var questionsFromXls = [];
     $(function () {
         $("#pullQuestionTime").daterangepicker({
             timePicker: true,
@@ -142,9 +146,9 @@
     //From submissions [
     function ajaxCheckQuestionsFromDwSubmissions() {
         var _actionBoxId = "#fromSubmissions";
-        var _idQuestion = '{{$dwProject->id}}';
+        var _projectId = '{{$dwProject->id}}';
         var url = '{{route('dwsync.dwProjects.checkFromSubmissions', '__id__')}}';
-        url = url.replace("__id__", _idQuestion);
+        url = url.replace("__id__", _projectId);
         console.log("URL : " + url);
         hideNotif();
         statusProcessCheckActions(_actionBoxId);
@@ -183,7 +187,7 @@
 
     function ajaxInsertQuestionsFromDwSubmissions() {
         var _actionBoxId = "#fromSubmissions";
-        var _idQuestion = '{{$dwProject->id}}';
+        var _projectId = '{{$dwProject->id}}';
         var url = '{{route('dwsync.dwProjects.insertFromSubmissions')}}';
         console.log("URL : " + url);
         hideNotif();
@@ -192,7 +196,7 @@
             type: 'post',
             url: url,
             dataType: 'json',
-            data: {_token: "{{ csrf_token() }}", projectId :_idQuestion, questions:questionsFromSubmissions},
+            data: {_token: "{{ csrf_token() }}", projectId :_projectId, questions:questionsFromSubmissions},
             success: function (data, textStatus) {
                 console.log("Data " + JSON.stringify(data));
                 var message = data['message']['text'];
@@ -211,9 +215,9 @@
     //From Xform [
     function ajaxCheckQuestionsFromDwXform() {
         var _actionBoxId = "#fromXform";
-        var _idQuestion = '{{$dwProject->id}}';
+        var _projectId = '{{$dwProject->id}}';
         var url = '{{route('dwsync.dwProjects.checkFromXform', '__id__')}}';
-        url = url.replace("__id__", _idQuestion);
+        url = url.replace("__id__", _projectId);
         console.log("URL : " + url);
         hideNotif();
         statusProcessCheckActions(_actionBoxId);
@@ -254,7 +258,7 @@
 
     function ajaxInsertQuestionsFromDwXform() {
         var _actionBoxId = "#fromXform";
-        var _idQuestion = '{{$dwProject->id}}';
+        var _projectId = '{{$dwProject->id}}';
         var url = '{{route('dwsync.dwProjects.insertFromXform')}}';
         console.log("URL : " + url);
         hideNotif();
@@ -263,7 +267,87 @@
             type: 'post',
             url: url,
             dataType: 'json',
-            data: {_token: "{{ csrf_token() }}", projectId :_idQuestion, questions:questionsFromXform},
+            data: {_token: "{{ csrf_token() }}", projectId :_projectId, questions:questionsFromXform},
+            success: function (data, textStatus) {
+                console.log("Data " + JSON.stringify(data));
+                var message = data['message']['text'];
+                statusFinishInsertActions_withoutError(_actionBoxId);
+                notifSuccess(message);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var message = 'Error : ' + xhr.responseText;
+                statusFinishInsertActions_withError(_actionBoxId);
+                notifError(message);
+            }
+        });
+    }
+
+    // ] ---- From xform
+
+    //From Xls [
+    $("#formXls").submit(function(e){
+        e.preventDefault();
+        ajaxCheckQuestionsFromDwXls();
+        e.preventDefault();
+    });
+    function ajaxCheckQuestionsFromDwXls() {
+        var _actionBoxId = "#fromXls";
+        var _projectId = '{{$dwProject->id}}';
+        var url = '{{route('dwsync.dwProjects.checkFromXls', '__id__')}}';
+        url = url.replace("__id__", _projectId);
+        console.log("URL : " + url);
+        hideNotif();
+        statusProcessCheckActions(_actionBoxId);
+        var formData = new FormData($("#formXls")[0]);
+        $.ajax({
+            type: 'post',
+            url: url,
+            dataType: 'json',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data, textStatus) {
+                console.log("Data " + JSON.stringify(data));
+                var result = data['result'] ? JSON.stringify(data['result']) : "No result";
+                var questions = data['questions'] ? data['questions'] : [];
+                var message = "Success checking for "+data['message']['text'];
+                $("#result").text(result);
+                $("#foundQuesitons").html(formatQuestionsHtmlFromXls(questions));
+                statusFinishCheckActions_withoutError(_actionBoxId);
+                notifSuccess(message);
+                questionsFromXls = questions;
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var message = 'Error : ' + xhr.responseText;
+                statusFinishCheckActions_withError(_actionBoxId);
+                notifError(message);
+            }
+        });
+    }
+
+    function formatQuestionsHtmlFromXls(question){
+        var vHtml = "<table class='table table-responsive'><thead><th>Order</th><th>QuestionId</th><th>Label</th><th>Type</th><th>Path</th></thead><tbody>";
+        var i = 1;
+        for(var key in question){
+            vHtml += "<tr><td>"+question[key].order+"</td><td>" + key + "</td><td>"+question[key].label+"</td><td>"+question[key].type+"</td><td>"+question[key].path+"</td></tr>";
+            i++;
+        }
+        vHtml += "</table>";
+        return vHtml;
+    }
+
+    function ajaxInsertQuestionsFromDwXls() {
+        var _actionBoxId = "#formXls";
+        var _projectId = '{{$dwProject->id}}';
+        var url = '{{route('dwsync.dwProjects.insertFromXls')}}';
+        console.log("URL : " + url);
+        hideNotif();
+        statusProcessInsertActions(_actionBoxId);
+        $.ajax({
+            type: 'post',
+            url: url,
+            dataType: 'json',
+            data: {_token: "{{ csrf_token() }}", projectId :_projectId, questions:questionsFromXls},
             success: function (data, textStatus) {
                 console.log("Data " + JSON.stringify(data));
                 var message = data['message']['text'];

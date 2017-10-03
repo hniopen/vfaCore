@@ -35,5 +35,8 @@ return [
             'adminNumbers'=>env('ADMIN_NUMBERS', ''),//should be a list
             'testerNumbers'=>env('TESTER_NUMBERS', ''),//should be a list
         ]
+    ],
+    'xlsform'=>[
+        'uploadPath'=>'storage/uploads/xlsforms'
     ]
 ];

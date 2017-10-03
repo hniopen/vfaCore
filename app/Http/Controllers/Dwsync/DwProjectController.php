@@ -240,7 +240,7 @@ class DwProjectController extends AppBaseController
     }
 
     /**
-     * Insert questions from Dw submissions
+     * Insert questions from Dw xform
      *
      * @return Response
      */
@@ -272,6 +272,62 @@ class DwProjectController extends AppBaseController
         return response()->json($tResult);
     }
 
+    /**
+     * Check questions from Dw xls (xlsform)
+     *
+     * @return Response
+     */
+    public function checkFromXls($id, Request $request)
+    {
+        $dwProject = $this->dwProjectRepository->findWithoutFail($id);
+        $tCheckResult = [];
+        if (empty($dwProject)) {
+            $tCheckResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+        }else{
+            $file = $request->file('xlsform');
+            $tCheckResult = $dwProject->checkQuestionsFromDwXls($file);
+
+            //Move Uploaded File
+            //TODO : Fix move file
+            $destinationPath = config('dwsync.xlsform.uploadPath');
+            $file->move($destinationPath,$file->getClientOriginalName());
+        }
+        return response()->json($tCheckResult);
+    }
+    /**
+     * Insert questions from Dw xlsform
+     *
+     * @return Response
+     */
+    public function insertFromXls(Request $request)
+    {
+        $inputs = $request->all();
+        $projectId = $inputs['projectId'];
+        $dwProject = $this->dwProjectRepository->findWithoutFail($inputs['projectId']);
+        $tResult = [];
+        $insertCount = 0;
+        $updateCount = 0;
+        if (empty($dwProject)) {
+            $tResult['message'] = ['statusCode'=>'', 'text'=>'DW project not found'];
+        }else{
+            $questions = $inputs['questions'];
+            foreach ($questions as $item => $tValue){
+                $uniqueColumns = ['projectId'=>$projectId,'xformQuestionId'=>$item];
+                $currentDwQuestion = DwQuestion::firstOrNew($uniqueColumns);
+                $currentDwQuestion->labelDefault = $tValue['label'];
+                $currentDwQuestion->dataType = $tValue['type'];
+                $currentDwQuestion->order = $tValue['order'];
+                $currentDwQuestion->path = $tValue['path'];
+                if($currentDwQuestion->id)
+                    $updateCount++;
+                else
+                    $insertCount++;
+                $currentDwQuestion->save();
+            }
+            $tResult['message'] = ['statusCode'=>'', 'text'=>"Saved question(s) : $insertCount insert(s), $updateCount update(s)"];
+        }
+        return response()->json($tResult);
+    }
     /**
      * Sync data from Dw
      *

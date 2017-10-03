@@ -5,7 +5,7 @@
  * Date: 28/09/2017
  * Time: 12:11
  */
-
+use Excel;
 
 function fctGetQuestionsFromJson($tJson, $questionKey = 'values'){
     $output = [];
@@ -26,7 +26,7 @@ function recursive_keys($input, $search_value = null){
     return $output ;
 }
 
-function fctGetQuestionsFromXfom($XformResult){
+function fctGetQuestionsFromXform($XformResult){
     $output = [];
     $dom = new \DomDocument();
     $dom->preserveWhiteSpace = FALSE;
