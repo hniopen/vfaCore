@@ -13,6 +13,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Dwsync\DwEntityType;
 use App\Repositories\Dwsync\DwQuestionRepository;
+use Illuminate\Support\Facades\Artisan;
 
 class DwProjectController extends AppBaseController
 {
@@ -79,6 +80,22 @@ class DwProjectController extends AppBaseController
         $input = $request->all();
         $input['credential'] = fctReversibleCrypt($input['credential']);
         $dwProject = $this->dwProjectRepository->create($input);
+        var_dump($dwProject);
+//        php artisan infyom:api_scaffold DwSubmissionX --prefix='dwsubmissions'
+//        --datatables=true --skip=api_controller,api_routes,tests --views=index,show
+//        --fieldsFile=resources/model_schemas/DwSubmission_x.json
+//        php artisan infyom:api_scaffold DwSubmissionValueX --prefix='dwsubmissions'
+//        --datatables=true --skip=api_controller,api_routes,tests --views=index,show
+//        --fieldsFile=resources/model_schemas/DwSubmissionValue_x.json
+        $submissionModelName = 'DwSubmission'.ucfirst($input['questCode']);
+        $submissionPrefix = 'dwsubmissions'.$input['questCode'];
+        $submissionJsonPath = '/resources/model_schemas/DwSubmission_x.json';
+        $this->_generateModel($submissionModelName,$submissionPrefix, $submissionJsonPath);
+
+        $submissionValueModelName = 'DwSubmissionValue'.ucfirst($input['questCode']);
+        $submissionValuePrefix = 'dwsubmissionsvalue'.$input['questCode'];
+        $submissionValueJsonPath = '/resources/model_schemas/DwSubmissionValue_x.json';
+        $this->_generateModel($submissionValueModelName,$submissionValuePrefix, $submissionValueJsonPath);
 
         Flash::success('Dw Project saved successfully.');
 
@@ -173,7 +190,6 @@ class DwProjectController extends AppBaseController
 
         return redirect(route('dwsync.dwProjects.index'));
     }
-
     /**
      * Check questions from Dw submissions
      *
@@ -397,5 +413,21 @@ class DwProjectController extends AppBaseController
             $tCheckResult = $dwProject->sync();
         }
         return response()->json($tCheckResult);
+    }
+    public function _generateModel($modelName,$prefix, $JsonPath)
+    {
+        $submissionJsonText = file_get_contents(base_path() . $JsonPath);
+        $submissionJsonArray = json_decode($submissionJsonText, true);
+        $submissionJsonArray['prefix'] = $prefix;
+        $submissionJsonArray['modelName'] = $modelName;
+        $submissionOptions = array(
+            'model' => $modelName,
+            "--datatables" => 'true',
+            "--skip" => "api_controller,api_routes,tests",
+            "--views" => "index,show",
+            '--jsonFromGUI' => json_encode($submissionJsonArray)
+        );
+        $submissionResult = Artisan::call('infyom:api_scaffold', $submissionOptions);
+        return $submissionResult;
     }
 }
