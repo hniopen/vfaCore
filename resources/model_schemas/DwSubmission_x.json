@@ -1,124 +1,137 @@
-[
-    {
-        "name": "id",
-        "dbType": "increments",
-        "htmlType": "number",
-        "validations": "",
-        "searchable": false,
-        "fillable": false,
-        "primary": true,
-        "inForm": true,
-        "inIndex": true
+{
+    "modelName": "$[modelName]$",
+    "commandType": "infyom:api_scaffold",
+    "prefix": "$[prefix]$",
+    "paginate": "100",
+    "migrate": true,
+    "options": {
+        "softDelete": false,
+        "save": true,
+        "swagger": false
     },
-    {
-        "name": "projectId",
-        "dbType": "integer",
-        "htmlType": "number",
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "relation":"mt1,DwProject,projectId,id"
-    },
-    {
-        "name": "submissionId",
-        "dbType": "string,50",
-        "htmlType": "text",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "dwSubmittedAt",
-        "dbType": "string",
-        "htmlType": "date",
-        "validations": "",
-        "searchable": true,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": true
-    },
-    {
-        "name": "dwSubmittedAt_u",
-        "dbType": "string,20",
-        "htmlType": "date",
-        "validations": "",
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "dwUpdatedAt",
-        "dbType": "string:nullable",
-        "htmlType": "date",
-        "validations": "nullable",
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "dwUpdatedAt_u",
-        "dbType": "string,20:nullable",
-        "htmlType": "date",
-        "validations": "nullable",
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "status",
-        "dbType": "string,20:nullable",
-        "htmlType": "text",
-        "validations": "nullable",
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "isValid",
-        "dbType": "tinyInteger:default,0",
-        "htmlType": "radio,No:0,Yes:1",
-        "validations": "",
-        "searchable": false,
-        "fillable": false,
-        "primary": false,
-        "inForm": false,
-        "inIndex": false
-    },
-    {
-        "name": "datasenderId",
-        "dbType": "string,10:nullable",
-        "htmlType": "text:nullable",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "cleanFlag",
-        "dbType": "string,30:nullable",
-        "htmlType": "text:nullable",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    }
-]
+    "fields": [
+        {
+            "name": "id",
+            "dbType": "increments",
+            "htmlType": "number",
+            "validations": "",
+            "searchable": false,
+            "fillable": false,
+            "primary": true,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "projectId",
+            "dbType": "integer",
+            "htmlType": "number",
+            "validations": "required",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true,
+            "relation": "mt1,DwProject,projectId,id"
+        },
+        {
+            "name": "submissionId",
+            "dbType": "string,50",
+            "htmlType": "text",
+            "validations": "",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true,
+            "relation": "1tm,$[relatedModelName]$,submissionId, submissionId"
+        },
+        {
+            "name": "dwSubmittedAt",
+            "dbType": "string",
+            "htmlType": "date",
+            "validations": "",
+            "searchable": true,
+            "fillable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": true
+        },
+        {
+            "name": "dwSubmittedAt_u",
+            "dbType": "string,20",
+            "htmlType": "date",
+            "validations": "",
+            "searchable": false,
+            "fillable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
+        },
+        {
+            "name": "dwUpdatedAt",
+            "dbType": "string:nullable",
+            "htmlType": "date",
+            "validations": "nullable",
+            "searchable": false,
+            "fillable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
+        },
+        {
+            "name": "dwUpdatedAt_u",
+            "dbType": "string,20:nullable",
+            "htmlType": "date",
+            "validations": "nullable",
+            "searchable": false,
+            "fillable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
+        },
+        {
+            "name": "status",
+            "dbType": "string,20:nullable",
+            "htmlType": "text",
+            "validations": "nullable",
+            "searchable": false,
+            "fillable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
+        },
+        {
+            "name": "isValid",
+            "dbType": "tinyInteger:default,0",
+            "htmlType": "radio,No:0,Yes:1",
+            "validations": "",
+            "searchable": false,
+            "fillable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
+        },
+        {
+            "name": "datasenderId",
+            "dbType": "string,10:nullable",
+            "htmlType": "text:nullable",
+            "validations": "",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "cleanFlag",
+            "dbType": "string,30:nullable",
+            "htmlType": "text:nullable",
+            "validations": "",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        }
+    ]
+}

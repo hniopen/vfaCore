@@ -1,58 +1,71 @@
-[
-    {
-        "name": "id",
-        "dbType": "increments",
-        "htmlType": "number",
-        "validations": "",
-        "searchable": false,
-        "fillable": false,
-        "primary": true,
-        "inForm": true,
-        "inIndex": true
+{
+    "modelName": "$[modelName]$",
+    "commandType": "infyom:api_scaffold",
+    "prefix": "$[prefix]$",
+    "paginate": "100",
+    "migrate": true,
+    "options": {
+        "softDelete": false,
+        "save": true,
+        "swagger": false
     },
-    {
-        "name": "questionId",
-        "dbType": "string:nullable",
-        "htmlType": "text",
-        "validations": "nullable",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "relation":"mt1,DwQuestion,questionId,questionId"
-    },
-    {
-        "name": "submissionId",
-        "dbType": "string,50",
-        "htmlType": "text",
-        "validations": "",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "xformQuestionId",
-        "dbType": "string:nullable",
-        "htmlType": "text",
-        "validations": "nullable",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    },
-    {
-        "name": "value",
-        "dbType": "text:nullable",
-        "htmlType": "text",
-        "validations": "nullable",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true
-    }
-]
+    "fields": [
+        {
+            "name": "id",
+            "dbType": "increments",
+            "htmlType": "number",
+            "validations": "",
+            "searchable": false,
+            "fillable": false,
+            "primary": true,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "questionId",
+            "dbType": "string:nullable",
+            "htmlType": "text",
+            "validations": "nullable",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true,
+            "relation": "mt1,DwQuestion,questionId,questionId"
+        },
+        {
+            "name": "submissionId",
+            "dbType": "string,50",
+            "htmlType": "text",
+            "validations": "",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true,
+            "relation": "mt1,$[relatedModelName]$,submissionId, submissionId"
+        },
+        {
+            "name": "xformQuestionId",
+            "dbType": "string:nullable",
+            "htmlType": "text",
+            "validations": "nullable",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "value",
+            "dbType": "text:nullable",
+            "htmlType": "text",
+            "validations": "nullable",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        }
+    ]
+}

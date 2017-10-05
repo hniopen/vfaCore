@@ -90,12 +90,13 @@ class DwProjectController extends AppBaseController
         $submissionModelName = 'DwSubmission'.ucfirst($input['questCode']);
         $submissionPrefix = 'dwsubmissions'.$input['questCode'];
         $submissionJsonPath = '/resources/model_schemas/DwSubmission_x.json';
-        $this->_generateModel($submissionModelName,$submissionPrefix, $submissionJsonPath);
 
         $submissionValueModelName = 'DwSubmissionValue'.ucfirst($input['questCode']);
         $submissionValuePrefix = 'dwsubmissionsvalue'.$input['questCode'];
         $submissionValueJsonPath = '/resources/model_schemas/DwSubmissionValue_x.json';
-        $this->_generateModel($submissionValueModelName,$submissionValuePrefix, $submissionValueJsonPath);
+
+        $this->_generateModel($submissionModelName,$submissionValueModelName,$submissionPrefix, $submissionJsonPath);
+        $this->_generateModel($submissionValueModelName,$submissionModelName,$submissionValuePrefix, $submissionValueJsonPath);
 
         Flash::success('Dw Project saved successfully.');
 
@@ -414,9 +415,10 @@ class DwProjectController extends AppBaseController
         }
         return response()->json($tCheckResult);
     }
-    public function _generateModel($modelName,$prefix, $JsonPath)
+    public function _generateModel($modelName,$relatedModelName,$prefix, $JsonPath)
     {
         $submissionJsonText = file_get_contents(base_path() . $JsonPath);
+        $submissionJsonText = str_replace('$[relatedModelName]$',$relatedModelName,$submissionJsonText);
         $submissionJsonArray = json_decode($submissionJsonText, true);
         $submissionJsonArray['prefix'] = $prefix;
         $submissionJsonArray['modelName'] = $modelName;
