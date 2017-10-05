@@ -19,7 +19,7 @@
         </div>
         <div class="row" style="padding-left: 20px">
             <button class="btn btn-default" id="btnCheck" onclick="ajaxCheckQuestionsFromDwSubmissions();">Check</button>
-            <button class="btn btn-default btn-success" id="btnInsert" style="display: none" onclick="ajaxInsertQuestionsFromDwSubmissions();">Inserts questions</button>
+            <button class="btn btn-default btn-success" id="btnInsert" style="display: none" onclick="ajaxInsertQuestionsFromDwSubmissions();">insert questions</button>
         </div>
     </div>
 </div>
@@ -30,7 +30,7 @@
     <div class="box-body">
         <div class="row" style="padding-left: 20px">
             <button class="btn btn-default" id="btnCheck" onclick="ajaxCheckQuestionsFromDwXform()">Check</button>
-            <button class="btn btn-default btn-success" id="btnInsert" style="display: none" onclick="ajaxInsertQuestionsFromDwXform();">Inserts questions</button>
+            <button class="btn btn-default btn-success" id="btnInsert" style="display: none" onclick="ajaxInsertQuestionsFromDwXform();">insert questions</button>
         </div>
     </div>
 </div>
@@ -50,7 +50,7 @@
         </div>
         <div class="row" style="padding-left: 20px">
             <button class="btn btn-default" type="submit" id="btnCheck" onclick="">Check</button>
-            <button class="btn btn-default btn-success" id="btnInsert" type="button" style="display: none" onclick="ajaxInsertQuestionsFromDwXls();">Inserts questions</button>
+            <button class="btn btn-default btn-success" id="btnInsert" type="button" style="display: none" onclick="ajaxInsertQuestionsFromDwXls();">insert questions</button>
         </div>
         {!! Form::close() !!}
     </div>
@@ -75,7 +75,7 @@
     </div>
 </div>
 <div class="row" id="pullResult" style="display: none;">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="box box-success">
             <div class="box-header">
                 <h4>Found questions</h4>
@@ -85,7 +85,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="box box-warning">
             <div class="box-header">
                 <h4>Result</h4>
