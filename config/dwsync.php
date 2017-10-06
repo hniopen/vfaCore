@@ -20,7 +20,8 @@ return [
         'prefix'=>[
             'submission'=>'DwSubmission',
             'submissionValue'=>'DwSubmissionValue'
-        ]
+        ],
+        'jsonStubPath'=>'/resources/model_schemas/'
     ],
     'defaultApiStartDate' => '01-01-2013',
     'url' => [

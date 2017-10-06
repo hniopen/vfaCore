@@ -5,7 +5,6 @@
  * Date: 28/09/2017
  * Time: 12:11
  */
-use Excel;
 
 function fctGetQuestionsFromJson($tJson, $questionKey = 'values'){
     $output = [];
