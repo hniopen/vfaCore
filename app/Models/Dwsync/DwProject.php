@@ -36,8 +36,8 @@ class DwProject extends Model
     private $submissionValueClass;
     private $tAllQuestions = [], $tCheckingResult = [];
     private $validDataType = array('text', 'dw_idnr', 'select_one', 'select_multiple', 'geopoint', 'integer', 'decimal', 'date', 'time', 'barcode');
-    private $beginBaliseType = array('begin_group', 'begin_repeat');
-    private $endBaliseType = array('end_group', 'end_repeat');
+    private $beginTagType = array('begin_group', 'begin_repeat');
+    private $endTagType = array('end_group', 'end_repeat');
     private $validMimeType = array('application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     public $fillable = [
         'questCode',
@@ -170,7 +170,7 @@ class DwProject extends Model
                 //1st sheet
                 $survey = $reader->first();
                 $this->tCheckingResult = $survey;
-                $vFinBalise = "";
+                $vFinTag = "";
                 $vPath = "";
                 $vCurrentPath = "";
                 $vOrder = 1;
@@ -184,7 +184,7 @@ class DwProject extends Model
                         else
                             $vType = $rowItem['type'];
 
-                        if(!in_array($vType,$this->endBaliseType)){//"end ..." balises contain "null" name
+                        if (!in_array($vType, $this->endTagType)) {//"end ..." tags contain "null" name
                             $vName = $rowItem['name'];
                             $vLabel = $rowItem['label'];
                             $vRelevant = isset($rowItem['relevant']) ? $rowItem['relevant'] : null;
@@ -201,13 +201,13 @@ class DwProject extends Model
                             $output[$vName]['path'] = $vPath;
 
                             //Deal with groups & repeat
-                            if (in_array($vType,$this->beginBaliseType)) {
+                            if (in_array($vType, $this->beginTagType)) {
                                 $vCurrentPath = $vName;
                                 if (strlen($vPath) > 0)
                                     $vPath = $vPath . "/";
                                 $vPath = $vPath . $vCurrentPath;
                             }
-                        }else{//end balise
+                        } else {//end tag
                             if (strlen($vPath) > strlen($vCurrentPath)) {
                                 $vPath = substr($vPath, 0, strlen($vPath) - strlen($vCurrentPath) - 1);
                                 $tPath = explode("/", $vPath);
@@ -309,46 +309,64 @@ class DwProject extends Model
             $currentSubmission->isValid = $_isValid;
 
             //Insert values
-            foreach ($tQuestions as $xformQuestId => $value) {
-                //Get related question:
-                $uniqueColumns = ['projectId' => $this->id, 'xformQuestionId' => $xformQuestId];
-                $relatedDwQuestion = DwQuestion::firstOrNew($uniqueColumns);
-                if ($relatedDwQuestion->id) {
-                    //The question exists
-                } else {
-                    //The question doesn't exist yet
-                    //TODO : notify Admin in result, log
-                }
+            $this->insertValuesFromJson($submissionId, $tQuestions);
 
-                //Values
-                $compositeQuestId = $this->id . "#" . $xformQuestId;
-                //TODO : deal with advanced Q repeat, idea > should add path in $uniqueColumns
-                $uniqueColumns = ['submissionId' => $submissionId, 'questionId' => $compositeQuestId];
-                $currentValue = $this->submissionValueClass::firstOrNew($uniqueColumns);
-                if ($currentValue->id) {
-                    //Some actions if UPDATE
-                } else {
-                    //Some actions if INSERT
-                }
-                if (is_array($value))//single or multiple choice
-                    $currentValue->value = implode(",", $value);
-                else
-                    $currentValue->value = $value;
-                //Check if linked_idnr value in idnr list (IDNR exists) ##### Fire event
-                //Need a relation between submission & submissionValue
-                //TODO : call external event definition
-
-                //Check duplicates (based on is unique) #### Fire event
-                //Need a relation between submission & submissionValue
-                //TODO : call external event definition
-
-                //insert or update
-                $currentValue->save();
-            }
             //insert or update
             $currentSubmission->save();
             $output[] = $currentSubmission;
         }
         return ['data' => $output, 'status' => $tStatus];
+    }
+
+    private function insertValuesFromJson($submissionId, $tQuestions){
+        foreach ($tQuestions as $xformQuestId => $value) {
+            //Get related question:
+            $uniqueColumns = ['projectId' => $this->id, 'xformQuestionId' => $xformQuestId];
+            $relatedDwQuestion = DwQuestion::firstOrNew($uniqueColumns);
+            if ($relatedDwQuestion->id) {//The question exists
+                if($relatedDwQuestion->dataType == "begin_group"){
+                    if(is_array($value)){
+                        $this->insertValuesFromJson($submissionId, $value[0]);
+                    }else{
+                        //probably skipped value
+                    }
+                }elseif($relatedDwQuestion->dataType == "begin_repeat"){
+                    if(is_array($value)){
+                        foreach($value as $key => $repeatValue){//key is numeric (incremental) : 0,1,2,...
+                            $this->insertValuesFromJson($submissionId, $repeatValue);
+                        }
+                    }else{
+                        //probably skipped value
+                    }
+                }else{//Values
+                    $compositeQuestId = $this->id . "#" . $xformQuestId;
+                    //TODO : deal with advanced Q repeat, idea > should add path in $uniqueColumns
+                    $uniqueColumns = ['submissionId' => $submissionId, 'questionId' => $compositeQuestId];
+                    $currentValue = $this->submissionValueClass::firstOrNew($uniqueColumns);
+                    if ($currentValue->id) {
+                        //Some actions if UPDATE
+                    } else {
+                        //Some actions if INSERT
+                    }
+                    if (is_array($value))//single or multiple choice
+                        $currentValue->value = implode(",", $value);
+                    else
+                        $currentValue->value = $value;
+                    //Check if linked_idnr value in idnr list (IDNR exists) ##### Fire event
+                    //Need a relation between submission & submissionValue
+                    //TODO : call external event definition
+
+                    //Check duplicates (based on is unique) #### Fire event
+                    //Need a relation between submission & submissionValue
+                    //TODO : call external event definition
+
+                    //insert or update
+                    $currentValue->save();
+                }
+            } else {
+                //The question doesn't exist yet
+                //TODO : notify Admin in result, log
+            }
+        }
     }
 }
