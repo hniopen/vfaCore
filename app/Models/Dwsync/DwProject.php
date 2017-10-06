@@ -87,8 +87,9 @@ class DwProject extends Model
         'longQuestCode' => 'nullable'
     ];
 
-    public function __construct()
+    public function __construct($attributes = array())
     {
+        parent::__construct($attributes); // Eloquent
         $postFix = "X";//TODO: change with $this->questCode
         $this->submissionClass = "App\Models\\" . config('dwsync.generator.namespace') . "\\" . config('dwsync.generator.prefix.submission') . $postFix;
         $this->submissionValueClass = "App\Models\\" . config('dwsync.generator.namespace') . "\\" . config('dwsync.generator.prefix.submissionValue') . $postFix;

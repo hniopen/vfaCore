@@ -12,7 +12,6 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Dwsync\DwEntityType;
-use App\Repositories\Dwsync\DwQuestionRepository;
 use Illuminate\Support\Facades\Artisan;
 
 class DwProjectController extends AppBaseController
@@ -65,21 +64,6 @@ class DwProjectController extends AppBaseController
     public function create()
     {
         $dwEntityTypeList = DwEntityType::pluck('comment','type');
-        $input = [
-            "_method"=>"PATCH",
-            "_token"=>"9SJ9aKj269L9oJTc32dg3w8oJJDv0DZCyIOtrg0y",
-            'questCode' => 'reg',
-            'submissionTable' => "dty",
-            'parentId' => "1",
-            'comment' => "fdafd",
-            'xformUrl' => "dsf",
-            'longQuestCode' => "fdafa",
-            'credential' => 'tester07112014@gmail.com:tester!07112014',
-            'entityType' => 'Q',
-            'formType' => 'basic'
-        ];
-//        dd($input);
-        $dwProject = $this->dwProjectRepository->create($input);
         return view('dwsync.dw_projects.create', compact('dwEntityTypeList'));
     }
 
@@ -93,12 +77,12 @@ class DwProjectController extends AppBaseController
     public function store(CreateDwProjectRequest $request)
     {
         $input = $request->all();
-//        $input['credential'] = fctReversibleCrypt($input['credential']);
+        $input['credential'] = fctReversibleCrypt($input['credential']);
         $dwProject = $this->dwProjectRepository->create($input);
-        $submissionModelName = config('dwsync.generator.submission').ucfirst($input['questCode']);
-        $submissionJsonPath = config('dwsync.generator.jsonStubPath').config('dwsync.generator.submission').'_x.json';
-        $submissionValueModelName = config('dwsync.generator.submissionValue').ucfirst($input['questCode']);
-        $submissionValueJsonPath = config('dwsync.generator.jsonStubPath').config('dwsync.generator.submissionValue').'_x.json';
+        $submissionModelName = config('dwsync.generator.prefix.submission').ucfirst($input['questCode']);
+        $submissionJsonPath = config('dwsync.generator.jsonStubPath').config('dwsync.generator.prefix.submission').'_x.json';
+        $submissionValueModelName = config('dwsync.generator.prefix.submissionValue').ucfirst($input['questCode']);
+        $submissionValueJsonPath = config('dwsync.generator.jsonStubPath').config('dwsync.generator.prefix.submissionValue').'_x.json';
 
         $this->_generateModel($submissionModelName,$submissionValueModelName, $submissionJsonPath);
         $this->_generateModel($submissionValueModelName,$submissionModelName, $submissionValueJsonPath);
