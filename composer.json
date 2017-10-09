@@ -30,7 +30,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Hni\\Tuto\\": "packages/hni/tuto/src"
+            "Hni\\Tuto\\": "packages/hni/tuto/src",
+            "Hni\\Dwsync\\": "packages/hni/dwsync/src"
         },
         "files": [
             "app/helpers/main_helpers.php",

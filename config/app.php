@@ -205,6 +205,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         //Tuto
 //        Hni\Tuto\TutoProvider::class,
+        Hni\Dwsync\ServiceProvider::class,
     ],
 
     /*
@@ -262,6 +263,7 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
         'DataTables' => Yajra\Datatables\Facades\Datatables::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Dwsync' => Hni\Dwsync\ServiceProvider::class,
 //        'Tuto' => Hni\Tuto\TutoProvider::class,
     ],
 
