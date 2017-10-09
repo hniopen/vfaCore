@@ -43,3 +43,6 @@ fabric.properties
 *DwSubmission*
 *dw_submission*
 !/resources/model_schemas/DwSubmission*
+
+## Packages
+/packages/*
