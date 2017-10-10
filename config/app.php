@@ -192,7 +192,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-
+        Barryvdh\Debugbar\ServiceProvider::class,
         //InfyOm
         Laracasts\Flash\FlashServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
@@ -205,7 +205,8 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         //Tuto
 //        Hni\Tuto\TutoProvider::class,
-        Hni\Dwsync\ServiceProvider::class,
+        Hni\Dwsync\DwsyncServiceProvider::class,
+
     ],
 
     /*
@@ -253,7 +254,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
         /*
          * Package Aliases
          */
@@ -263,7 +264,7 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
         'DataTables' => Yajra\Datatables\Facades\Datatables::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Dwsync' => Hni\Dwsync\ServiceProvider::class,
+        'Dwsync' => Hni\Dwsync\DwsyncServiceProvider::class,
 //        'Tuto' => Hni\Tuto\TutoProvider::class,
     ],
 
