@@ -45,32 +45,9 @@
     </li>
 @endcan
 
-
-<li class="treeview">
-    <a href="#">
-        <i class="fa fa-exchange"></i>
-        <span class="title">DW Sync</span>
-        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-    </a>
-    <ul class="treeview-menu">
-
-        <li class="{{ Request::is('dwEntityTypes*') ? 'active active-sub' : '' }}">
-            <a href="{!! route('dwsync.dwEntityTypes.index') !!}"><i class="fa fa-list-ul"></i><span>Dw Entity Types</span></a>
-        </li>
-
-        <li class="{{ Request::is('dwProjects*') ? 'active active-sub' : '' }}">
-            <a href="{!! route('dwsync.dwProjects.index') !!}"><i class="fa fa-list-ol"></i><span>Dw Projects</span></a>
-        </li>
-
-        <li class="{{ Request::is('dwQuestions*') ? 'active active-sub' : '' }}">
-            <a href="{!! route('dwsync.dwQuestions.index') !!}"><i class="fa fa-list-alt"></i><span>Dw Questions</span></a>
-        </li>
-
-    </ul>
-</li>
-
+@if(View::exists('dwsync::dwsync_menu'))
+    @include('dwsync::dwsync_menu');
+@endif
 <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
     <a href="{{ route('auth.change_password') }}">
         <i class="fa fa-key"></i>

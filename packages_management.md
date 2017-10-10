@@ -20,3 +20,17 @@ Use this for fast generation :[package tempalte Laravel](https://github.com/cvie
 ## Advanced
 * [send to packagist](http://blog.jgrossi.com/2013/creating-your-first-composer-packagist-package/)
 * [Multi repo tracking with jbrains IDE](https://intellij-support.jetbrains.com/hc/en-us/community/posts/207052265-Multiple-git-repositories)
+
+## Route issues
+* if you need Auth, put your route inside auth middleware, like:
+```yaml
+Route::group(['middleware' => ['auth', 'roles'], 'roles'=>'administrator', 'prefix' => 'dwsync', 'as' => 'dwsync.'], function () {
+ ... your routes ...
+});
+```
+* if you are redirected to unwanted page, use web middleware, such as:
+```yaml
+Route::group(['middleware' => 'web'], function () {
+... your routes or groups ...
+});
+```
