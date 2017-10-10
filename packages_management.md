@@ -7,7 +7,7 @@ https://laravel.com/docs/5.5/packages
 https://devdojo.com/blog/tutorials/how-to-create-a-laravel-package
 
 ## Summary
-1. create packages …
+1. create your package in packages/{vendor}/{package name} …
 2. composer init
 3. dump-autoload
 4. Create & register providers
