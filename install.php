@@ -8,9 +8,9 @@
 
 //Create dynamic menu & routes for generator
 $routePath  = "routes/";
-$menu = "resources/views/partials/dynamic_menu.blade2.php";
-$routeWeb = $routePath."dynamic_web2.php";
-$routeApi = $routePath."dynamic_api2.php";
+$menu = "resources/views/partials/dynamic_menu.blade.php";
+$routeWeb = $routePath."dynamic_web.php";
+$routeApi = $routePath."dynamic_api.php";
 if (!file_exists($routeWeb)) {
     $contents = "<?php /* Dynamic route Web for generator */";
     file_put_contents($routeWeb, $contents);
