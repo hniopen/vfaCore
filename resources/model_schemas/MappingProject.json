@@ -1,0 +1,60 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": true,
+        "inIndex": true,
+        "relation":"1tm,MappingQuestion,mappingProjectId,id"
+    },
+    {
+        "name": "project1",
+        "dbType": "integer:nullable",
+        "htmlType": "number",
+        "validations": "nullable|min:0",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "relation": "mt1,DwProject,project1,id"
+    },
+    {
+        "name": "project2",
+        "dbType": "integer:nullable",
+        "htmlType": "number",
+        "validations": "nullable|min:0",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true,
+        "relation": "mt1,DwProject,project2,id"
+    },
+    {
+        "name": "dateLastExported",
+        "dbType": "string",
+        "htmlType": "date",
+        "validations": "",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": false,
+        "inIndex": true
+    },
+    {
+        "name": "isActive",
+        "dbType": "tinyInteger:default,1",
+        "htmlType": "radio,No:0,Yes:1",
+        "validations": "min:0|max:1",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": false
+    }
+]
