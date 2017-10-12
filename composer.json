@@ -35,8 +35,7 @@
             "Hni\\Dwsync\\": "packages/hni/dwsync/src"
         },
         "files": [
-            "app/helpers/main_helpers.php",
-            "app/helpers/dw.php"
+            "app/helpers/main_helpers.php"
         ]
     },
     "autoload-dev": {
@@ -57,9 +56,9 @@
             "php artisan optimize"
         ],
         "post-update-cmd": [
+            "php install.php",
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize",
-            "php install.php"
+            "php artisan optimize"
         ]
     },
     "config": {
