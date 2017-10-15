@@ -35,7 +35,8 @@
             "Hni\\Dwsync\\": "packages/hni/dwsync/src"
         },
         "files": [
-            "app/helpers/main_helpers.php"
+            "app/helpers/main_helpers.php",
+            "app/helpers/file_helpers.php"
         ]
     },
     "autoload-dev": {

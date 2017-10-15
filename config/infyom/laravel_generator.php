@@ -1,5 +1,6 @@
 <?php
-
+//Do not modify this in prod, rollback feature is based on the original file
+//For custom generation use, please make a copy, then when generation is finished, revert it to original
 return [
 
     /*

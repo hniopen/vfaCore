@@ -1,3 +1,6 @@
+## local
+/*.DS_Store
+
 ### Custom
 /node_modules
 /public/hot
