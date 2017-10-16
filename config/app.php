@@ -206,6 +206,7 @@ return [
         //Tuto
 //        Hni\Tuto\TutoProvider::class,
         Hni\Dwsync\DwsyncServiceProvider::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
 
     ],
 

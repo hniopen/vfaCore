@@ -46,6 +46,6 @@ fabric.properties
 *DwSubmission*
 *dw_submission*
 !/resources/model_schemas/DwSubmission*
-
+!/database/seeds/Dw*
 ## Packages
 /packages/*

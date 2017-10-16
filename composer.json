@@ -18,7 +18,8 @@
         "maatwebsite/excel": "~2.1.0",
         "spatie/laravel-permission": "^2.2",
         "yajra/laravel-datatables-buttons": "2.*",
-        "yajra/laravel-datatables-oracle": "7.*"
+        "yajra/laravel-datatables-oracle": "7.*",
+        "orangehill/iseed": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
