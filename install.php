@@ -16,7 +16,7 @@ if (!file_exists($routeWeb)) {
     file_put_contents($routeWeb, $contents);
 }
 if (!file_exists($routeApi)) {
-    $contents = "<?php/* Dynamic route API for generator */";
+    $contents = "<?php /* Dynamic route API for generator */";
     file_put_contents($routeApi, $contents);
 }
 if (!file_exists($menu)) {
