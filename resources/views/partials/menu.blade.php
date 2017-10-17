@@ -77,5 +77,3 @@
         <a href="{!! route('admin.settings.index') !!}"><i class="fa fa-edit"></i><span>Settings</span></a>
     </li>
 </li>
-
-@include('partials.dynamic_menu')
