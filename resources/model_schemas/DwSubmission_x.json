@@ -132,6 +132,17 @@
             "primary": false,
             "inForm": true,
             "inIndex": true
+        },
+        {
+            "name": "pushIdnrStatus",
+            "dbType": "string,30:nullable",
+            "htmlType": "text:nullable",
+            "validations": "",
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
         }
     ]
 }

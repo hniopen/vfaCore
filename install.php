@@ -24,3 +24,5 @@ if (!file_exists($menu)) {
     file_put_contents($menu, $contents);
 }
 
+//todo create xml folder in public
+
