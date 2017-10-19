@@ -56,24 +56,25 @@
 </li>
 
 {{--<li>--}}
-    {{--<a href="#logout" onclick="$('#logout').submit();">--}}
-        {{--<i class="fa fa-arrow-left"></i>--}}
-        {{--<span class="title">@lang('global.app_logout')</span>--}}
-    {{--</a>--}}
+{{--<a href="#logout" onclick="$('#logout').submit();">--}}
+{{--<i class="fa fa-arrow-left"></i>--}}
+{{--<span class="title">@lang('global.app_logout')</span>--}}
+{{--</a>--}}
 {{--</li>--}}
 
 {{--{!! Form::open(['route' => 'auth.logout', 'style' => 'display:none;', 'id' => 'logout']) !!}--}}
 {{--<button type="submit">@lang('global.logout')</button>--}}
 {{--{!! Form::close() !!}--}}
-
-<li class="{{ $request->segment(2) == 'generator_builder' ? 'active active-sub' : '' }}">
-    <a href="{{ route('generator') }}">
-        <i class="fa fa-user"></i>
-        <span class="title">@lang('CRUD Generator')</span>
-    </a>
-</li>
-<li class="{{ $request->segment(2) == 'settings' ? 'active active-sub' : '' }}">
+@can('core_view_unreleased')
+    <li class="{{ $request->segment(2) == 'generator_builder' ? 'active active-sub' : '' }}">
+        <a href="{{ route('generator') }}">
+            <i class="fa fa-user"></i>
+            <span class="title">@lang('CRUD Generator')</span>
+        </a>
+    </li>
+    <li class="{{ $request->segment(2) == 'settings' ? 'active active-sub' : '' }}">
     <li class="{{ Request::is('settings*') ? 'active' : '' }}">
         <a href="{!! route('admin.settings.index') !!}"><i class="fa fa-edit"></i><span>Settings</span></a>
     </li>
-</li>
+    </li>
+@endcan
