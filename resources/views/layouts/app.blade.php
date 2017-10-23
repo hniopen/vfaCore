@@ -54,5 +54,7 @@
 {!! Form::close() !!}
 
 @include('partials.javascripts')
+@yield('custom_javascript')
+
 </body>
 </html>

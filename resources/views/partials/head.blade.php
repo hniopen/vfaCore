@@ -13,9 +13,9 @@
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Font Awesome -->
-<link rel="stylesheet" href="{{ url('css/bower_components/font-awesome.min/index.css') }}">
+<link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
 <!-- Ionicons -->
-<link rel="stylesheet" href="{{ url('css/bower_components/ionicons.min/index.css') }}">
+<link rel="stylesheet" href="{{ asset('bower_components/ionicons/css/ionicons.min.css') }}">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -23,22 +23,16 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link href="{{ url('adminlte/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 <link rel="stylesheet"
-      href="{{ url('adminlte/css') }}/select2.min.css"/>
-<link href="{{ url('adminlte/css/AdminLTE.min.css') }}" rel="stylesheet">
-<link href="{{ url('adminlte/css/skins/skin-blue.min.css') }}" rel="stylesheet">
+      href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}"/>
+<link href="{{ asset('bower_components/adminLTE/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
+<link href="{{ asset('bower_components/adminLTE/dist/css/skins/skin-blue.min.css') }}" rel="stylesheet">
 <link rel="stylesheet"
-      href="{{ url('css/bower_components/jquery-ui/index.css') }}">
+      href="{{ asset('bower_components/jquery-ui/themes/base/jquery-ui.min.css') }}">
 <link rel="stylesheet"
-      href="{{ url('css/bower_components/jquery.dataTables.min/index.css') }}"/>
+      href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css') }}"/>
 <link rel="stylesheet"
-      href="{{ url('css/bower_components/select.dataTables.min/index.css') }}"/>
-<link rel="stylesheet"
-      href="{{ url('css/bower_components/buttons.dataTables.min/index.css') }}"/>
-<link rel="stylesheet"
-      href="{{ url('css/bower_components/jquery-ui-timepicker-addon.min/index.css') }}"/>
-<link rel="stylesheet"
-      href="{{ url('css/bower_components/bootstrap-datepicker.standalone.min/index.css') }}"/>
+      href="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"/>
 
 @yield('css')
