@@ -17,5 +17,22 @@
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
     "vue": "^2.1.10"
-  }
+  },
+  "name": "vfacore",
+  "description": "## Requirements * PHP >= **7.1** * OpenSSL PHP Extension * PDO PHP Extension * Mbstring PHP Extension * Tokenizer PHP Extension * XML PHP Extension",
+  "version": "1.0.0",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hnidev/vfaCore.git"
+  },
+  "author": "HNI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hnidev/vfaCore/issues"
+  },
+  "homepage": "https://github.com/hnidev/vfaCore#readme"
 }
