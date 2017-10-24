@@ -52,6 +52,11 @@
     "PACE": "pace#^1.0.2",
     "raphael": "^2.2.7",
     "select2": "^4.0.4",
-    "AdminLTE": "admin-lte#2.3.8"
+    "AdminLTE": "admin-lte#2.3.8",
+    "datatables.net-dt": "^3.2.2",
+    "datatables.net-select-dt": "^1.2.3",
+    "datatables.net-buttons-dt": "^1.4.2",
+    "datatables.net-buttons-bs": "^1.4.2",
+    "datatables.net-select-bs": "^1.2.3"
   }
 }

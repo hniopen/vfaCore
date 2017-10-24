@@ -24,14 +24,17 @@
 <![endif]-->
 
 <link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-<link rel="stylesheet"
-      href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}"/>
 <link href="{{ asset('bower_components/adminLTE/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
 <link href="{{ asset('bower_components/adminLTE/dist/css/skins/skin-blue.min.css') }}" rel="stylesheet">
-<link rel="stylesheet"
-      href="{{ asset('bower_components/jquery-ui/themes/base/jquery-ui.min.css') }}">
-<link rel="stylesheet"
-      href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css') }}"/>
+
+<link rel="stylesheet" href="{{ asset('bower_components/jquery-ui/themes/base/jquery-ui.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('bower_components/datatables.net-dt/css/jquery.dataTables.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('bower_components/datatables.net-select-dt/css/select.dataTables.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('bower_components/datatables.net-buttons-dt/css/buttons.dataTables.min.css') }}"/>
+
+<link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css') }}"/>
 <link rel="stylesheet"
       href="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"/>
 
