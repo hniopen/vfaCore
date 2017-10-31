@@ -66,9 +66,9 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ url('/admin/home') }}">
-                                            @if (Auth::check() && Auth::user()->hasRole('administrator')) Admin
+                                            @hasrole('acl_admin') Admin
                                             @else Settings
-                                            @endif
+                                            @endhasrole
                                         </a>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
