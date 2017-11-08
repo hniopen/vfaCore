@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::get('/phpinfo','AdminController@phpinfo');
     Route::get('/home', 'AdminController@index');
     Route::get('/', 'AdminController@index');
-    Route::group(['middleware' => ['auth', 'roles'], 'roles'=>'administrator'],function () {
+    Route::group(['middleware' => ['auth', 'roles'], 'roles'=>'acl_admin'],function () {
         Route::resource('permissions', 'Admin\PermissionsController');
         Route::post('permissions_mass_destroy', ['uses' => 'Admin\PermissionsController@massDestroy', 'as' => 'permissions.mass_destroy']);
         Route::resource('roles', 'Admin\RolesController');

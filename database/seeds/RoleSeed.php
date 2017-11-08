@@ -12,21 +12,33 @@ class RoleSeed extends Seeder
      */
     public function run()
     {
-        //Default admin
-        $role = Role::create(['name' => 'administrator']);
-        $role->givePermissionTo('core_manage_users');
+        //can admin acl
+        $role = Role::create(['name' => 'acl_admin']);
+        $role->givePermissionTo('manage_users');
+        $role->givePermissionTo('core_access_admin');
         $role->givePermissionTo('core_access_frontend');
+        $role->givePermissionTo('core_view_unreleased');
+
+        //can admin dwsync
+        $role = Role::create(['name' => 'dwsync_admin']);
+        $role->givePermissionTo('core_access_admin');
         $role->givePermissionTo('dwsync_create_project');
         $role->givePermissionTo('dwsync_sync_data');
         $role->givePermissionTo('dwsync_see_data');
 
-        //Simple user
-        $role = Role::create(['name' => 'simple_user']);
-        $role->givePermissionTo('core_access_frontend');
-
-        //Dw client admin : sync only
-        $role = Role::create(['name' => 'dwsync_client']);
+        //can run sync dwsync
+        $role = Role::create(['name' => 'dwsync_run_sync']);
+        $role->givePermissionTo('core_access_admin');
         $role->givePermissionTo('dwsync_sync_data');
         $role->givePermissionTo('dwsync_see_data');
+
+        //can register
+        $role = Role::create(['name' => 'core_register']);
+        $role->givePermissionTo('core_access_frontend');
+        $role->givePermissionTo('core_access_admin');
+
+        //can visit
+        $role = Role::create(['name' => 'core_visit']);
+        $role->givePermissionTo('core_access_frontend');
     }
 }

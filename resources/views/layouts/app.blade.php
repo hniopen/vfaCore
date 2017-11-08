@@ -3,8 +3,8 @@
 
 <head>
     @include('partials.head')
+    {{--@include('partials.head-old')--}}
 </head>
-
 
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -54,5 +54,9 @@
 {!! Form::close() !!}
 
 @include('partials.javascripts')
+{{--@include('partials.javascripts-old')--}}
+@yield('custom_loading_javascript'){{--For library loading--}}
+@yield('custom_javascript'){{--Custom code--}}
+
 </body>
 </html>
