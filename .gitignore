@@ -49,3 +49,4 @@ fabric.properties
 !/database/seeds/Dw*
 ## Packages
 /packages/*
+/public/xml*

@@ -23,6 +23,8 @@ if (!file_exists($menu)) {
     $contents = "";
     file_put_contents($menu, $contents);
 }
-
-//todo create xml folder in public
+// create xml directory in public folder
+if (!file_exists('public/xml')) {
+    mkdir('public/xml', 0777, true);
+}
 
