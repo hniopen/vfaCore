@@ -25,8 +25,8 @@
 
 <link href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}"/>
-<link href="{{ asset('bower_components/adminLTE/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
-<link href="{{ asset('bower_components/adminLTE/dist/css/skins/skin-blue.min.css') }}" rel="stylesheet">
+<link href="{{ asset('bower_components/AdminLTE/dist/css/AdminLTE.min.css') }}" rel="stylesheet">
+<link href="{{ asset('bower_components/AdminLTE/dist/css/skins/skin-blue.min.css') }}" rel="stylesheet">
 
 <link rel="stylesheet" href="{{ asset('bower_components/jquery-ui/themes/base/jquery-ui.min.css') }}">
 
