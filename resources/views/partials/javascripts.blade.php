@@ -20,13 +20,13 @@
 
 <script type="text/javascript" src="{{asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <script type="text/javascript" src="{{asset('bower_components/fastclick/lib/fastclick.js') }}"></script>
-<script type="text/javascript" src="{{asset('bower_components/adminLTE/dist/js/app.js') }}"></script>
+<script type="text/javascript" src="{{asset('bower_components/AdminLTE/dist/js/app.js') }}"></script>
 <script type="text/javascript" src="{{asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script type="text/javascript" src="{{asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js') }}"></script>
 <link href="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
 <link href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
 <script type="text/javascript" src="{{asset('bower_components/inputmask/dist/min/inputmask/inputmask.date.extensions.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components/adminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
 
 <script>
     window._token = '{{ csrf_token() }}';
