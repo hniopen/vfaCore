@@ -43,10 +43,12 @@ fabric.properties
 *dynamic_menu*
 *dynamic_web*
 *dynamic_api*
-*DwSubmission*
-*dw_submission*
+##*DwSubmission*
+##*dw_submission*
 !/resources/model_schemas/DwSubmission*
 !/database/seeds/Dw*
 ## Packages
 /packages/*
 /public/xml*
+public/bower_components
+storage
