@@ -21,5 +21,11 @@
 
 <li class="{{ Request::is('dwSubmissionValue172s*') ? 'active' : '' }}">
     <a href="{!! route('dwsubmissions.dwSubmissionValue172s.index') !!}"><i class="fa fa-edit"></i><span>Dw Submission Value172S</span></a>
+</li><li class="{{ Request::is('*dwSubmissionvil3s*') ? 'active active-sub' : '' }}">
+    <a href="{!! route('dwsubmissions.dwSubmissionvil3s.index') !!}"><i class="fa fa-edit"></i><span>Dw Submissionvil3S</span></a>
+</li>
+
+<li class="{{ Request::is('*dwSubmissionValuevil3s*') ? 'active active-sub' : '' }}">
+    <a href="{!! route('dwsubmissions.dwSubmissionValuevil3s.index') !!}"><i class="fa fa-edit"></i><span>Dw Submission Valuevil3S</span></a>
 </li>
 

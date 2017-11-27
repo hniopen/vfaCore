@@ -59,3 +59,25 @@ Route::patch('dwsubmissions/dwSubmissionValue172s/{dwSubmissionValue172s}', ['as
 Route::delete('dwsubmissions/dwSubmissionValue172s/{dwSubmissionValue172s}', ['as'=> 'dwsubmissions.dwSubmissionValue172s.destroy', 'uses' => 'Dwsubmissions\DwSubmissionValue172Controller@destroy']);
 Route::get('dwsubmissions/dwSubmissionValue172s/{dwSubmissionValue172s}', ['as'=> 'dwsubmissions.dwSubmissionValue172s.show', 'uses' => 'Dwsubmissions\DwSubmissionValue172Controller@show']);
 Route::get('dwsubmissions/dwSubmissionValue172s/{dwSubmissionValue172s}/edit', ['as'=> 'dwsubmissions.dwSubmissionValue172s.edit', 'uses' => 'Dwsubmissions\DwSubmissionValue172Controller@edit']);
+
+
+
+
+Route::get('dwsubmissions/dwSubmissionvil3s', ['as'=> 'dwsubmissions.dwSubmissionvil3s.index', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@index']);
+Route::post('dwsubmissions/dwSubmissionvil3s', ['as'=> 'dwsubmissions.dwSubmissionvil3s.store', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@store']);
+Route::get('dwsubmissions/dwSubmissionvil3s/create', ['as'=> 'dwsubmissions.dwSubmissionvil3s.create', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@create']);
+Route::put('dwsubmissions/dwSubmissionvil3s/{dwSubmissionvil3s}', ['as'=> 'dwsubmissions.dwSubmissionvil3s.update', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@update']);
+Route::patch('dwsubmissions/dwSubmissionvil3s/{dwSubmissionvil3s}', ['as'=> 'dwsubmissions.dwSubmissionvil3s.update', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@update']);
+Route::delete('dwsubmissions/dwSubmissionvil3s/{dwSubmissionvil3s}', ['as'=> 'dwsubmissions.dwSubmissionvil3s.destroy', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@destroy']);
+Route::get('dwsubmissions/dwSubmissionvil3s/{dwSubmissionvil3s}', ['as'=> 'dwsubmissions.dwSubmissionvil3s.show', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@show']);
+Route::get('dwsubmissions/dwSubmissionvil3s/{dwSubmissionvil3s}/edit', ['as'=> 'dwsubmissions.dwSubmissionvil3s.edit', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@edit']);
+
+
+Route::get('dwsubmissions/dwSubmissionValuevil3s', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.index', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@index']);
+Route::post('dwsubmissions/dwSubmissionValuevil3s', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.store', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@store']);
+Route::get('dwsubmissions/dwSubmissionValuevil3s/create', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.create', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@create']);
+Route::put('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.update', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@update']);
+Route::patch('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.update', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@update']);
+Route::delete('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.destroy', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@destroy']);
+Route::get('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.show', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@show']);
+Route::get('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}/edit', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.edit', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@edit']);
