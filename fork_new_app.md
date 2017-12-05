@@ -11,12 +11,15 @@ Please read [this policy](https://docs.google.com/a/hni.org/document/d/1RRmBpsIY
 4. add upstream url `git remote add upstream https://github.com/hnidev/vfaCore.git`
 5. Accept the invitation (collaboration), then `git push --all` (you can check master branch is updated)
 6. get all branch from upstream `git fetch upstream`
-7. checkout to the branch you wanted to update from the upstream `git checkout ...`
+7. checkout to the branch you want to update from the upstream `git checkout ...`
 8. Update your current local branch for upstream branch `git merge upstream/version0.2`
 9. You can push updates `git push --all` (you may need to resolve conflict if needed)
 
 ## Already having new repo
  In case someone has already forked the vfaCore into new app, you just skip above steps to step **#4** (upstream)
+
+## Simple update
+If you just want a simple update from upstream, please start from **#6**
 
 ## Setup local env.
 * update your .env (especially the DB config)
