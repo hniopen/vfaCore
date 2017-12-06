@@ -59,10 +59,6 @@ Route::patch('dwsubmissions/dwSubmissionValue172s/{dwSubmissionValue172s}', ['as
 Route::delete('dwsubmissions/dwSubmissionValue172s/{dwSubmissionValue172s}', ['as'=> 'dwsubmissions.dwSubmissionValue172s.destroy', 'uses' => 'Dwsubmissions\DwSubmissionValue172Controller@destroy']);
 Route::get('dwsubmissions/dwSubmissionValue172s/{dwSubmissionValue172s}', ['as'=> 'dwsubmissions.dwSubmissionValue172s.show', 'uses' => 'Dwsubmissions\DwSubmissionValue172Controller@show']);
 Route::get('dwsubmissions/dwSubmissionValue172s/{dwSubmissionValue172s}/edit', ['as'=> 'dwsubmissions.dwSubmissionValue172s.edit', 'uses' => 'Dwsubmissions\DwSubmissionValue172Controller@edit']);
-
-
-
-
 Route::get('dwsubmissions/dwSubmissionvil3s', ['as'=> 'dwsubmissions.dwSubmissionvil3s.index', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@index']);
 Route::post('dwsubmissions/dwSubmissionvil3s', ['as'=> 'dwsubmissions.dwSubmissionvil3s.store', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@store']);
 Route::get('dwsubmissions/dwSubmissionvil3s/create', ['as'=> 'dwsubmissions.dwSubmissionvil3s.create', 'uses' => 'Dwsubmissions\DwSubmissionvil3Controller@create']);
@@ -81,3 +77,23 @@ Route::patch('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}', ['
 Route::delete('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.destroy', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@destroy']);
 Route::get('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.show', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@show']);
 Route::get('dwsubmissions/dwSubmissionValuevil3s/{dwSubmissionValuevil3s}/edit', ['as'=> 'dwsubmissions.dwSubmissionValuevil3s.edit', 'uses' => 'Dwsubmissions\DwSubmissionValuevil3Controller@edit']);
+
+
+Route::get('dwsubmissions/dwSubmission180s', ['as'=> 'dwsubmissions.dwSubmission180s.index', 'uses' => 'Dwsubmissions\DwSubmission180Controller@index']);
+Route::post('dwsubmissions/dwSubmission180s', ['as'=> 'dwsubmissions.dwSubmission180s.store', 'uses' => 'Dwsubmissions\DwSubmission180Controller@store']);
+Route::get('dwsubmissions/dwSubmission180s/create', ['as'=> 'dwsubmissions.dwSubmission180s.create', 'uses' => 'Dwsubmissions\DwSubmission180Controller@create']);
+Route::put('dwsubmissions/dwSubmission180s/{dwSubmission180s}', ['as'=> 'dwsubmissions.dwSubmission180s.update', 'uses' => 'Dwsubmissions\DwSubmission180Controller@update']);
+Route::patch('dwsubmissions/dwSubmission180s/{dwSubmission180s}', ['as'=> 'dwsubmissions.dwSubmission180s.update', 'uses' => 'Dwsubmissions\DwSubmission180Controller@update']);
+Route::delete('dwsubmissions/dwSubmission180s/{dwSubmission180s}', ['as'=> 'dwsubmissions.dwSubmission180s.destroy', 'uses' => 'Dwsubmissions\DwSubmission180Controller@destroy']);
+Route::get('dwsubmissions/dwSubmission180s/{dwSubmission180s}', ['as'=> 'dwsubmissions.dwSubmission180s.show', 'uses' => 'Dwsubmissions\DwSubmission180Controller@show']);
+Route::get('dwsubmissions/dwSubmission180s/{dwSubmission180s}/edit', ['as'=> 'dwsubmissions.dwSubmission180s.edit', 'uses' => 'Dwsubmissions\DwSubmission180Controller@edit']);
+
+
+Route::get('dwsubmissions/dwSubmissionValue180s', ['as'=> 'dwsubmissions.dwSubmissionValue180s.index', 'uses' => 'Dwsubmissions\DwSubmissionValue180Controller@index']);
+Route::post('dwsubmissions/dwSubmissionValue180s', ['as'=> 'dwsubmissions.dwSubmissionValue180s.store', 'uses' => 'Dwsubmissions\DwSubmissionValue180Controller@store']);
+Route::get('dwsubmissions/dwSubmissionValue180s/create', ['as'=> 'dwsubmissions.dwSubmissionValue180s.create', 'uses' => 'Dwsubmissions\DwSubmissionValue180Controller@create']);
+Route::put('dwsubmissions/dwSubmissionValue180s/{dwSubmissionValue180s}', ['as'=> 'dwsubmissions.dwSubmissionValue180s.update', 'uses' => 'Dwsubmissions\DwSubmissionValue180Controller@update']);
+Route::patch('dwsubmissions/dwSubmissionValue180s/{dwSubmissionValue180s}', ['as'=> 'dwsubmissions.dwSubmissionValue180s.update', 'uses' => 'Dwsubmissions\DwSubmissionValue180Controller@update']);
+Route::delete('dwsubmissions/dwSubmissionValue180s/{dwSubmissionValue180s}', ['as'=> 'dwsubmissions.dwSubmissionValue180s.destroy', 'uses' => 'Dwsubmissions\DwSubmissionValue180Controller@destroy']);
+Route::get('dwsubmissions/dwSubmissionValue180s/{dwSubmissionValue180s}', ['as'=> 'dwsubmissions.dwSubmissionValue180s.show', 'uses' => 'Dwsubmissions\DwSubmissionValue180Controller@show']);
+Route::get('dwsubmissions/dwSubmissionValue180s/{dwSubmissionValue180s}/edit', ['as'=> 'dwsubmissions.dwSubmissionValue180s.edit', 'uses' => 'Dwsubmissions\DwSubmissionValue180Controller@edit']);
