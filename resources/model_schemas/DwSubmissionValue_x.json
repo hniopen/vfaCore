@@ -43,7 +43,7 @@
             "primary": false,
             "inForm": true,
             "inIndex": true,
-            "relation": "mt1,$[relatedModelName]$,submissionId, submissionId"
+            "relation": "mt1,$[relatedModelName]$,submissionId,submissionId"
         },
         {
             "name": "xformQuestionId",
