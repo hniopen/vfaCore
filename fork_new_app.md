@@ -14,6 +14,7 @@ Please read [this policy](https://docs.google.com/a/hni.org/document/d/1RRmBpsIY
 7. checkout to the branch you want to update from the upstream `git checkout ...`
 8. Update your current local branch for upstream branch `git merge upstream/version0.2`
 9. You can push updates `git push --all` (you may need to resolve conflict if needed)
+10. Clear laravel cache, especially for views `php artisan view:clear`, `php artisan cache:clear`. This will consider new *modifs on blades* etc
 
 ## Already having new repo
  In case someone has already forked the vfaCore into new app, you just skip above steps to step **#4** (upstream)
