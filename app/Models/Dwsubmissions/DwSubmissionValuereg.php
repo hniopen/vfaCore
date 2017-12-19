@@ -68,7 +68,7 @@ class DwSubmissionValuereg extends Model
      **/
     public function dwSubmissionValueregs()
     {
-        return $this->hasMany(\App\Models\Dwsubmissions\DwSubmissionValuereg::class, 'submissionId', ' submissionId');
+        return $this->hasMany(\App\Models\Dwsubmissions\DwSubmissionValuereg::class, 'submissionId', 'submissionId');
     }
 
     /**
@@ -84,7 +84,7 @@ class DwSubmissionValuereg extends Model
      **/
     public function dwSubmissionreg()
     {
-        return $this->belongsTo(\App\Models\Dwsubmissions\DwSubmissionreg::class, 'submissionId', ' submissionId');
+        return $this->belongsTo(\App\Models\Dwsubmissions\DwSubmissionreg::class, 'submissionId', 'submissionId');
     }
 
 }/* end class **/

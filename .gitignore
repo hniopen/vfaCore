@@ -45,6 +45,13 @@ fabric.properties
 *dynamic_api*
 *DwSubmission*
 *dw_submission*
+    ###### Apart from :
+    # > reg = Datasender
+!*DwSubmissionreg*
+!*DwSubmissionValuereg*
+!*dw_submissionreg*
+!*dw_submission_valuereg*
+     # > model_schemas : stubs for generator
 !/resources/model_schemas/DwSubmission*
 !/database/seeds/Dw*
 ## Packages
