@@ -16,5 +16,5 @@ return [
     |
     */
 
-    'decryptKey' => 'ewe%ritert@',
+    'decryptKey' => '0lBduNwIX1najzuP4RFSnrb18WbLln4N',
 ];
