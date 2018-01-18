@@ -10,4 +10,4 @@ php artisan iseed my_table,another_table
 
 ```
 Then reset `DatabaseSeeder.php` if you don't want to consider generated seeds class automatically.
-One by one seeding `php artisan db:seed --class="{path to}MySeed"`
+One by one seeding, use this in main path : `php artisan db:seed --class="{path to}MySeed"`. Or if it is in a package path, use `php artisan db:seed --class="Hni\Dwsync\Seeds\{path to}MySeed"`
