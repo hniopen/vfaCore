@@ -45,7 +45,7 @@ fabric.properties
 *dynamic_api*
 !*DwExtended/*
 *Dwsubmissions/*
-*dw_submission*
+*dwsubmissions/*
     ###### Apart from :
     # > reg = Datasender
 !*DwSubmissionreg*
