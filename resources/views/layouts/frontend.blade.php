@@ -14,12 +14,8 @@
     <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("/bower_components/font-awesome/css/font-awesome.min.css") }}">
     <link href="{{ asset("/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset("/vendor/adminlte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
-    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect.
-    -->
-    <link href="{{ asset("/vendor/adminlte/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}"/>
+
 
     <!-- Scripts -->
     <script>
@@ -102,6 +98,7 @@
     {{--<script src="{{asset("/js/jquery-2.2.3.min.js")}}"></script>--}}
     {{--<script src="{{asset("/js/bootstrap.min.js")}}"></script>--}}
     <script src="{{asset("/js/app.js")}}"></script>
-
+    <script type="text/javascript" src="{{asset('bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    @yield('custom_javascript')
 </body>
 </html>
