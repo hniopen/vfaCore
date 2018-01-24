@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset("/css/font-awesome-4.7.0.min.css") }}">
+    <link rel="stylesheet" href="{{ asset("/bower_components/font-awesome/css/font-awesome.min.css") }}">
     <link href="{{ asset("/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset("/vendor/adminlte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
