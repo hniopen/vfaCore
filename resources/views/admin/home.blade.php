@@ -91,15 +91,15 @@
                 $("#count_user").html(result['value']);
             });
             @if(View::exists('dwsync::dwsync_menu'))
-            ajaxGetSingleData('{{route('dwsync.project.count.ifType', 'Q')}}', function (result) {
+            ajaxGetSingleData('{{URL::to('dwsync/count/project/if/Q')}}', function (result) {
                 $("#count_questionnaire").html(result['value']);
             });
 
-            ajaxGetSingleData('{{route('dwsync.project.count.ifType', 'I')}}', function (result) {
+            ajaxGetSingleData('{{URL::to('dwsync/count/project/if/I')}}', function (result) {
                 $("#count_idnr").html(result['value']);
             });
 
-            ajaxGetSingleData('{{route('dwsync.data.count.ifType', 'Q')}}', function (result) {
+            ajaxGetSingleData('{{URL::to('dwsync/count/data/if/Q')}}', function (result) {
                 $("#count_data_q").html(result['value']);
             });
             @endif
