@@ -28,6 +28,8 @@
 <script type="text/javascript" src="{{asset('bower_components/inputmask/dist/min/inputmask/inputmask.date.extensions.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
 
+<script type="text/javascript" src="{{ asset('js/custom_backNfront.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/custom_back_only.js') }}"></script>
 <script>
     window._token = '{{ csrf_token() }}';
 </script>

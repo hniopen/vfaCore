@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
         Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
     });
     Route::resource('settings', 'SettingController');
+    Route::get('/user/count', ['uses' => 'Admin\UsersController@countUsers', 'as' => 'user.count']);
 });
 
 //InfyOm Builder

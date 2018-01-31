@@ -14,7 +14,7 @@
                         <!-- small box -->
                         <div class="small-box bg-yellow">
                             <div class="inner">
-                                <h3>13</h3>
+                                <h3 id="count_user">0</h3>
 
                                 <p>Registered Users</p>
                             </div>
@@ -31,12 +31,12 @@
                         <!-- small box -->
                         <div class="small-box bg-green">
                             <div class="inner">
-                                <h3>24</h3>
+                                <h3 id="count_idnr">0</h3>
 
-                                <p>Existing KPIs</p>
+                                <p>Dw Identification numbers</p>
                             </div>
                             <div class="icon">
-                                <i class="fa fa-pie-chart"></i>
+                                <i class="fa fa-list"></i>
                             </div>
                             <a href="#" class="small-box-footer">
                                 More info <i class="fa fa-arrow-circle-right"></i>
@@ -48,9 +48,9 @@
                         <!-- small box -->
                         <div class="small-box bg-red">
                             <div class="inner">
-                                <h3>17</h3>
+                                <h3 id="count_questionnaire">0</h3>
 
-                                <p>DW Questionnaire</p>
+                                <p>DW Questionnaires</p>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-clone"></i>
@@ -64,12 +64,12 @@
                         <!-- small box -->
                         <div class="small-box bg-aqua">
                             <div class="inner">
-                                <h3>150.021</h3>
+                                <h3 id="count_data_q">0</h3>
 
-                                <p>Pulled submissions</p>
+                                <p>Pulled submissions <br> [Questionnaires only]</p>
                             </div>
                             <div class="icon">
-                                <i class="fa fa-list"></i>
+                                <i class="fa fa-database"></i>
                             </div>
                             <a href="#" class="small-box-footer">
                                 More info <i class="fa fa-arrow-circle-right"></i>
@@ -83,3 +83,29 @@
         </div>
     </div>
 @endsection
+
+@section('custom_javascript')
+    <script language="JavaScript">
+        $(document).ready(function () {
+            ajaxGetSingleData('{{route('admin.user.count')}}', function(result){
+                $("#count_user").html(result['value']);
+            });
+            @if(View::exists('dwsync::dwsync_menu'))
+            ajaxGetSingleData('{{route('dwsync.project.count.ifType', 'Q')}}', function (result) {
+                $("#count_questionnaire").html(result['value']);
+            });
+
+            ajaxGetSingleData('{{route('dwsync.project.count.ifType', 'I')}}', function (result) {
+                $("#count_idnr").html(result['value']);
+            });
+
+            ajaxGetSingleData('{{route('dwsync.data.count.ifType', 'Q')}}', function (result) {
+                $("#count_data_q").html(result['value']);
+            });
+            @endif
+
+
+
+        });
+    </script>
+    @endsection

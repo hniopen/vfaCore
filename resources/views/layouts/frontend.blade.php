@@ -99,6 +99,7 @@
     {{--<script src="{{asset("/js/bootstrap.min.js")}}"></script>--}}
     <script src="{{asset("/js/app.js")}}"></script>
     <script type="text/javascript" src="{{asset('bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/custom_front_only.js') }}"></script>
     @yield('custom_javascript')
 </body>
 </html>

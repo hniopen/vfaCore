@@ -136,4 +136,10 @@ class UsersController extends Controller
         }
     }
 
+    public function countUsers(Request $request){
+        $query=User::count();
+        $resultOnArray=['value'=>$query];
+        return response()->json($resultOnArray);
+    }
+
 }
