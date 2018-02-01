@@ -46,7 +46,9 @@
 @endcan
 
 @if(View::exists('dwsync::dwsync_menu'))
-    @include('dwsync::dwsync_menu')
+    @can('dwsync_create_project', 'dwsync_sync_data', 'dwsync_see_data')
+        @include('dwsync::dwsync_menu')
+    @endcan
 @endif
 <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
     <a href="{{ route('auth.change_password') }}">

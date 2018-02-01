@@ -6,6 +6,7 @@
     </section>
     <div class="clearfix"></div>
     <div class="content">
+        @can('dwsync_create_project')
         <div class="panel panel-default">
             <div class="panel-body">
                 <!-- Small boxes (Stat box) -->
@@ -81,6 +82,7 @@
                 <!-- /.row -->
             </div>
         </div>
+        @endca
     </div>
 @endsection
 
