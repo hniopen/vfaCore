@@ -19,5 +19,6 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'dwsync_create_project']);
         Permission::create(['name' => 'dwsync_sync_data']);
         Permission::create(['name' => 'dwsync_see_data']);
+        Permission::create(['name' => 'see_dev_space']);
     }
 }

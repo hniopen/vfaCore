@@ -12,16 +12,16 @@ class RoleSeed extends Seeder
      */
     public function run()
     {
+        //can dev admin
+        $role = Role::create(['name' => 'dev_admin']);
+        $role->givePermissionTo('core_view_unreleased');
+
         //can admin acl
         $role = Role::create(['name' => 'acl_admin']);
         $role->givePermissionTo('manage_users');
-        $role->givePermissionTo('core_access_admin');
-        $role->givePermissionTo('core_access_frontend');
-        $role->givePermissionTo('core_view_unreleased');
 
         //can admin dwsync
         $role = Role::create(['name' => 'dwsync_admin']);
-        $role->givePermissionTo('core_access_admin');
         $role->givePermissionTo('dwsync_create_project');
         $role->givePermissionTo('dwsync_sync_data');
         $role->givePermissionTo('dwsync_see_data');
