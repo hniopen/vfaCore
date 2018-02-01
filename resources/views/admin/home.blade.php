@@ -82,7 +82,7 @@
                 <!-- /.row -->
             </div>
         </div>
-        @endca
+        @endcan
     </div>
 @endsection
 
