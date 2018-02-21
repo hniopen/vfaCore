@@ -208,6 +208,9 @@ return [
         Hni\Dwsync\DwsyncServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
 
+        //Feature toggle
+        AlfredNutileInc\LaravelFeatureFlags\FeatureFlagsProvider::class,
+
     ],
 
     /*
