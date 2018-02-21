@@ -25,4 +25,7 @@ If you just want a simple update from upstream, please start from **#6**
 ## Setup local env.
 * update your .env (especially the DB config)
 * if you don't need the Dwsync package, modify you config/app.php (remove related provider & alias), then remove the service declaration in composer.json
-* However, if you need the Dwsync package, please clone the repo into /packages/hni/dwsync 
+* However, if you need the Dwsync package, please clone the repo into /packages/hni/dwsync
+ 
+## Fork &  Pull request policy
+TODO: (add here internal policy) 
