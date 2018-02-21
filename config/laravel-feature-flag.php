@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'route_middleware' => 'auth',
+//    'route_middleware' => 'auth',
 
     // Example with multiple middleware:
-    // 'route_middleware' => "['auth', 'custom_middleware']",
+     'route_middleware' => ['web', 'auth'],
 
 ];
