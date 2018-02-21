@@ -26,5 +26,10 @@ class DefaultFeaturesFlagSeed extends Seeder
         $feature->key = 'feature_dw_sync';//dwsync package
         $feature->variants = "on";
         $feature->save();
+
+        $feature = new LaravelFeatureFlags\FeatureFlag();
+        $feature->key = 'feature_vfa_dashboard';//vfaDashboad package
+        $feature->variants = "on";
+        $feature->save();
     }
 }
