@@ -1,0 +1,35 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "number",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": true,
+        "inIndex": true,
+        "relation":"1tm,VfaDshIndicator,group_id,id"
+    },
+    {
+        "name": "title",
+        "dbType": "string,150",
+        "validations": "required",
+        "searchable": true,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    },
+    {
+        "name": "is_displayed",
+        "dbType": "tinyInteger:default,1",
+        "htmlType": "radio,Yes:1,No:0",
+        "validations": "min:0|max:1",
+        "searchable": false,
+        "fillable": true,
+        "primary": false,
+        "inForm": true,
+        "inIndex": true
+    }
+]
