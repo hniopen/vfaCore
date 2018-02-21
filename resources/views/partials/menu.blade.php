@@ -54,6 +54,13 @@
         @endcan
     @endcan
 @endif
+
+@can('feature-flag', 'feature_vfa_dashboard')
+    @can('manage_vfadashboard')
+        @include('vfaDashboard::vfadashboard_menu')
+    @endcan
+@endcan
+
 <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
     <a href="{{ route('auth.change_password') }}">
         <i class="fa fa-key"></i>

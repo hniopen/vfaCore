@@ -26,6 +26,10 @@ class RoleSeed extends Seeder
         $role->givePermissionTo('dwsync_sync_data');
         $role->givePermissionTo('dwsync_see_data');
 
+        //can admin vfadashboard
+        $role = Role::create(['name' => 'vfadashboard_admin']);
+        $role->givePermissionTo('manage_vfadashboard');
+
         //can run sync dwsync
         $role = Role::create(['name' => 'dwsync_run_sync']);
         $role->givePermissionTo('core_access_admin');
