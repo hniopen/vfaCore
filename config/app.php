@@ -211,6 +211,7 @@ return [
         //Feature toggle
         AlfredNutileInc\LaravelFeatureFlags\FeatureFlagsProvider::class,
 
+        Hni\vfaDashboard\DashboardServiceProvider::class,
     ],
 
     /*
@@ -269,6 +270,7 @@ return [
         'DataTables' => Yajra\Datatables\Facades\Datatables::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Dwsync' => Hni\Dwsync\DwsyncServiceProvider::class,
+        'vfaDashboard' => Hni\vfaDashboard\DashboardServiceProvider::class,
 //        'Tuto' => Hni\Tuto\TutoProvider::class,
         'Feature' => AlfredNutileInc\LaravelFeatureFlags\FeatureFlagsProvider::class,
     ],
