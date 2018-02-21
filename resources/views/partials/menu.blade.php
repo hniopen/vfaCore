@@ -57,6 +57,13 @@
     </a>
 </li>
 
+<li class="{{ $request->segment(2) == 'feature_flags' ? 'active' : '' }}">
+    <a href="{{ route('laravel-feature-flag.index') }}">
+        <i class="fa fa-flag"></i>
+        <span class="title">Feature toggle</span>
+    </a>
+</li>
+
 {{--<li>--}}
 {{--<a href="#logout" onclick="$('#logout').submit();">--}}
 {{--<i class="fa fa-arrow-left"></i>--}}
