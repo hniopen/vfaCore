@@ -270,6 +270,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Dwsync' => Hni\Dwsync\DwsyncServiceProvider::class,
 //        'Tuto' => Hni\Tuto\TutoProvider::class,
+        'Feature' => AlfredNutileInc\LaravelFeatureFlags\FeatureFlagsProvider::class,
     ],
 
 ];
