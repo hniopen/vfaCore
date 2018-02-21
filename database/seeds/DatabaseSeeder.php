@@ -11,9 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ResetURRSeed::class);
+        $this->call(TruncateSeed::class);
         $this->call(PermissionSeed::class);
         $this->call(RoleSeed::class);
         $this->call(UserSeed::class);
+        $this->call(DefaultFeaturesFlagSeed::class);
     }
 }
