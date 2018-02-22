@@ -210,6 +210,7 @@ return [
 
         //Feature toggle
         AlfredNutileInc\LaravelFeatureFlags\FeatureFlagsProvider::class,
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
 
         Hni\vfaDashboard\DashboardServiceProvider::class,
     ],
