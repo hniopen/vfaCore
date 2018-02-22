@@ -55,11 +55,11 @@
     @endcan
 @endif
 
-@can('feature-flag', 'feature_vfa_dashboard')
-    @can('manage_vfadashboard')
-        @include('vfaDashboard::vfadashboard_menu')
+@if(View::exists('vfadashboard::vfadashboard_menu'))
+    @can('feature-flag', 'feature_vfa_dashboard', 'manage_vfadashboard')
+        @include('vfadashboard::vfadashboard_menu')
     @endcan
-@endcan
+@endif
 
 <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
     <a href="{{ route('auth.change_password') }}">
