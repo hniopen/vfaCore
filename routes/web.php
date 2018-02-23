@@ -4,6 +4,7 @@ Auth::routes();
 //Frontend routes
 Route::get('/', function () { return redirect('/home'); });
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/page2', 'HomeController@page2')->name('page2');
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
