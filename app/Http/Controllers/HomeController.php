@@ -79,5 +79,16 @@ class HomeController extends Controller
         $user = \Auth::user();
         $charts = $user->favorites(\Hni\vfaDashboard\Models\VfaDshChart::class)->get();
         return view('front-office.page4',['charts'=>$charts]);
+        return view('front-office.home');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function page2()
+    {
+        return view('front-office.page2');
     }
 }
