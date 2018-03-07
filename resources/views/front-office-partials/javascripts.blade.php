@@ -30,6 +30,7 @@
 
 <script type="text/javascript" src="{{ asset('js/custom_backNfront.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/custom_front_only.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/common-functions.js') }}"></script>
 <script>
     window._token = '{{ csrf_token() }}';
 </script>

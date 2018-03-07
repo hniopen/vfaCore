@@ -36,7 +36,7 @@
             "App\\": "app/",
             "Hni\\Tuto\\": "packages/hni/tuto/src",
             "Hni\\Dwsync\\": "packages/hni/dwsync/src",
-            "Hni\\vfaDashboard\\": "packages/hni/vfadashboard/src"
+            "Hni\\vfaDashboard\\": "packages/hni/vfaDashboard/src"
         },
         "files": [
             "app/helpers/main_helpers.php",

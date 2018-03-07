@@ -3,6 +3,13 @@
         <li class="active"><a href="/home">Home <span class="sr-only">(current)</span></a></li>
         <li><a href="/page2">Another page</a></li>
         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Favorite <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="/page3">Charts to favorite</a></li>
+                <li><a href="/page4">Favorited Charts</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Action</a></li>

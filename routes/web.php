@@ -5,6 +5,10 @@ Auth::routes();
 Route::get('/', function () { return redirect('/home'); });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/page2', 'HomeController@page2')->name('page2');
+Route::get('/page3', 'HomeController@page3')->name('page3');
+Route::get('/favorite/chart', 'HomeController@favoriteChart')->name('favorite.chart');
+Route::get('/unfavorite/chart', 'HomeController@unFavoriteChart')->name('unfavorite.chart');
+Route::get('/page4', 'HomeController@page4')->name('page4');
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
