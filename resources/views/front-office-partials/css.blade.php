@@ -22,3 +22,4 @@
 <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css') }}"/>
 <link rel="stylesheet"
       href="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/custom-laravel-follow.css') }}"/>

@@ -4,13 +4,10 @@
             <i class="fa fa-text-width"></i>
             <h3 class="box-title">{{$chart->title}}</h3>
             <div class="box-tools pull-right">
-                <button class="btn btn-default lf-favorite" value="{{$chart->id}}">
-                    @if (Auth::user()->hasFavorited($chart))
-                        @include(Config::get('follow-custom.button.favorited'))
-                    @else
-                        @include(Config::get('follow-custom.button.unfavorited'))
-                    @endif
-                </button>
+                <div id="lf-favorite-icons-{{$chart->id}}">
+                    @include(Config::get('follow-custom.button.favorited'), ['isDisplay' => Auth::user()->hasFavorited($chart)])
+                    @include(Config::get('follow-custom.button.unfavorited'), ['isDisplay' => !Auth::user()->hasFavorited($chart)])
+                </div>
             </div>
         </div>
         @yield('follow-body')

@@ -74,6 +74,7 @@ class HomeController extends Controller
             return response()->json(['error'=>"an error happened"]);
         }
     }
+
     public function page4()
     {
         $user = \Auth::user();
