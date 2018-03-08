@@ -35,7 +35,7 @@
     window._token = '{{ csrf_token() }}';
 </script>
 
-
+@include('laravel-follow.js-handler')
 
 @yield('javascript')
 @yield('scripts') {{--used by infyom template --}}

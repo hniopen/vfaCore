@@ -29,28 +29,28 @@
 @section('custom_javascript')
     <script language="JavaScript">
         $(document).ready(function () {
-            $(".follow-chart").each(function (i, element) {
-                $(element).click(function () {
-                    var chartId = $(this).val();
-                    var baseUrl;
-                    var status = $.trim($(this).html());
-                    if(status.toLowerCase() === 'follow'){
-                        baseUrl = '{{route('favorite.chart')}}';
-                    }
-                    else{
-                        baseUrl = '{{route('unfavorite.chart')}}';
-                    }
-                    ajaxGetRequest(baseUrl+'?chart_id='+chartId, function(response){
-                        if(status.toLowerCase() === 'follow'){
-                            $(element).html('Unfollow');
-                        }
-                        else{
-                            $(element).html('Follow');
-                        }
-                        window.location.reload(true);
-                    });
-                });
-            });
+            {{--$(".follow-chart").each(function (i, element) {--}}
+                {{--$(element).click(function () {--}}
+                    {{--var chartId = $(this).val();--}}
+                    {{--var baseUrl;--}}
+                    {{--var status = $.trim($(this).html());--}}
+                    {{--if(status.toLowerCase() === 'follow'){--}}
+                        {{--baseUrl = '{{route('favorite.chart')}}';--}}
+                    {{--}--}}
+                    {{--else{--}}
+                        {{--baseUrl = '{{route('unfavorite.chart')}}';--}}
+                    {{--}--}}
+                    {{--ajaxGetRequest(baseUrl+'?chart_id='+chartId, function(response){--}}
+                        {{--if(status.toLowerCase() === 'follow'){--}}
+                            {{--$(element).html('Unfollow');--}}
+                        {{--}--}}
+                        {{--else{--}}
+                            {{--$(element).html('Follow');--}}
+                        {{--}--}}
+                        {{--window.location.reload(true);--}}
+                    {{--});--}}
+                {{--});--}}
+            {{--});--}}
 
         });
     </script>
