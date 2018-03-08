@@ -4,10 +4,12 @@
         <li><a href="/page2">Another page</a></li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Favorite <span class="caret"></span></a>
+            @can('feature-flag', 'feature_vfa_dashboard')
             <ul class="dropdown-menu" role="menu">
                 <li><a href="/page3">Charts to favorite</a></li>
                 <li><a href="/page4">Favorited Charts</a></li>
             </ul>
+            @endcan
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>

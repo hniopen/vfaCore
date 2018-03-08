@@ -18,35 +18,7 @@
     <section class="content">
         <div class="row">
             @foreach ($charts as $chart)
-            <div class="col-md-4">
-                <div class="box box-solid">
-                    <div class="box-header with-border">
-                        <i class="fa fa-text-width"></i>
-                        <h3 class="box-title">{{$chart->title}}</h3>
-                        <div class="box-tools pull-right">
-                            <button class="btn btn-default follow-chart" value="{{$chart->id}}">
-                                @if (Auth::user()->hasFavorited($chart))
-                                    Unfollow
-                                @else
-                                    Follow
-                                @endif
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <ul>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit</li>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-            </div>
+                @include($chart->blade, ['chart'=>$chart])
             @endforeach
             <!-- ./col -->
         </div>
@@ -81,4 +53,4 @@
             });
         });
     </script>
-    @endsection
+    @append
