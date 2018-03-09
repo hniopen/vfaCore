@@ -43,38 +43,6 @@ class HomeController extends Controller
         return view('front-office.page3',['charts'=>$charts]);
     }
 
-    public function favoriteChart(Request $request)
-    {
-        $input = $request->all();
-        $user = \Auth::user();
-        if(!empty($input['chart_id'])){
-            $chart = VfaDshChart::find($input['chart_id']);
-            $user->favorite($chart);
-            return response()->json([
-                'status'=> 'success',
-                'message'=>'operation saved successfully']);
-        }
-        else{
-            return response()->json(['error'=>"an error happened"]);
-        }
-    }
-
-    public function unFavoriteChart(Request $request)
-    {
-        $input = $request->all();
-        $user = \Auth::user();
-        if(!empty($input['chart_id'])){
-            $chart = VfaDshChart::find($input['chart_id']);
-            $user->unfavorite($chart);
-            return response()->json([
-                'status'=> 'success',
-                'message'=>'operation saved successfully']);
-        }
-        else{
-            return response()->json(['error'=>"an error happened"]);
-        }
-    }
-
     public function page4()
     {
         $user = \Auth::user();
