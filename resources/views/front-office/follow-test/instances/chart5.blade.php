@@ -3,7 +3,7 @@
 @section('follow-body')
     <!-- /.box-header -->
     <div class="box-body">
-        <div id="chart3"></div>
+        <div id="chart5"></div>
     </div>
     <!-- /.box-body -->
 @overwrite
@@ -13,23 +13,25 @@
 
         $(document).ready(function () {
 
-            var chart3 = c3.generate({
-                bindto: "#chart3",
+            var chart5 = c3.generate({
+                bindto: "#chart5",
                 data: {
-                    // iris data from R
                     columns: [
                         ['data1', 30],
                         ['data2', 120],
                     ],
-                    type : 'pie',
+                    type : 'donut',
                     onclick: function (d, i) { console.log("onclick", d, i); },
                     onmouseover: function (d, i) { console.log("onmouseover", d, i); },
                     onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+                },
+                donut: {
+                    title: "Iris Petal Width"
                 }
             });
 
             setTimeout(function () {
-                chart3.load({
+                chart5.load({
                     columns: [
                         ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
                         ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
@@ -39,10 +41,10 @@
             }, 1500);
 
             setTimeout(function () {
-                chart3.unload({
+                chart5.unload({
                     ids: 'data1'
                 });
-                chart3.unload({
+                chart5.unload({
                     ids: 'data2'
                 });
             }, 2500);

@@ -26,8 +26,8 @@
     <!-- /.content -->
 @endsection
 
-@section('custom_javascript')
-    <script language="JavaScript">
 
-    </script>
-    @append
+@section('custom_javascript')
+    @yield('follow_javascript')
+
+@overwrite

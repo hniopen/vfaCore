@@ -57,6 +57,7 @@
     "datatables.net-select-dt": "^1.2.3",
     "datatables.net-buttons-dt": "^1.4.2",
     "datatables.net-buttons-bs": "^1.4.2",
-    "datatables.net-select-bs": "^1.2.3"
+    "datatables.net-select-bs": "^1.2.3",
+    "c3": "^0.4.18"
   }
 }
