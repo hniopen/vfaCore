@@ -1,4 +1,11 @@
 @inject('request', 'Illuminate\Http\Request')
+<li class="">
+    <a href="{{ url('/') }}">
+        <i class="fa fa-external-link"></i>
+        <span class="title">Back to front-office</span>
+    </a>
+</li>
+
 <li class="{{ $request->segment(2) == 'home' || $request->segment(2) == '' ? 'active' : '' }}">
     <a href="{{ url('/admin/home') }}">
         <i class="fa fa-wrench"></i>
