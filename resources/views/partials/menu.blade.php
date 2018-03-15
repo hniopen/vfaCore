@@ -56,8 +56,10 @@
 @endif
 
 @if(View::exists('vfadashboard::vfadashboard_menu'))
-    @can('feature-flag', 'feature_vfa_dashboard', 'manage_vfadashboard')
-        @include('vfadashboard::vfadashboard_menu')
+    @can('feature-flag', 'feature_vfa_dashboard')
+        @can('manage_vfadashboard')
+            @include('vfadashboard::vfadashboard_menu')
+        @endcan
     @endcan
 @endif
 
@@ -68,12 +70,14 @@
     </a>
 </li>
 
+@can('manage_feature_flag')
 <li class="{{ $request->segment(2) == 'feature_flags' ? 'active' : '' }}">
     <a href="{{ route('laravel-feature-flag.index') }}">
         <i class="fa fa-flag"></i>
         <span class="title">Feature flag</span>
     </a>
 </li>
+@endcan
 
 {{--<li>--}}
 {{--<a href="#logout" onclick="$('#logout').submit();">--}}

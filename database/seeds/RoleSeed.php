@@ -41,6 +41,10 @@ class RoleSeed extends Seeder
         $role->givePermissionTo('core_access_frontend');
         $role->givePermissionTo('core_access_admin');
 
+        //Feature flag
+        $role = Role::create(['name' => 'feature_flag_manager']);
+        $role->givePermissionTo('manage_feature_flag');
+
         //can visit
         $role = Role::create(['name' => 'core_visit']);
         $role->givePermissionTo('core_access_frontend');

@@ -21,5 +21,6 @@ class PermissionSeed extends Seeder
         Permission::create(['name' => 'dwsync_see_data']);
         Permission::create(['name' => 'see_dev_space']);
         Permission::create(['name' => 'manage_vfadashboard']);
+        Permission::create(['name' => 'manage_feature_flag']);
     }
 }
