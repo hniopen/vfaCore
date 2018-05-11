@@ -21,8 +21,7 @@
         "overtrue/laravel-follow": "dev-master",
         "spatie/laravel-permission": "^2.2",
         "yajra/laravel-datatables-buttons": "2.*",
-        "yajra/laravel-datatables-oracle": "7.*",
-        "orangehill/iseed": "dev-master"
+        "yajra/laravel-datatables-oracle": "7.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
