@@ -2,19 +2,22 @@
 <li class="">
     <a href="{{ url('/') }}">
         <i class="fa fa-external-link"></i>
-        <span class="title">Back to front-office</span>
+        <span class="title">Back to Dashboard</span>
     </a>
 </li>
 
-<li class="{{ $request->segment(2) == 'home' || $request->segment(2) == '' ? 'active' : '' }}">
-    <a href="{{ url('/admin/home') }}">
+@can('dwsync_create_project', 'dwsync_sync_data')
+<li class="{{ $request->segment(2) == 'info' || $request->segment(2) == '' ? 'active' : '' }}">
+    <a href="{{ url('/admin/info') }}">
         <i class="fa fa-wrench"></i>
-        <span class="title">@lang('global.app_dashboard')</span>
+        <span class="title">@lang('global.app_info_admin')</span>
     </a>
 </li>
+@endcan
 
 @can('feature-flag', 'feature_acl')
-    @can('manage_users')
+    {{--@if (!Auth::guest() && Auth::user()->hasPermissionTo(''))--}}
+    @can('manage_users', 'manage_permissions', 'manage_roles')
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-users"></i>
@@ -24,7 +27,7 @@
                     </span>
             </a>
             <ul class="treeview-menu">
-
+                @can('manage_permissions')
                 <li class="{{ $request->segment(2) == 'permissions' ? 'active active-sub' : '' }}">
                     <a href="{{ route('admin.permissions.index') }}">
                         <i class="fa fa-briefcase"></i>
@@ -33,6 +36,8 @@
                             </span>
                     </a>
                 </li>
+                @endcan
+                @can('manage_roles')
                 <li class="{{ $request->segment(2) == 'roles' ? 'active active-sub' : '' }}">
                     <a href="{{ route('admin.roles.index') }}">
                         <i class="fa fa-briefcase"></i>
@@ -41,6 +46,8 @@
                             </span>
                     </a>
                 </li>
+                @endcan
+                @can('manage_users')
                 <li class="{{ $request->segment(2) == 'users' ? 'active active-sub' : '' }}">
                     <a href="{{ route('admin.users.index') }}">
                         <i class="fa fa-user"></i>
@@ -49,6 +56,7 @@
                             </span>
                     </a>
                 </li>
+                @endcan
             </ul>
         </li>
     @endcan

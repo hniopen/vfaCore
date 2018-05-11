@@ -19,6 +19,11 @@ class RoleSeed extends Seeder
         //can admin acl
         $role = Role::create(['name' => 'acl_admin']);
         $role->givePermissionTo('manage_users');
+        $role->givePermissionTo('manage_roles');
+        $role->givePermissionTo('manage_permissions');
+
+        $role = Role::create(['name' => 'user_admin']);
+        $role->givePermissionTo('manage_users');
 
         //can admin dwsync
         $role = Role::create(['name' => 'dwsync_admin']);

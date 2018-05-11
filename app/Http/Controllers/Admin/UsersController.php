@@ -22,8 +22,10 @@ class UsersController extends Controller
         if (! Gate::allows('manage_users')) {
             return abort(401);
         }
-
-        $users = User::all();
+        if(auth()->user()->hasRole('acl_admin'))
+            $users = User::all();
+        else
+            $users = User::where("id", ">", 2)->get();
 
         return view('admin.users.index', compact('users'));
     }
