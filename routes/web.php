@@ -29,6 +29,7 @@ $this->post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/phpinfo','AdminController@phpinfo');
     Route::get('/home', 'AdminController@index');
+    Route::get('/info', 'AdminController@info');
     Route::get('/', 'AdminController@index');
     Route::group(['middleware' => ['auth', 'roles'], 'roles'=>'acl_admin'],function () {
         Route::resource('permissions', 'Admin\PermissionsController');

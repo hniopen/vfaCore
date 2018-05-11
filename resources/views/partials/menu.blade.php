@@ -2,14 +2,14 @@
 <li class="">
     <a href="{{ url('/') }}">
         <i class="fa fa-external-link"></i>
-        <span class="title">Back to front-office</span>
+        <span class="title">Back to Dashboard</span>
     </a>
 </li>
 
-<li class="{{ $request->segment(2) == 'home' || $request->segment(2) == '' ? 'active' : '' }}">
-    <a href="{{ url('/admin/home') }}">
+<li class="{{ $request->segment(2) == 'info' || $request->segment(2) == '' ? 'active' : '' }}">
+    <a href="{{ url('/admin/info') }}">
         <i class="fa fa-wrench"></i>
-        <span class="title">@lang('global.app_dashboard')</span>
+        <span class="title">@lang('global.app_info_admin')</span>
     </a>
 </li>
 
