@@ -26,6 +26,16 @@ class AdminController extends Controller
         return view('admin.home');
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function info()
+    {
+        return view('admin.info');
+    }
+
     public function phpinfo(){
         return view('admin.phpinfo');
     }

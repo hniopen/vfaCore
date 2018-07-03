@@ -133,9 +133,10 @@
                 <li class="user-footer">
                     <div class="pull-left">
                         <a href="{{ url('/admin/home') }}" class="btn btn-default btn-flat">
-                            @hasrole('acl_admin') Admin
-                            @else Settings
-                            @endhasrole
+                            {{--@hasrole('acl_admin') Admin--}}
+                            {{--@else Settings--}}
+                            {{--@endhasrole--}}
+                            Admin
                         </a>
                     </div>
                     <div class="pull-right">

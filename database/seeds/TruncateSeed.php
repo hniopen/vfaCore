@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Database\Seeder;
 
-class ResetURRSeed extends Seeder
+class TruncateSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,12 +14,15 @@ class ResetURRSeed extends Seeder
         Artisan::call('cache:forget', ['key'=>'spatie.permission.cache']);
         Artisan::call('cache:clear');
         Schema::disableForeignKeyConstraints();
+        //ACL
         DB::table('model_has_roles')->truncate();
         DB::table('model_has_permissions')->truncate();
         DB::table('role_has_permissions')->truncate();
         DB::table('permissions')->truncate();
         DB::table('roles')->truncate();
         DB::table('users')->truncate();
+        //feature flag
+        DB::table('feature_flags')->truncate();
         Schema::enableForeignKeyConstraints();
     }
 }

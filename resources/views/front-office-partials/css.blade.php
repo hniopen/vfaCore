@@ -19,6 +19,10 @@
 <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-select-dt/css/select.dataTables.min.css') }}"/>
 <link rel="stylesheet" href="{{ asset('bower_components/datatables.net-buttons-dt/css/buttons.dataTables.min.css') }}"/>
 
+<!-- Load c3.css -->
+<link href="{{ asset("bower_components/c3/c3.css")}}" rel="stylesheet" type="text/css" />
+
 <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css') }}"/>
 <link rel="stylesheet"
       href="{{ asset('bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/custom-laravel-follow.css') }}"/>

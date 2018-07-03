@@ -1,5 +1,6 @@
 ## local
 /*.DS_Store
+composer.lock
 
 ### Custom
 /node_modules
