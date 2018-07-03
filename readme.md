@@ -55,8 +55,8 @@ nohup php artisan serve --host=0.0.0.0 {--port=XXXX} &
 ## Test you app ;)
 * 1st administrator : 
     * name : `Admin`
-    * mail : `tobechanged@gmail.com` (please change this to working one)
-    * ***REMOVED***
+    * mail : `` (please change this to working one)
+    * pwd : ``
 
 ## Serve the app
 ### Local server
