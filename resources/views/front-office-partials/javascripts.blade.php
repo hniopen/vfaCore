@@ -28,12 +28,18 @@
 {{--<script type="text/javascript" src="{{asset('bower_components/inputmask/dist/min/inputmask/inputmask.date.extensions.min.js') }}"></script>--}}
 {{--<script type="text/javascript" src="{{ asset('bower_components/AdminLTE/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>--}}
 
+<!-- Load d3.js and c3.js -->
+<script src="{{asset("bower_components/d3/d3.min.js")}}" charset="utf-8"></script>
+<script src="{{asset("bower_components/c3/c3.min.js")}}"></script>
+
+<!-- Custom js -->
 <script type="text/javascript" src="{{ asset('js/custom_backNfront.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/custom_front_only.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/laravel-follow-handler.js') }}"></script>
+
 <script>
     window._token = '{{ csrf_token() }}';
 </script>
-
 
 
 @yield('javascript')

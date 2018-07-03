@@ -4,6 +4,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Overtrue\LaravelFollow\Traits\CanFavorite;
 use Hash;
 
 /**
@@ -18,7 +19,8 @@ use Hash;
 class User extends Authenticatable
 {
     use Notifiable;
-    use HasRoles;
+    use HasRoles;//Spatie ACL
+    use CanFavorite;//Laravel-follow
 
     protected $fillable = ['name', 'email', 'password', 'remember_token'];
     

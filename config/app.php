@@ -208,6 +208,11 @@ return [
         Hni\Dwsync\DwsyncServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
 
+        //Feature toggle
+        AlfredNutileInc\LaravelFeatureFlags\FeatureFlagsProvider::class,
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
+
+        Hni\vfaDashboard\DashboardServiceProvider::class,
     ],
 
     /*
@@ -266,7 +271,9 @@ return [
         'DataTables' => Yajra\Datatables\Facades\Datatables::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Dwsync' => Hni\Dwsync\DwsyncServiceProvider::class,
+        'vfaDashboard' => Hni\vfaDashboard\DashboardServiceProvider::class,
 //        'Tuto' => Hni\Tuto\TutoProvider::class,
+        'Feature' => AlfredNutileInc\LaravelFeatureFlags\FeatureFlagsProvider::class,
     ],
 
 ];

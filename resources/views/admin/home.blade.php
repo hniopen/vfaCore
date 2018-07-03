@@ -82,6 +82,8 @@
                 <!-- /.row -->
             </div>
         </div>
+        @else
+            <div>Nothing to show yet !</div>
         @endcan
     </div>
 @endsection
